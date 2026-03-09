@@ -8,7 +8,7 @@
 - `exports/regulatory_substances.csv`: compatibility export for existing readers
 - `parsed/`: parsed law-entry artifacts
 - `mappings/`: CAS mapping and unresolved-entry artifacts
-- `masters/`: law-specific master datasets and public-safe aliases
+- `masters/`: law-specific master datasets and aliases
 
 ## What is not published here
 
@@ -24,7 +24,7 @@ The private `ra-law-scraper` repository:
 2. parses and normalizes entries
 3. resolves CAS mappings
 4. builds the public SQLite bundle and compatibility exports
-5. publishes sanitized outputs into this repository
+5. publishes outputs into this repository
 
 ## Compatibility
 

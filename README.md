@@ -23,5 +23,5 @@ This repository is published by the private `ra-law-scraper` pipeline. The publi
 
 - SQLite is the preferred distribution format for downstream consumers.
 - The compatibility CSV remains for consumers that have not migrated yet.
-- Alias rows derived from non-public source material are excluded from this public dataset.
+- Alias data is published in `masters/substance_aliases.csv` and bundled into `regulatory.sqlite3`.
 - Unresolved law entries are tracked in `mappings/unresolved_entries.jsonl` for manual review.

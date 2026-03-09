@@ -13,7 +13,7 @@ The SQLite bundle contains the data needed by downstream screening services:
 - mapping records
 - unresolved entries
 - law master datasets
-- public-safe alias rows
+- alias rows
 - master coverage metadata
 
 ## Compatibility artifacts
@@ -28,5 +28,4 @@ The repo also publishes compatibility files for existing consumers:
 ## Publishing rules
 
 - SQLite is the source of truth for new consumers.
-- Compatibility files are generated from the same sanitized dataset.
-- Alias rows derived from non-public enrichment inputs are excluded from the public bundle.
+- Compatibility files are generated from the same dataset.
