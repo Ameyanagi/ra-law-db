@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import csv
 import json
+from importlib import resources
 from pathlib import Path
 
-from ra_law_db import LawScreeningDatabase
+from ra_law_db import LawScreeningDatabase, get_law_screening_database
 
 
 def _write_regulatory_export(path: Path) -> None:
@@ -235,3 +236,32 @@ def test_lookup_returns_multi_law_statuses(tmp_path):
     assert by_law["poison_control"]["status"] == "applies"
     assert by_law["prtr"]["status"] == "applies"
     assert by_law["ish"]["status"] == "requires_context"
+
+
+def test_packaged_bundle_resource_exists():
+    """The installable package should include the bundled SQLite runtime DB."""
+    resource = resources.files("ra_law_db").joinpath("data").joinpath("regulatory.sqlite3")
+    assert resource.is_file()
+
+
+def test_get_law_screening_database_uses_packaged_bundle_by_default():
+    """Direct consumers should work without cloning a separate data checkout."""
+    LawScreeningDatabase.reset_instance()
+    db = get_law_screening_database()
+
+    payload = db.lookup(cas_number="75-09-2", language="ja")
+
+    assert payload["matched"] is True
+    assert db.sqlite_path.name == "regulatory.sqlite3"
+
+
+def test_direct_sqlite_override_path_works():
+    """A direct SQLite file path override should be accepted."""
+    sqlite_path = Path(__file__).resolve().parents[1] / "regulatory.sqlite3"
+    LawScreeningDatabase.reset_instance()
+    db = LawScreeningDatabase.get_instance(sqlite_path)
+
+    payload = db.search(query="75-09-2", mode="cas", limit=3, min_score=0.6)
+
+    assert db.sqlite_path == sqlite_path
+    assert payload["substance_hits"]

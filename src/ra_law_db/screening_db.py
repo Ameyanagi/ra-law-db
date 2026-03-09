@@ -7,7 +7,9 @@ import json
 import re
 import sqlite3
 import unicodedata
+from contextlib import ExitStack
 from difflib import SequenceMatcher
+from importlib import resources
 from pathlib import Path
 from typing import Any
 
@@ -355,15 +357,18 @@ class LawScreeningDatabase:
 
     _instance: LawScreeningDatabase | None = None
 
-    def __init__(self, law_db_path: str | Path):
-        self.law_db_path = Path(law_db_path)
-        self.sqlite_path = self.law_db_path / "regulatory.sqlite3"
-        self.export_csv_path = self.law_db_path / "exports" / "regulatory_substances.csv"
-        self.snapshots_jsonl_path = self.law_db_path / "parsed" / "source_snapshots.jsonl"
-        self.parsed_entries_jsonl_path = self.law_db_path / "parsed" / "law_entries.jsonl"
-        self.mappings_jsonl_path = self.law_db_path / "mappings" / "cas_mappings.jsonl"
-        self.unresolved_jsonl_path = self.law_db_path / "mappings" / "unresolved_entries.jsonl"
-        self.masters_dir = self.law_db_path / "masters"
+    def __init__(self, law_db_path: str | Path | None = None):
+        self._resource_stack = ExitStack()
+        self._instance_key = self._normalize_instance_key(law_db_path)
+        self.law_db_path: Path
+        self.sqlite_path: Path
+        self.export_csv_path: Path
+        self.snapshots_jsonl_path: Path
+        self.parsed_entries_jsonl_path: Path
+        self.mappings_jsonl_path: Path
+        self.unresolved_jsonl_path: Path
+        self.masters_dir: Path
+        self._configure_paths(law_db_path)
         self.alias_master_path = self.masters_dir / ALIAS_MASTER_FILE
         self.master_coverage_path = self.masters_dir / MASTER_COVERAGE_FILE
 
@@ -384,23 +389,86 @@ class LawScreeningDatabase:
         self._regulatory_dataset_loaded = False
 
     @classmethod
-    def get_instance(cls, law_db_path: str | Path) -> LawScreeningDatabase:
-        """Get singleton instance bound to a law-db path."""
-        path = str(Path(law_db_path))
-        if cls._instance is None or str(cls._instance.law_db_path) != path:
-            cls._instance = cls(path)
+    def get_instance(cls, law_db_path: str | Path | None = None) -> LawScreeningDatabase:
+        """Get singleton instance bound to a law-db path or the bundled DB."""
+        path_key = cls._normalize_instance_key(law_db_path)
+        if cls._instance is None or cls._instance._instance_key != path_key:
+            if cls._instance is not None:
+                cls._instance.close()
+            cls._instance = cls(law_db_path)
             cls._instance._load_data()
         return cls._instance
 
     @classmethod
     def reset_instance(cls) -> None:
         """Reset singleton instance (mainly for tests)."""
+        if cls._instance is not None:
+            cls._instance.close()
         cls._instance = None
 
     def reload(self) -> None:
         """Reload all data artifacts from disk."""
         self._loaded = False
         self._load_data()
+
+    def close(self) -> None:
+        """Release any packaged-resource extraction state."""
+        self._resource_stack.close()
+
+    def __del__(self) -> None:
+        try:
+            self.close()
+        except Exception:
+            pass
+
+    @staticmethod
+    def _normalize_instance_key(law_db_path: str | Path | None) -> str:
+        if law_db_path is None:
+            return "__bundled__"
+        text = str(law_db_path).strip()
+        if not text:
+            return "__bundled__"
+        return str(Path(text))
+
+    def _configure_paths(self, law_db_path: str | Path | None) -> None:
+        if law_db_path is None or not str(law_db_path).strip():
+            bundled_path = self._resolve_bundled_sqlite_path()
+            self._configure_sqlite_only_paths(bundled_path)
+            return
+
+        candidate = Path(law_db_path)
+        if candidate.suffix == ".sqlite3" or candidate.is_file():
+            if not candidate.exists():
+                raise FileNotFoundError(f"Law DB SQLite not found: {candidate}")
+            self._configure_sqlite_only_paths(candidate)
+            return
+
+        self._configure_repo_layout_paths(candidate)
+
+    def _resolve_bundled_sqlite_path(self) -> Path:
+        resource = resources.files("ra_law_db").joinpath("data").joinpath("regulatory.sqlite3")
+        return Path(self._resource_stack.enter_context(resources.as_file(resource)))
+
+    def _configure_repo_layout_paths(self, law_db_path: Path) -> None:
+        self.law_db_path = law_db_path
+        self.sqlite_path = self.law_db_path / "regulatory.sqlite3"
+        self.export_csv_path = self.law_db_path / "exports" / "regulatory_substances.csv"
+        self.snapshots_jsonl_path = self.law_db_path / "parsed" / "source_snapshots.jsonl"
+        self.parsed_entries_jsonl_path = self.law_db_path / "parsed" / "law_entries.jsonl"
+        self.mappings_jsonl_path = self.law_db_path / "mappings" / "cas_mappings.jsonl"
+        self.unresolved_jsonl_path = self.law_db_path / "mappings" / "unresolved_entries.jsonl"
+        self.masters_dir = self.law_db_path / "masters"
+
+    def _configure_sqlite_only_paths(self, sqlite_path: Path) -> None:
+        self.law_db_path = sqlite_path
+        self.sqlite_path = sqlite_path
+        placeholder_root = sqlite_path.parent
+        self.export_csv_path = placeholder_root / "exports" / "regulatory_substances.csv"
+        self.snapshots_jsonl_path = placeholder_root / "parsed" / "source_snapshots.jsonl"
+        self.parsed_entries_jsonl_path = placeholder_root / "parsed" / "law_entries.jsonl"
+        self.mappings_jsonl_path = placeholder_root / "mappings" / "cas_mappings.jsonl"
+        self.unresolved_jsonl_path = placeholder_root / "mappings" / "unresolved_entries.jsonl"
+        self.masters_dir = placeholder_root / "masters"
 
     def _load_data(self) -> None:
         self._rows_by_cas.clear()
@@ -1042,7 +1110,7 @@ class LawScreeningDatabase:
             "notes": self._localize(language, ja_notes, en_notes),
             "required_actions": self._default_actions_for_status(law_code, status, language),
             "evidence": {
-                "source": str(self.law_db_path),
+                "source": self._regulatory_source_path(),
             },
         }
 
