@@ -1,0 +1,23 @@
+{
+  "cscl": {
+    "entries": 63,
+    "mapped_entries": 30,
+    "master_rows": 33,
+    "unresolved_entries": 33,
+    "is_complete": false
+  },
+  "poison_control": {
+    "entries": 456,
+    "mapped_entries": 212,
+    "master_rows": 220,
+    "unresolved_entries": 244,
+    "is_complete": false
+  },
+  "cwc": {
+    "entries": 67,
+    "mapped_entries": 21,
+    "master_rows": 25,
+    "unresolved_entries": 46,
+    "is_complete": false
+  }
+}
