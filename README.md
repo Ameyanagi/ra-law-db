@@ -2,6 +2,10 @@
 
 Public dataset workspace for Japanese regulatory law artifacts.
 
+This repo now also ships a small Python package, `ra_law_db`, which exposes the
+shared screening/search runtime used by downstream consumers such as
+`ra-law-mcp`.
+
 ## Directory layout
 
 - `regulatory.sqlite3`: bundled SQLite database for downstream consumers
@@ -18,6 +22,13 @@ Public dataset workspace for Japanese regulatory law artifacts.
 ## Generation
 
 This repository is published by the private `ra-law-scraper` pipeline. The public repo contains the generated dataset and compatibility exports, not the private scraping workflow itself.
+
+## Package
+
+- Install with `uv` from GitHub or as a local editable package.
+- Runtime entrypoints:
+  - `ra_law_db.LawScreeningDatabase`
+  - `ra_law_db.get_law_screening_database()`
 
 ## Notes
 
