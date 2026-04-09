@@ -88,3 +88,4 @@ Release model:
 - SQLite is the canonical runtime format for downstream consumers.
 - Alias data is published in `masters/substance_aliases.csv` and bundled into `regulatory.sqlite3`.
 - Unresolved law entries are tracked in `mappings/unresolved_entries.jsonl` for manual review.
+- `ra-law-db` remains law-source-driven. It is not replaced by CREATE-SIMPLE workbook data when `ra-library` / `ra-mcp` adopt a newer CREATE-SIMPLE methodology version.
