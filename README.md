@@ -10,11 +10,11 @@ Public dataset workspace and installable runtime library for Japanese chemical l
 Most consumers should install the package and use the bundled SQLite database directly:
 
 ```bash
-uv add git+https://github.com/Ameyanagi/ra-law-db.git
+pip install ra-law-db
 ```
 
 ```bash
-pip install "ra-law-db @ git+https://github.com/Ameyanagi/ra-law-db.git"
+uv add ra-law-db
 ```
 
 ```python
@@ -82,6 +82,21 @@ Release model:
 - the package version moves with the bundled SQLite database
 - a new bundled DB refresh should be released as a new `ra-law-db` package version
 - direct consumers receive data updates by upgrading `ra-law-db`
+
+## Development
+
+```bash
+uv sync --group dev
+uv run pre-commit install
+uv run pre-commit run --all-files
+uv run pytest -q
+```
+
+## Release
+
+PyPI publishing is handled by GitHub Actions only when a matching `v*` tag is
+pushed. See [docs/release.md](docs/release.md) for the cleanup and release
+checklist.
 
 ## Notes
 

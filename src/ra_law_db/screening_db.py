@@ -248,7 +248,7 @@ def normalize_name(value: str) -> str:
     """Normalize Japanese/English names for deterministic lookup."""
     normalized = unicodedata.normalize("NFKC", value or "")
     normalized = normalized.replace(" ", "").replace("\u3000", "")
-    normalized = normalized.replace("\uFF08", "(").replace("\uFF09", ")")
+    normalized = normalized.replace("\uff08", "(").replace("\uff09", ")")
     normalized = re.sub(r"[\-\u2010\u2011\u2012\u2013\u2014\u2015\u30FC\u2212\uFF0D]", "", normalized)
     normalized = re.sub(r"\([^)]*\)", "", normalized)
     return normalized.strip().lower()
@@ -640,8 +640,14 @@ class LawScreeningDatabase:
                     regulation_type=(record_row.get("regulation_type") or "").strip(),
                     regulation_class=_safe_int(record_row.get("regulation_class")),
                     regulation_label=(record_row.get("regulation_label") or "").strip(),
-                    law_name_ja=((record_row.get("law_name_ja") or "").strip() or self._law_names_for_regulation_type((record_row.get("regulation_type") or "").strip())[0]),
-                    law_name_en=((record_row.get("law_name_en") or "").strip() or self._law_names_for_regulation_type((record_row.get("regulation_type") or "").strip())[1]),
+                    law_name_ja=(
+                        (record_row.get("law_name_ja") or "").strip()
+                        or self._law_names_for_regulation_type((record_row.get("regulation_type") or "").strip())[0]
+                    ),
+                    law_name_en=(
+                        (record_row.get("law_name_en") or "").strip()
+                        or self._law_names_for_regulation_type((record_row.get("regulation_type") or "").strip())[1]
+                    ),
                     health_check_required=_safe_bool(record_row.get("health_check_required")),
                     health_check_type=(record_row.get("health_check_type") or "").strip(),
                     health_check_interval=(record_row.get("health_check_interval") or "").strip(),
@@ -696,8 +702,12 @@ class LawScreeningDatabase:
                         category=(record_row.get("category") or "").strip(),
                         label_ja=(record_row.get("label_ja") or "").strip(),
                         label_en=(record_row.get("label_en") or "").strip(),
-                        law_name_ja=((record_row.get("law_name_ja") or "").strip() or self._law_names_for_code(law_code)[0]),
-                        law_name_en=((record_row.get("law_name_en") or "").strip() or self._law_names_for_code(law_code)[1]),
+                        law_name_ja=(
+                            (record_row.get("law_name_ja") or "").strip() or self._law_names_for_code(law_code)[0]
+                        ),
+                        law_name_en=(
+                            (record_row.get("law_name_en") or "").strip() or self._law_names_for_code(law_code)[1]
+                        ),
                         law_reference=(record_row.get("law_reference") or "").strip(),
                         law_id=(record_row.get("law_id") or "").strip(),
                     )
@@ -854,8 +864,14 @@ class LawScreeningDatabase:
                     regulation_type=(row.get("regulation_type") or "").strip(),
                     regulation_class=_safe_int(row.get("regulation_class")),
                     regulation_label=(row.get("regulation_label") or "").strip(),
-                    law_name_ja=((row.get("law_name_ja") or "").strip() or self._law_names_for_regulation_type((row.get("regulation_type") or "").strip())[0]),
-                    law_name_en=((row.get("law_name_en") or "").strip() or self._law_names_for_regulation_type((row.get("regulation_type") or "").strip())[1]),
+                    law_name_ja=(
+                        (row.get("law_name_ja") or "").strip()
+                        or self._law_names_for_regulation_type((row.get("regulation_type") or "").strip())[0]
+                    ),
+                    law_name_en=(
+                        (row.get("law_name_en") or "").strip()
+                        or self._law_names_for_regulation_type((row.get("regulation_type") or "").strip())[1]
+                    ),
                     health_check_required=_safe_bool(row.get("health_check_required")),
                     health_check_type=(row.get("health_check_type") or "").strip(),
                     health_check_interval=(row.get("health_check_interval") or "").strip(),

@@ -100,7 +100,16 @@ def _write_master_csv(path: Path, rows: list[dict]) -> None:
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f,
-            fieldnames=["cas_number", "category", "label_ja", "label_en", "law_name_ja", "law_name_en", "law_reference", "law_id"],
+            fieldnames=[
+                "cas_number",
+                "category",
+                "label_ja",
+                "label_en",
+                "law_name_ja",
+                "law_name_en",
+                "law_reference",
+                "law_id",
+            ],
         )
         writer.writeheader()
         writer.writerows(rows)

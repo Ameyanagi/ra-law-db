@@ -10,7 +10,7 @@ cas_number,name_ja,name_en,regulation_type,regulation_class,regulation_label,law
 4,4'-diamino-3,3'-dimethoxybiphenyl,
 3,3'-Dimethoxybenzidine,
 o-dianisidine",tokka,1,特化則第1類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-6,,,1%を超える含有製剤,30,False
-20325-40-0,ジアニシジン及びその塩,"3,3'-dimethoxybenzidine dihydrochloride, 
+20325-40-0,ジアニシジン及びその塩,"3,3'-dimethoxybenzidine dihydrochloride,
 o-dianisidine dihydrochloride",tokka,1,特化則第1類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-6,,,1%を超える含有製剤,30,False
 7440-41-7,ベリリウム及びその化合物,Beryllium | Glucinium,tokka,1,特化則第1類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-7,0.001,mg/m³,1%を超える含有製剤、または3%を超える合金,30,True
 7787-56-6,ベリリウム及びその化合物,Beryllium sulfate tetrahydrate,tokka,1,特化則第1類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-7,0.001,mg/m³,1%を超える含有製剤、または3%を超える合金,30,True
@@ -75,13 +75,13 @@ Cobalt(III) sodium nitrite",tokka,2,特化則第2類,特定化学物質障害予
 56-23-5,四塩化炭素,Carbon tetrachloride | Tetrachloromethane,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,True,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,5.0,ppm,1%を超える含有製剤,30,True
 123-91-1,"1,4-ジオキサン","1,4-Dioxane",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,True,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,10.0,ppm,1%を超える含有製剤,30,True
 107-06-2,"1,2-ジクロロエタン","1,2-Dichloroethane",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,True,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,10.0,ppm,1%を超える含有製剤,30,True
-101-14-4,"3,3'-ジクロロ-4,4'-ジアミノジフェニルメタン","3,3'-Dichloro-4,4'-diaminodiphenylmethane | 
+101-14-4,"3,3'-ジクロロ-4,4'-ジアミノジフェニルメタン","3,3'-Dichloro-4,4'-diaminodiphenylmethane |
 4,4'-Methylenebis(2-chloroaniline)",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-15 | 特化則別表5-7,0.005,mg/m³,1%を超える含有製剤,30,True
 78-87-5,"1,2-ジクロロプロパン","1,2-Dichloropropane",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,True,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-15の2 | 特化則別表5-7の2,1.0,ppm,1%を超える含有製剤,30,True
-75-09-2,ジクロロメタン,"Dichloromethane | 
+75-09-2,ジクロロメタン,"Dichloromethane |
 Methylenedichloride",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,True,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-15の3 | 特化則別表5-7の3,50.0,ppm,1%を超える含有製剤,30,True
-62-73-7,"ジメチル-2,2-ジクロロビニルホスフェイト","Dimethyl 2,2-dichlorovinyl phosphate | 
-2,2-Dichloroethenyl dimethyl phosphate | Dichlorvos | 
+62-73-7,"ジメチル-2,2-ジクロロビニルホスフェイト","Dimethyl 2,2-dichlorovinyl phosphate |
+2,2-Dichloroethenyl dimethyl phosphate | Dichlorvos |
 DDVP",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-15の4 | 特化則別表5-7の4,0.1,mg/m³,1%を超える含有製剤,30,True
 57-14-7,"1,1-ジメチルヒドラジン","1,1-Dimethylhydrazine",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-15の5 | 特化則別表5-7の5,0.01,ppm,1%を超える含有製剤,30,True
 74-83-9,臭化メチル,Methyl bromide | bromomethane,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,False,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,1.0,ppm,1%を超える含有製剤,5,True
@@ -98,7 +98,7 @@ Sodium dichromate",tokka,2,特化則第2類,特定化学物質障害予防規則
 Sodium ethylmercurithiosalicylate,
 sodium ethylmercury 2-sulfidobenzoate",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,False,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,0.025,mg/m³,1%を超える含有製剤,5,True
 7487-94-7,水銀及びその無機化合物（硫化水銀を除く。）,"Mercury dichloride,
-Mercuric chloride, 
+Mercuric chloride,
 Mercury(ＩＩ) dichloride,
 Mercury perchloride",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,False,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,0.025,mg/m³,1%を超える含有製剤,5,True
 7774-29-0,水銀及びその無機化合物（硫化水銀を除く。）,Mercury(II) iodide,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,False,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,○,0.025,mg/m³,1%を超える含有製剤,5,True
@@ -145,7 +145,7 @@ Dichloronickel",tokka,2,特化則第2類,特定化学物質障害予防規則,Or
 1327-53-3,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Diarsenic trioxide,
 Arsenic(III) oxide",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
 7784-46- 5,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,Sodium arsenite,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
-7784-34-1,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Arsenic trichloride, 
+7784-34-1,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Arsenic trichloride,
 Arsenic(III) chloride,
 Arsenous chloride",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
 13464-38-5,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Sodium arsenate,
@@ -154,7 +154,7 @@ Sodium orthoarsenate",tokka,2,特化則第2類,特定化学物質障害予防規
 7784-41-0,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,Potassium arsenate,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
 471-35-2,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,Cacodylic Acid,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
 6131-99-3,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,Sodium Cacodylate Trihydrate,tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
-1327-53-3,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Arsenic trioxide | Diarsenic trioxide | Arsenic(III) oxide | 
+1327-53-3,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Arsenic trioxide | Diarsenic trioxide | Arsenic(III) oxide |
 Arsenious acid anhydride",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
 12279-90-2,砒素及びその化合物（アルシン及び砒化ガリウムを除く。）,"Tetraarsenic tetrasulfide,
 Arsenic Sulfide",tokka,2,特化則第2類,特定化学物質障害予防規則,Ordinance on Prevention of Hazards Due to Specified Chemical Substances,True,False,False,True,特定化学物質健康診断,6ヶ月以内ごとに1回,令22-2-19の2 | 特化則別表5-12,0.003,mg/m³,1%を超える含有製剤,30,True
