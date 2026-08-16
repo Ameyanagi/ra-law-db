@@ -1,5 +1,9 @@
 # ra-law-db
 
+<p align="center">
+  <img src="assets/logo.png" alt="RA Suite logo" width="180">
+</p>
+
 Public dataset workspace and installable runtime library for Japanese chemical law screening.
 
 `ra-law-db` is now the canonical non-MCP API for direct law-screening consumers.
