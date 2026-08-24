@@ -3,7 +3,7 @@
 from .models import LAW_LABELS, LAW_STANDARD_NAMES, LawStatus
 from .screening_db import LawScreeningDatabase
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 
 def get_law_screening_database(law_db_path: str | None = None):
@@ -22,7 +22,11 @@ def lookup_law_screening(
     law_db_path: str | None = None,
 ):
     """Screen a substance across every supported law domain."""
-    return get_law_screening_database(law_db_path).lookup(cas_number, substance_name, language)
+    return get_law_screening_database(law_db_path).lookup(
+        cas_number=cas_number,
+        substance_name=substance_name,
+        language=language,
+    )
 
 
 def search_law_substances(
@@ -34,7 +38,13 @@ def search_law_substances(
     law_db_path: str | None = None,
 ):
     """Search the published law dataset by CAS number or name."""
-    return get_law_screening_database(law_db_path).search(query, mode, law_id, limit, min_score)
+    return get_law_screening_database(law_db_path).search(
+        query=query,
+        mode=mode,
+        law_id=law_id,
+        limit=limit,
+        min_score=min_score,
+    )
 
 
 def list_regulated_substances(
@@ -48,12 +58,12 @@ def list_regulated_substances(
 ):
     """List regulatory records using the canonical library service."""
     return get_law_screening_database(law_db_path).list_regulated_substances(
-        regulation_type,
-        regulation_class,
-        special_management_only,
-        language,
-        offset,
-        limit,
+        regulation_type=regulation_type,
+        regulation_class=regulation_class,
+        special_management_only=special_management_only,
+        language=language,
+        offset=offset,
+        limit=limit,
     )
 
 
@@ -63,7 +73,10 @@ def lookup_regulatory_info(
     law_db_path: str | None = None,
 ):
     """Return the restored detailed compatibility projection."""
-    return get_law_screening_database(law_db_path).lookup_regulatory_info(cas_number, language)
+    return get_law_screening_database(law_db_path).lookup_regulatory_info(
+        cas_number=cas_number,
+        language=language,
+    )
 
 
 __all__ = [
