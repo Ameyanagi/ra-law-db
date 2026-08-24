@@ -14,6 +14,7 @@ LAW_LABELS = {
         "prtr": "化管法(PRTR)",
         "poison_control": "毒劇法",
         "ish": "労働安全衛生法関連規制",
+        "waste": "廃棄物処理法",
         "cwc": "化学兵器禁止法",
     },
     "en": {
@@ -21,6 +22,7 @@ LAW_LABELS = {
         "prtr": "PRTR",
         "poison_control": "Poison Control Act",
         "ish": "Industrial Safety and Health Law related",
+        "waste": "Waste Management Act",
         "cwc": "Chemical Weapons Convention Law",
     },
 }
@@ -41,6 +43,10 @@ LAW_STANDARD_NAMES = {
     "ish": {
         "ja": "労働安全衛生法関連規制",
         "en": "Industrial Safety and Health Law related regulations",
+    },
+    "waste": {
+        "ja": "廃棄物の処理及び清掃に関する法律",
+        "en": "Waste Management and Public Cleansing Act",
     },
     "cwc": {
         "ja": "化学兵器の禁止及び特定物質の規制等に関する法律",
@@ -76,6 +82,13 @@ class RegulatoryRow:
     health_check_interval: str
     health_check_ref: str
     record_retention_years: int
+    special_management: bool = False
+    special_organic: bool = False
+    carcinogen: bool = False
+    control_concentration: float | None = None
+    control_concentration_unit: str = ""
+    threshold_pct: str = ""
+    work_env_measurement_required: bool = False
 
 
 @dataclass

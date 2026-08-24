@@ -253,6 +253,37 @@ def test_packaged_bundle_resource_exists():
     assert resource.is_file()
 
 
+def test_bundled_database_restores_complete_regulatory_listing():
+    LawScreeningDatabase.reset_instance()
+    db = LawScreeningDatabase.get_instance()
+
+    payload = db.list_regulated_substances(regulation_type="waste", limit=20)
+    assert payload["total"] == 12
+    assert payload["count"] == 12
+    assert all(item["regulation_type"] == "waste" for item in payload["substances"])
+
+
+def test_detailed_regulatory_compatibility_projection_preserves_administrative_fields():
+    LawScreeningDatabase.reset_instance()
+    db = LawScreeningDatabase.get_instance()
+
+    payload = db.lookup_regulatory_info("75-09-2", language="ja")
+    assert payload["regulated"] is True
+    assert payload["regulation_count"] >= 1
+    assert all("special_designations" in item for item in payload["regulations"])
+    assert all("administrative" in item for item in payload["regulations"])
+
+
+def test_multi_law_lookup_includes_waste_domain():
+    LawScreeningDatabase.reset_instance()
+    db = LawScreeningDatabase.get_instance()
+
+    payload = db.lookup(cas_number="7439-97-6", language="ja")
+    by_law = {item["law_code"]: item for item in payload["results"]}
+    assert "waste" in by_law
+    assert by_law["waste"]["status"] in {"requires_context", "not_applies"}
+
+
 def test_get_law_screening_database_uses_packaged_bundle_by_default():
     """Direct consumers should work without cloning a separate data checkout."""
     LawScreeningDatabase.reset_instance()

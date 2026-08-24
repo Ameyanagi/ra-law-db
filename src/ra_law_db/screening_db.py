@@ -15,7 +15,7 @@ from typing import Any
 
 from .models import LAW_LABELS, LAW_STANDARD_NAMES, MappingQuality, MasterLawRow, RegulatoryRow, SnapshotMetadata
 
-SUPPORTED_LAW_CODES = ("cscl", "prtr", "poison_control", "ish", "cwc")
+SUPPORTED_LAW_CODES = ("cscl", "prtr", "poison_control", "ish", "waste", "cwc")
 SEARCH_MODES = {"auto", "name", "cas"}
 CAS_PATTERN = re.compile(r"^\d{2,7}-\d{2}-\d$")
 
@@ -653,6 +653,17 @@ class LawScreeningDatabase:
                     health_check_interval=(record_row.get("health_check_interval") or "").strip(),
                     health_check_ref=(record_row.get("health_check_ref") or "").strip(),
                     record_retention_years=_safe_int(record_row.get("record_retention_years")),
+                    special_management=_safe_bool(record_row.get("special_management")),
+                    special_organic=_safe_bool(record_row.get("special_organic")),
+                    carcinogen=_safe_bool(record_row.get("carcinogen")),
+                    control_concentration=(
+                        _safe_float(record_row.get("control_concentration"))
+                        if record_row.get("control_concentration") not in (None, "")
+                        else None
+                    ),
+                    control_concentration_unit=(record_row.get("control_concentration_unit") or "").strip(),
+                    threshold_pct=(record_row.get("threshold_pct") or "").strip(),
+                    work_env_measurement_required=_safe_bool(record_row.get("work_env_measurement_required")),
                 )
                 self._rows_by_cas.setdefault(cas_number, []).append(record)
                 for candidate in (record.name_ja, record.name_en):
@@ -877,6 +888,17 @@ class LawScreeningDatabase:
                     health_check_interval=(row.get("health_check_interval") or "").strip(),
                     health_check_ref=(row.get("health_check_ref") or "").strip(),
                     record_retention_years=_safe_int(row.get("record_retention_years")),
+                    special_management=_safe_bool(row.get("special_management")),
+                    special_organic=_safe_bool(row.get("special_organic")),
+                    carcinogen=_safe_bool(row.get("carcinogen")),
+                    control_concentration=(
+                        _safe_float(row.get("control_concentration"))
+                        if row.get("control_concentration") not in (None, "")
+                        else None
+                    ),
+                    control_concentration_unit=(row.get("control_concentration_unit") or "").strip(),
+                    threshold_pct=(row.get("threshold_pct") or "").strip(),
+                    work_env_measurement_required=_safe_bool(row.get("work_env_measurement_required")),
                 )
                 self._regulatory_dataset_loaded = True
                 self._rows_by_cas.setdefault(cas_number, []).append(record)
@@ -1889,6 +1911,173 @@ class LawScreeningDatabase:
             },
         }
 
+    @staticmethod
+    def _serialize_regulatory_row(row: RegulatoryRow, language: str = "ja") -> dict[str, Any]:
+        """Serialize the complete administrative record retained in the public dataset."""
+        return {
+            "cas_number": row.cas_number,
+            "name_ja": row.name_ja,
+            "name_en": row.name_en,
+            "regulation_type": row.regulation_type,
+            "regulation_class": row.regulation_class or None,
+            "regulation_label": row.regulation_label,
+            "law_name": row.law_name_ja if language == "ja" else row.law_name_en,
+            "law_name_ja": row.law_name_ja,
+            "law_name_en": row.law_name_en,
+            "special_designations": {
+                "special_management": row.special_management,
+                "special_organic": row.special_organic,
+                "carcinogen": row.carcinogen,
+            },
+            "health_check": {
+                "required": row.health_check_required,
+                "type": row.health_check_type or None,
+                "interval": row.health_check_interval or None,
+                "reference": row.health_check_ref or None,
+            },
+            "administrative": {
+                "record_retention_years": row.record_retention_years,
+                "work_env_measurement": {
+                    "required": row.work_env_measurement_required,
+                    "control_concentration": {
+                        "value": row.control_concentration,
+                        "unit": row.control_concentration_unit or None,
+                    }
+                    if row.control_concentration is not None
+                    else None,
+                },
+            },
+            "threshold_percent": row.threshold_pct or None,
+        }
+
+    def list_regulated_substances(
+        self,
+        regulation_type: str | None = None,
+        regulation_class: int | None = None,
+        special_management_only: bool = False,
+        language: str = "ja",
+        offset: int = 0,
+        limit: int = 100,
+    ) -> dict[str, Any]:
+        """List complete regulatory records with stable filters and pagination."""
+        if not self._loaded:
+            self._load_data()
+
+        valid_types = sorted({row.regulation_type for rows in self._rows_by_cas.values() for row in rows})
+        if regulation_type and regulation_type not in valid_types:
+            raise ValueError(f"Unknown regulation_type: {regulation_type}. Valid values: {', '.join(valid_types)}")
+
+        rows = [row for cas_rows in self._rows_by_cas.values() for row in cas_rows]
+        if regulation_type:
+            rows = [row for row in rows if row.regulation_type == regulation_type]
+        if regulation_class is not None:
+            rows = [row for row in rows if row.regulation_class == regulation_class]
+        if special_management_only:
+            rows = [row for row in rows if row.special_management]
+        rows.sort(key=lambda row: (row.regulation_type, row.regulation_class, row.cas_number, row.regulation_label))
+
+        bounded_offset = max(0, offset)
+        bounded_limit = max(1, min(500, limit))
+        selected = rows[bounded_offset : bounded_offset + bounded_limit]
+        summary: dict[str, int] = {}
+        for row in rows:
+            key = f"{row.regulation_type}_{row.regulation_class}"
+            summary[key] = summary.get(key, 0) + 1
+
+        return {
+            "count": len(selected),
+            "total": len(rows),
+            "offset": bounded_offset,
+            "limit": bounded_limit,
+            "has_more": bounded_offset + len(selected) < len(rows),
+            "filters": {
+                "regulation_type": regulation_type,
+                "regulation_class": regulation_class,
+                "special_management_only": special_management_only,
+            },
+            "valid_regulation_types": valid_types,
+            "summary": summary,
+            "substances": [self._serialize_regulatory_row(row, language) for row in selected],
+        }
+
+    def lookup_regulatory_info(self, cas_number: str, language: str = "ja") -> dict[str, Any]:
+        """Return the detailed legacy regulatory projection for compatibility consumers."""
+        if not self._loaded:
+            self._load_data()
+        rows = self._rows_by_cas.get((cas_number or "").strip(), [])
+        if not rows:
+            return {
+                "cas_number": cas_number,
+                "regulated": False,
+                "regulation_count": 0,
+                "regulations": [],
+            }
+
+        serialized = [self._serialize_regulatory_row(row, language) for row in rows]
+        primary = dict(serialized[0])
+        primary.update(
+            {
+                "regulated": True,
+                "regulation_count": len(serialized),
+                "regulations": serialized,
+            }
+        )
+        return primary
+
+    def _result_waste(self, cas_candidates: set[str], language: str) -> dict[str, Any]:
+        if not cas_candidates:
+            return self._base_result(
+                "waste",
+                language,
+                "unknown",
+                STATUS_REASON_CODES["no_cas_candidate"],
+                "照合対象のCASを特定できませんでした。",
+                "No CAS candidate was resolved from the query.",
+            )
+
+        hits = [
+            (cas, row)
+            for cas in sorted(cas_candidates)
+            for row in self._rows_by_cas.get(cas, [])
+            if row.regulation_type == "waste"
+        ]
+        if not hits:
+            return self._base_result(
+                "waste",
+                language,
+                "not_applies",
+                STATUS_REASON_CODES["no_dataset_hit"],
+                "現在のデータセットで廃棄物処理法関連の該当はありません。",
+                "No Waste Management Act category hit in the current dataset.",
+            )
+
+        result = self._base_result(
+            "waste",
+            language,
+            "requires_context",
+            STATUS_REASON_CODES["matched_context_required"],
+            "物質は廃棄物処理法関連リストに該当します。具体義務は廃棄物の性状と処理条件に依存します。",
+            "The substance is listed; specific duties depend on waste form and disposal context.",
+        )
+        result["categories"] = [
+            {
+                "code": row.regulation_label or "waste",
+                "label": row.regulation_label,
+                "cas_number": cas,
+                "law_name_ja": row.law_name_ja,
+                "law_name_en": row.law_name_en,
+            }
+            for cas, row in hits
+        ]
+        result["required_context"] = ["waste_form", "hazardous_characteristics", "disposal_method"]
+        result["evidence"].update(
+            {
+                "source_file": self._regulatory_source_path(),
+                "records": [self._serialize_regulatory_row(row, language) for _, row in hits],
+            }
+        )
+        return result
+
     def lookup(
         self,
         cas_number: str | None = None,
@@ -1931,6 +2120,7 @@ class LawScreeningDatabase:
             self._result_prtr(cas_candidates, language),
             self._result_from_master("poison_control", cas_candidates, language),
             self._result_ish(cas_candidates, language),
+            self._result_waste(cas_candidates, language),
             self._result_from_master("cwc", cas_candidates, language),
         ]
 
@@ -1952,6 +2142,7 @@ class LawScreeningDatabase:
             "poison_control": self._master_available["poison_control"],
             "poison_master_complete": self._is_master_dataset_complete("poison_control"),
             "ish": self._regulatory_dataset_loaded,
+            "waste": self._regulatory_dataset_loaded,
             "cwc": self._master_available["cwc"],
             "cwc_master_complete": self._is_master_dataset_complete("cwc"),
             "alias_master": self._alias_master_loaded,
