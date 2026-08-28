@@ -8,6 +8,7 @@ from importlib import resources
 from pathlib import Path
 
 from ra_law_db import LawScreeningDatabase, get_law_screening_database
+from ra_law_db.screening_db import normalize_name
 
 
 def _write_regulatory_export(path: Path) -> None:
@@ -241,10 +242,56 @@ def test_lookup_returns_multi_law_statuses(tmp_path):
     by_law = {item["law_code"]: item for item in payload["results"]}
 
     assert payload["matched"] is True
-    assert by_law["cscl"]["status"] == "applies"
-    assert by_law["poison_control"]["status"] == "applies"
-    assert by_law["prtr"]["status"] == "applies"
+    assert by_law["cscl"]["status"] == "requires_context"
+    assert by_law["poison_control"]["status"] == "requires_context"
+    assert by_law["prtr"]["status"] == "requires_context"
     assert by_law["ish"]["status"] == "requires_context"
+    required_metadata = {
+        "status",
+        "status_reason_code",
+        "notes",
+        "dataset_name",
+        "dataset_version",
+        "dataset_loaded",
+        "dataset_coverage",
+        "source",
+        "update_date",
+        "manual_verification_actions",
+    }
+    assert all(required_metadata <= set(result) for result in payload["results"])
+
+
+def test_dust_and_health_examinations_require_process_context(tmp_path):
+    law_db_path = _prepare_fixture(tmp_path)
+    LawScreeningDatabase.reset_instance()
+    db = LawScreeningDatabase.get_instance(law_db_path)
+
+    without_context = db.lookup(cas_number="75-09-2", language="ja")
+    without_by_law = {item["law_code"]: item for item in without_context["results"]}
+    assert without_by_law["dust_rule"]["status"] == "unknown"
+    assert without_by_law["dust_rule"]["status_reason_code"] == "PROCESS_CONTEXT_REQUIRED"
+
+    with_context = db.lookup(
+        cas_number="75-09-2",
+        language="ja",
+        context={
+            "material_form": "powder",
+            "work_process": "粉砕・混合・投入",
+            "dust_generation": "high",
+            "work_frequency": "daily",
+        },
+    )
+    by_law = {item["law_code"]: item for item in with_context["results"]}
+    assert by_law["dust_rule"]["status"] == "requires_context"
+    assert by_law["occupational_health"]["status"] == "requires_context"
+    health_types = {item["type"] for item in by_law["occupational_health"]["evidence"]["health_checks"]}
+    assert "特定化学物質健康診断" in health_types
+    assert "じん肺健康診断" in health_types
+
+
+def test_oxidation_state_parentheses_are_not_erased():
+    assert normalize_name("Copper(II) oxide") != normalize_name("Copper(I) oxide")
+    assert normalize_name("酸化銅（II）") != normalize_name("酸化銅（I）")
 
 
 def test_packaged_bundle_resource_exists():
@@ -281,7 +328,7 @@ def test_multi_law_lookup_includes_waste_domain():
     payload = db.lookup(cas_number="7439-97-6", language="ja")
     by_law = {item["law_code"]: item for item in payload["results"]}
     assert "waste" in by_law
-    assert by_law["waste"]["status"] in {"requires_context", "not_applies"}
+    assert by_law["waste"]["status"] in {"requires_context", "unknown"}
 
 
 def test_get_law_screening_database_uses_packaged_bundle_by_default():

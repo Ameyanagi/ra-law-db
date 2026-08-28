@@ -3,7 +3,7 @@
 from .models import LAW_LABELS, LAW_STANDARD_NAMES, LawStatus
 from .screening_db import LawScreeningDatabase
 
-__version__ = "0.3.1"
+__version__ = "0.4.0"
 
 
 def get_law_screening_database(law_db_path: str | None = None):
@@ -19,14 +19,14 @@ def lookup_law_screening(
     cas_number: str | None = None,
     substance_name: str | None = None,
     language: str = "ja",
+    context: dict | None = None,
     law_db_path: str | None = None,
 ):
     """Screen a substance across every supported law domain."""
-    return get_law_screening_database(law_db_path).lookup(
-        cas_number=cas_number,
-        substance_name=substance_name,
-        language=language,
-    )
+    kwargs = {"cas_number": cas_number, "substance_name": substance_name, "language": language}
+    if context is not None:
+        kwargs["context"] = context
+    return get_law_screening_database(law_db_path).lookup(**kwargs)
 
 
 def search_law_substances(

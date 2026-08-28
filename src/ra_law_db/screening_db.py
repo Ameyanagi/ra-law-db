@@ -13,9 +13,19 @@ from importlib import resources
 from pathlib import Path
 from typing import Any
 
-from .models import LAW_LABELS, LAW_STANDARD_NAMES, MappingQuality, MasterLawRow, RegulatoryRow, SnapshotMetadata
+from .models import (
+    LAW_LABELS,
+    LAW_STANDARD_NAMES,
+    IndexedLawRow,
+    MappingQuality,
+    MasterLawRow,
+    RegulatoryRow,
+    SnapshotMetadata,
+)
 
-SUPPORTED_LAW_CODES = ("cscl", "prtr", "poison_control", "ish", "waste", "cwc")
+CORE_LAW_CODES = ("cscl", "prtr", "poison_control", "ish", "waste", "cwc")
+CONTEXTUAL_LAW_CODES = ("dust_rule", "occupational_health")
+SUPPORTED_LAW_CODES = CORE_LAW_CODES + CONTEXTUAL_LAW_CODES
 SEARCH_MODES = {"auto", "name", "cas"}
 CAS_PATTERN = re.compile(r"^\d{2,7}-\d{2}-\d$")
 
@@ -26,6 +36,7 @@ MASTER_DATASET_FILES = {
 }
 ALIAS_MASTER_FILE = "substance_aliases.csv"
 MASTER_COVERAGE_FILE = "master_coverage.json"
+REGULATORY_INDEX_FILE = "regulatory_index.csv"
 
 PRTR_CATEGORY_MAP = {
     "prtr1": {
@@ -78,6 +89,12 @@ ISH_CONTEXT_FIELDS = [
     "ventilation_control",
 ]
 
+LAW_CONTEXT_FIELDS = {
+    "cscl": ["concentration", "annual_quantity", "manufacture_or_import", "use", "substance_identity"],
+    "poison_control": ["concentration", "formulation", "salt_or_isomer", "intended_use", "exemption_conditions"],
+    "cwc": ["concentration", "annual_quantity", "production_or_use", "import_or_export", "end_use"],
+}
+
 ISH_TYPES = {"tokka", "organic", "lead", "prohibited"}
 
 STATUS_REASON_CODES = {
@@ -88,6 +105,36 @@ STATUS_REASON_CODES = {
     "no_dataset_hit": "NO_DATASET_HIT",
     "matched_master": "MATCHED_MASTER",
     "matched_context_required": "MATCHED_CONTEXT_REQUIRED",
+    "process_context_required": "PROCESS_CONTEXT_REQUIRED",
+    "process_scope_match": "PROCESS_SCOPE_MATCH",
+}
+
+PROCESS_DATASET_REVIEW_DATE = "2026-08-28"
+PROCESS_DATASET_COVERAGE = {
+    "dust_rule": {
+        "screening_scope": "process-context screening against the official Dust Ordinance listed-work framework",
+        "is_complete": False,
+        "negative_conclusion_supported": False,
+        "required_context": [
+            "material_form",
+            "work_process",
+            "dust_generation",
+            "work_frequency",
+            "facility",
+        ],
+    },
+    "occupational_health": {
+        "screening_scope": "conditional special and pneumoconiosis medical-examination screening",
+        "is_complete": False,
+        "negative_conclusion_supported": False,
+        "required_context": [
+            "covered_work",
+            "assignment_history",
+            "work_frequency",
+            "medical_exam_history",
+            "worker_category",
+        ],
+    },
 }
 
 MISSING_MASTER_ACTIONS = {
@@ -250,7 +297,8 @@ def normalize_name(value: str) -> str:
     normalized = normalized.replace(" ", "").replace("\u3000", "")
     normalized = normalized.replace("\uff08", "(").replace("\uff09", ")")
     normalized = re.sub(r"[\-\u2010\u2011\u2012\u2013\u2014\u2015\u30FC\u2212\uFF0D]", "", normalized)
-    normalized = re.sub(r"\([^)]*\)", "", normalized)
+    # Parenthetical locants and oxidation states are chemically significant.
+    # Copper(II) oxide and Copper(I) oxide must remain distinct identifiers.
     return normalized.strip().lower()
 
 
@@ -371,6 +419,7 @@ class LawScreeningDatabase:
         self._configure_paths(law_db_path)
         self.alias_master_path = self.masters_dir / ALIAS_MASTER_FILE
         self.master_coverage_path = self.masters_dir / MASTER_COVERAGE_FILE
+        self.regulatory_index_path = self.masters_dir / REGULATORY_INDEX_FILE
 
         self._loaded = False
         self._rows_by_cas: dict[str, list[RegulatoryRow]] = {}
@@ -381,6 +430,8 @@ class LawScreeningDatabase:
         self._masters: dict[str, dict[str, MasterLawRow]] = {law_code: {} for law_code in MASTER_DATASET_FILES}
         self._master_available: dict[str, bool] = dict.fromkeys(MASTER_DATASET_FILES, False)
         self._master_coverage: dict[str, dict[str, Any]] = {}
+        self._indexed_by_law: dict[str, dict[str, list[IndexedLawRow]]] = {}
+        self._index_available = False
         self._alias_master_loaded = False
         self._aliases_by_cas: dict[str, set[str]] = {}
         self._resolved_entries: list[dict[str, Any]] = []
@@ -476,6 +527,9 @@ class LawScreeningDatabase:
         self._cas_by_alias_name.clear()
         self._snapshot_by_law_id.clear()
         self._mapping_quality.clear()
+        self._master_coverage.clear()
+        self._indexed_by_law.clear()
+        self._index_available = False
         self._aliases_by_cas.clear()
         self._resolved_entries = []
         self._unresolved_entries = []
@@ -493,6 +547,7 @@ class LawScreeningDatabase:
             self._load_alias_master()
             self._load_master_datasets()
             self._load_master_coverage()
+            self._load_regulatory_index()
 
         self._loaded = True
 
@@ -731,13 +786,28 @@ class LawScreeningDatabase:
                 law_code = (row["law_code"] or "").strip()
                 if not law_code:
                     continue
-                self._master_coverage[law_code] = {
-                    "entries": _safe_int(row["entries"], 0),
-                    "mapped_entries": _safe_int(row["mapped_entries"], 0),
-                    "master_rows": _safe_int(row["master_rows"], 0),
-                    "unresolved_entries": _safe_int(row["unresolved_entries"], 0),
-                    "is_complete": _safe_bool(row["is_complete"], False),
-                }
+                columns = set(row.keys())
+                if "coverage_json" in columns and row["coverage_json"]:
+                    self._master_coverage[law_code] = json.loads(row["coverage_json"])
+                else:
+                    self._master_coverage[law_code] = {
+                        "entries": _safe_int(row["entries"], 0),
+                        "mapped_entries": _safe_int(row["mapped_entries"], 0),
+                        "master_rows": _safe_int(row["master_rows"], 0),
+                        "unresolved_entries": _safe_int(row["unresolved_entries"], 0),
+                        "is_complete": _safe_bool(row["is_complete"], False),
+                        "dataset_loaded": True,
+                        "negative_conclusion_supported": False,
+                    }
+
+            try:
+                indexed_rows = connection.execute("SELECT * FROM regulatory_index")
+            except sqlite3.OperationalError:
+                indexed_rows = []
+            else:
+                self._index_available = True
+            for row in indexed_rows:
+                self._add_indexed_row({key: row[key] for key in row.keys()})
         finally:
             connection.close()
 
@@ -970,10 +1040,57 @@ class LawScreeningDatabase:
                 if isinstance(payload, dict):
                     self._master_coverage[law_code] = payload
 
+    def _add_indexed_row(self, row: dict[str, Any]) -> None:
+        law_code = (row.get("law_code") or "").strip()
+        cas_number = (row.get("cas_number") or "").strip()
+        if not law_code or not cas_number:
+            return
+        context_value = row.get("required_context") or []
+        if isinstance(context_value, str):
+            try:
+                context_value = json.loads(context_value)
+            except json.JSONDecodeError:
+                context_value = [value.strip() for value in context_value.split(",") if value.strip()]
+        indexed = IndexedLawRow(
+            law_code=law_code,
+            category_code=(row.get("category_code") or "").strip(),
+            category_label_ja=(row.get("category_label_ja") or "").strip(),
+            category_label_en=(row.get("category_label_en") or "").strip(),
+            cas_number=cas_number,
+            substance_name=(row.get("substance_name") or "").strip(),
+            chrip_id=(row.get("chrip_id") or "").strip(),
+            identity_note=(row.get("identity_note") or "").strip(),
+            law_name_ja=(row.get("law_name_ja") or "").strip(),
+            law_name_en=(row.get("law_name_en") or "").strip(),
+            law_id=(row.get("law_id") or "").strip(),
+            law_reference=(row.get("law_reference") or "").strip(),
+            dataset_name=(row.get("dataset_name") or "").strip(),
+            dataset_version=(row.get("dataset_version") or "").strip(),
+            source_id=(row.get("source_id") or "").strip(),
+            source_url=(row.get("source_url") or "").strip(),
+            source_update_date=(row.get("source_update_date") or "").strip(),
+            snapshot_date=(row.get("snapshot_date") or "").strip(),
+            mapping_method=(row.get("mapping_method") or "").strip(),
+            confidence=_safe_float(row.get("confidence"), 0.0),
+            required_context=tuple(str(value) for value in context_value),
+        )
+        self._indexed_by_law.setdefault(law_code, {}).setdefault(cas_number, []).append(indexed)
+        if indexed.substance_name:
+            normalized = normalize_name(indexed.substance_name)
+            if normalized:
+                self._cas_by_normalized_name.setdefault(normalized, set()).add(cas_number)
+
+    def _load_regulatory_index(self) -> None:
+        if not self.regulatory_index_path.exists():
+            return
+        self._index_available = True
+        with open(self.regulatory_index_path, encoding="utf-8") as handle:
+            for row in csv.DictReader(handle):
+                self._add_indexed_row(row)
+
     def _is_master_dataset_complete(self, law_code: str) -> bool:
         payload = self._master_coverage.get(law_code, {})
-        unresolved = _safe_int(payload.get("unresolved_entries"), 0)
-        return unresolved == 0
+        return bool(payload.get("negative_conclusion_supported", False))
 
     def _extract_law_id(self, reference: str) -> str | None:
         match = re.search(r"([0-9]{3}[A-Z]{2}[0-9]{10})", reference)
@@ -1136,6 +1253,11 @@ class LawScreeningDatabase:
         en_notes: str,
     ) -> dict[str, Any]:
         law_name_ja, law_name_en = self._law_names_for_code(law_code)
+        coverage = self._master_coverage.get(law_code, {})
+        law_name_ja = law_name_ja or next(iter(coverage.get("law_names_ja") or []), "")
+        law_name_en = law_name_en or next(iter(coverage.get("law_names_en") or []), "")
+        dataset_loaded = bool(coverage.get("dataset_loaded", False))
+        source_urls = coverage.get("source_urls") or []
         return {
             "law_code": law_code,
             "law_label": LAW_LABELS.get(language, LAW_LABELS["en"]).get(law_code, law_code),
@@ -1147,10 +1269,37 @@ class LawScreeningDatabase:
             "flags": {},
             "notes": self._localize(language, ja_notes, en_notes),
             "required_actions": self._default_actions_for_status(law_code, status, language),
+            "dataset_name": coverage.get("dataset_name") or None,
+            "dataset_version": coverage.get("dataset_version") or None,
+            "dataset_loaded": dataset_loaded,
+            "dataset_coverage": coverage,
+            "source": source_urls[0] if source_urls else self._regulatory_source_path(),
+            "update_date": coverage.get("source_update_date") or None,
+            "manual_verification_actions": self._manual_verification_actions(language),
             "evidence": {
                 "source": self._regulatory_source_path(),
+                "dataset_name": coverage.get("dataset_name") or None,
+                "dataset_version": coverage.get("dataset_version") or None,
+                "dataset_loaded": dataset_loaded,
+                "dataset_coverage": coverage,
+                "source_urls": source_urls,
+                "source_update_date": coverage.get("source_update_date") or None,
             },
         }
+
+    @staticmethod
+    def _manual_verification_actions(language: str) -> list[str]:
+        if language == "ja":
+            return [
+                "SDS第15項と最新の法令本文・別表を確認する",
+                "濃度、年間数量、用途、工程、事業・設備条件を確認する",
+                "正式な適否判断は法務・安全衛生担当者または所管官庁に確認する",
+            ]
+        return [
+            "Check SDS section 15 and the latest official law text and appendices",
+            "Confirm concentration, annual quantity, use, process, business, and facility conditions",
+            "Obtain a formal determination from legal/EHS specialists or the competent authority",
+        ]
 
     def _result_from_master(self, law_code: str, cas_candidates: set[str], language: str) -> dict[str, Any]:
         if not cas_candidates:
@@ -1232,11 +1381,12 @@ class LawScreeningDatabase:
         result = self._base_result(
             law_code,
             language,
-            "applies",
-            STATUS_REASON_CODES["matched_master"],
-            "法令マスタに一致しました。",
-            "Matched in law master dataset.",
+            "requires_context",
+            STATUS_REASON_CODES["matched_context_required"],
+            "法令マスタに一致しました。具体義務の確定には濃度、数量、用途等の条件確認が必要です。",
+            "Matched in the law master dataset; concentration, quantity, and use context are required.",
         )
+        result["required_context"] = LAW_CONTEXT_FIELDS.get(law_code, [])
         result["categories"] = categories
         result["evidence"].update(
             {
@@ -1254,6 +1404,290 @@ class LawScreeningDatabase:
         snapshot = self._snapshot_payload(primary.law_id)
         if snapshot:
             result["evidence"]["snapshot"] = snapshot
+        return result
+
+    def _result_indexed(self, law_code: str, cas_candidates: set[str], language: str) -> dict[str, Any]:
+        """Return conservative screening from authoritative positive-list rows."""
+        if not cas_candidates:
+            return self._base_result(
+                law_code,
+                language,
+                "unknown",
+                STATUS_REASON_CODES["no_cas_candidate"],
+                "照合対象のCASを特定できませんでした。",
+                "No CAS candidate was resolved from the query.",
+            )
+
+        hits = [row for cas in sorted(cas_candidates) for row in self._indexed_by_law.get(law_code, {}).get(cas, [])]
+        coverage = self._master_coverage.get(law_code, {})
+        if not hits:
+            negative_supported = bool(coverage.get("negative_conclusion_supported", False))
+            status = "not_applies" if negative_supported else "unknown"
+            reason = (
+                STATUS_REASON_CODES["no_dataset_hit"]
+                if negative_supported
+                else STATUS_REASON_CODES["incomplete_master_dataset"]
+            )
+            result = self._base_result(
+                law_code,
+                language,
+                status,
+                reason,
+                (
+                    "完全性が確認されたデータセットで該当なしです。"
+                    if negative_supported
+                    else "公式ポジティブリストにCASヒットはありませんが、法的な非該当は確定できません。"
+                ),
+                (
+                    "No hit in a dataset whose screening scope supports a negative conclusion."
+                    if negative_supported
+                    else "There is no CAS hit in the official positive list, but legal non-applicability cannot be concluded."
+                ),
+            )
+            result["required_context"] = sorted(
+                {
+                    value
+                    for rows in self._indexed_by_law.get(law_code, {}).values()
+                    for row in rows[:1]
+                    for value in row.required_context
+                }
+            )
+            return result
+
+        required_context = sorted({value for row in hits for value in row.required_context})
+        if any(row.identity_note for row in hits):
+            required_context.append("substance_identity")
+            required_context = sorted(set(required_context))
+        result = self._base_result(
+            law_code,
+            language,
+            "requires_context",
+            STATUS_REASON_CODES["matched_context_required"],
+            "公式法令リストに一致しました。具体的義務は濃度、数量、用途、工程等の条件確認が必要です。",
+            "Matched an official law list. Specific obligations require concentration, quantity, use, and process context.",
+        )
+        result["law_name_ja"] = hits[0].law_name_ja or result["law_name_ja"]
+        result["law_name_en"] = hits[0].law_name_en or result["law_name_en"]
+        result["required_context"] = required_context
+        result["categories"] = [
+            {
+                "code": row.category_code,
+                "label": row.category_label_ja if language == "ja" else row.category_label_en,
+                "cas_number": row.cas_number,
+                "substance_name": row.substance_name,
+                "chrip_id": row.chrip_id or None,
+                "identity_note": row.identity_note or None,
+                "mapping_method": row.mapping_method,
+                "confidence": row.confidence,
+                "law_reference": row.law_reference,
+            }
+            for row in hits
+        ]
+        first = hits[0]
+        result.update(
+            {
+                "dataset_name": first.dataset_name,
+                "dataset_version": first.dataset_version,
+                "dataset_loaded": True,
+                "source": first.source_url,
+                "update_date": first.source_update_date,
+            }
+        )
+        result["evidence"].update(
+            {
+                "dataset_name": first.dataset_name,
+                "dataset_version": first.dataset_version,
+                "dataset_loaded": True,
+                "source_urls": sorted({row.source_url for row in hits}),
+                "source_update_date": first.source_update_date,
+                "law_ids": sorted({row.law_id for row in hits if row.law_id}),
+                "records": [
+                    {
+                        "source_id": row.source_id,
+                        "snapshot_date": row.snapshot_date,
+                        "law_reference": row.law_reference,
+                        "mapping_method": row.mapping_method,
+                        "confidence": row.confidence,
+                        "identity_note": row.identity_note or None,
+                    }
+                    for row in hits
+                ],
+            }
+        )
+        if law_code == "ish":
+            legacy_hits = [
+                (cas, row)
+                for cas in sorted(cas_candidates)
+                for row in self._rows_by_cas.get(cas, [])
+                if row.regulation_type in ISH_TYPES
+            ]
+            if legacy_hits:
+                self._apply_ish_obligations(result, legacy_hits, language)
+        return result
+
+    @staticmethod
+    def _dust_context_match(context: dict[str, Any]) -> bool:
+        material_form = str(context.get("material_form") or context.get("property_type") or "").casefold()
+        dust_generation = context.get("dust_generation", context.get("dustiness"))
+        process = str(context.get("work_process") or "").casefold()
+        positive_tokens = (
+            "powder",
+            "dust",
+            "粉体",
+            "粉じん",
+            "grind",
+            "mix",
+            "siev",
+            "bag",
+            "sand",
+            "cut",
+            "研磨",
+            "粉砕",
+            "混合",
+            "ふるい",
+            "投入",
+        )
+        return any(token in material_form or token in process for token in positive_tokens) or str(
+            dust_generation
+        ).casefold() in {
+            "true",
+            "1",
+            "medium",
+            "high",
+            "yes",
+        }
+
+    def _result_dust_rule(self, context: dict[str, Any], language: str) -> dict[str, Any]:
+        required_context = ["material_form", "work_process", "dust_generation", "work_frequency", "facility"]
+        if not self._dust_context_match(context):
+            result = self._base_result(
+                "dust_rule",
+                language,
+                "unknown",
+                STATUS_REASON_CODES["process_context_required"],
+                "粉じん則・じん肺法はCASだけでは判定できません。粉じん作業の種類と頻度を確認してください。",
+                "The Dust Ordinance and Pneumoconiosis Act cannot be screened by CAS alone; work type and frequency are required.",
+            )
+        else:
+            result = self._base_result(
+                "dust_rule",
+                language,
+                "requires_context",
+                STATUS_REASON_CODES["process_scope_match"],
+                "粉じん発生作業の可能性があります。粉じん則別表の作業該当性と除外条件を確認してください。",
+                "The process may generate dust. Confirm listed-work scope and exclusions under the Dust Ordinance.",
+            )
+            result["categories"] = [
+                {
+                    "code": "potential_dust_work",
+                    "label": "粉じん作業の可能性" if language == "ja" else "Potential dust-generating work",
+                }
+            ]
+        result["required_context"] = required_context
+        result.update(
+            {
+                "dataset_name": "e-Gov official Dust Ordinance and Pneumoconiosis Act",
+                "dataset_version": "process-context-screening-v1",
+                "dataset_loaded": True,
+                "dataset_coverage": PROCESS_DATASET_COVERAGE["dust_rule"],
+                "source": "https://www.mhlw.go.jp/web/t_doc?dataId=74107000&dataType=0",
+                "update_date": PROCESS_DATASET_REVIEW_DATE,
+            }
+        )
+        result["evidence"].update(
+            {
+                "dataset_name": result["dataset_name"],
+                "dataset_version": result["dataset_version"],
+                "dataset_loaded": True,
+                "dataset_coverage": PROCESS_DATASET_COVERAGE["dust_rule"],
+                "law_ids": ["354M50002000018", "335AC0000000030"],
+                "source_urls": [
+                    "https://www.mhlw.go.jp/web/t_doc?dataId=74107000&dataType=0",
+                    "https://laws.e-gov.go.jp/law/335AC0000000030",
+                ],
+                "source_update_date": PROCESS_DATASET_REVIEW_DATE,
+                "evaluated_context": context,
+            }
+        )
+        return result
+
+    def _result_occupational_health(
+        self,
+        cas_candidates: set[str],
+        context: dict[str, Any],
+        language: str,
+    ) -> dict[str, Any]:
+        legacy_hits = [
+            (cas, row)
+            for cas in sorted(cas_candidates)
+            for row in self._rows_by_cas.get(cas, [])
+            if row.regulation_type in ISH_TYPES
+        ]
+        health_checks = self._build_ish_health_checks(legacy_hits)
+        dust_match = self._dust_context_match(context)
+        if not health_checks and not dust_match:
+            result = self._base_result(
+                "occupational_health",
+                language,
+                "unknown",
+                STATUS_REASON_CODES["process_context_required"],
+                "CAS照合だけでは健康診断の要否を確定できません。対象業務、配置歴、作業頻度を確認してください。",
+                "CAS matching alone cannot determine medical-examination duties; work scope, assignment history, and frequency are required.",
+            )
+        else:
+            result = self._base_result(
+                "occupational_health",
+                language,
+                "requires_context",
+                STATUS_REASON_CODES["matched_context_required"],
+                "特殊健康診断またはじん肺健康診断の対象となる可能性があります。対象業務と配置条件を確認してください。",
+                "A special or pneumoconiosis examination may be required; confirm covered work and assignment conditions.",
+            )
+        checks = list(health_checks)
+        if dust_match:
+            checks.append(
+                {
+                    "type": "じん肺健康診断" if language == "ja" else "Pneumoconiosis examination",
+                    "interval": "作業歴・管理区分等に応じて確認"
+                    if language == "ja"
+                    else "Confirm based on work history and classification",
+                    "record_retention_years": 7,
+                    "conditional": True,
+                }
+            )
+        result["required_context"] = [
+            "covered_work",
+            "assignment_history",
+            "work_frequency",
+            "medical_exam_history",
+            "worker_category",
+        ]
+        result["evidence"]["health_checks"] = checks
+        result["evidence"]["evaluated_context"] = context
+        result.update(
+            {
+                "dataset_name": "MHLW official occupational medical examination guidance",
+                "dataset_version": "process-context-screening-v1",
+                "dataset_loaded": True,
+                "dataset_coverage": PROCESS_DATASET_COVERAGE["occupational_health"],
+                "source": "https://anzeninfo.mhlw.go.jp/yougo/yougo52_1.html",
+                "update_date": PROCESS_DATASET_REVIEW_DATE,
+            }
+        )
+        result["evidence"].update(
+            {
+                "dataset_name": result["dataset_name"],
+                "dataset_version": result["dataset_version"],
+                "dataset_loaded": True,
+                "dataset_coverage": PROCESS_DATASET_COVERAGE["occupational_health"],
+                "source_urls": [
+                    "https://anzeninfo.mhlw.go.jp/yougo/yougo52_1.html",
+                    "https://www.mhlw.go.jp/content/001123621.pdf",
+                ],
+                "source_update_date": PROCESS_DATASET_REVIEW_DATE,
+                "law_ids": ["347AC0000000057", "335AC0000000030"],
+            }
+        )
         return result
 
     def _result_prtr(self, cas_candidates: set[str], language: str) -> dict[str, Any]:
@@ -1274,14 +1708,16 @@ class LawScreeningDatabase:
                     hits.append((cas, row))
 
         if not hits:
-            return self._base_result(
+            result = self._base_result(
                 "prtr",
                 language,
-                "not_applies",
-                STATUS_REASON_CODES["no_dataset_hit"],
-                "現在のデータセットでPRTR該当はありません。",
-                "No PRTR category hit in current dataset.",
+                "unknown",
+                STATUS_REASON_CODES["incomplete_master_dataset"],
+                "現在のデータセットにPRTRヒットはありませんが、非該当は確定できません。",
+                "No PRTR hit exists in the current dataset, but non-applicability cannot be concluded.",
             )
+            result["required_context"] = ["concentration", "annual_handling_quantity", "business_type", "facility"]
+            return result
 
         categories = []
         for cas, row in hits:
@@ -1304,7 +1740,7 @@ class LawScreeningDatabase:
         result = self._base_result(
             "prtr",
             language,
-            "applies",
+            "requires_context",
             STATUS_REASON_CODES["matched_context_required"],
             "PRTR届出要否の確定には年間取扱量など追加情報が必要です。",
             "PRTR reporting obligations may require annual handling data.",
@@ -1538,14 +1974,16 @@ class LawScreeningDatabase:
         ]
 
         if not hits:
-            return self._base_result(
+            result = self._base_result(
                 "ish",
                 language,
-                "not_applies",
-                STATUS_REASON_CODES["no_dataset_hit"],
-                "現在のデータセットで安衛法系の該当はありません。",
-                "No ISH category hit in current dataset.",
+                "unknown",
+                STATUS_REASON_CODES["incomplete_master_dataset"],
+                "現在のデータセットに安衛法系ヒットはありませんが、非該当は確定できません。",
+                "No ISH hit exists in the current dataset, but non-applicability cannot be concluded.",
             )
+            result["required_context"] = ISH_CONTEXT_FIELDS
+            return result
 
         categories, references = self._build_ish_categories_and_references(hits)
 
@@ -1573,6 +2011,10 @@ class LawScreeningDatabase:
         rows = self._rows_by_cas.get(cas_number, [])
         if rows:
             return rows[0].name_ja, rows[0].name_en
+        for law_rows in self._indexed_by_law.values():
+            indexed = law_rows.get(cas_number, [])
+            if indexed:
+                return indexed[0].substance_name, indexed[0].substance_name
         return "", ""
 
     def _add_substance_hit(
@@ -1651,6 +2093,8 @@ class LawScreeningDatabase:
         known_cas = set(self._rows_by_cas.keys())
         for master in self._masters.values():
             known_cas.update(master.keys())
+        for law_rows in self._indexed_by_law.values():
+            known_cas.update(law_rows.keys())
 
         for cas_number in sorted(known_cas):
             score, match_type = _cas_similarity(query, cas_number)
@@ -2042,14 +2486,16 @@ class LawScreeningDatabase:
             if row.regulation_type == "waste"
         ]
         if not hits:
-            return self._base_result(
+            result = self._base_result(
                 "waste",
                 language,
-                "not_applies",
-                STATUS_REASON_CODES["no_dataset_hit"],
-                "現在のデータセットで廃棄物処理法関連の該当はありません。",
-                "No Waste Management Act category hit in the current dataset.",
+                "unknown",
+                STATUS_REASON_CODES["incomplete_master_dataset"],
+                "現在のデータセットに廃棄物処理法関連ヒットはありませんが、廃棄物の性状・工程なしに非該当は確定できません。",
+                "No Waste Act hit exists in the current dataset; waste form and process are still required for a legal conclusion.",
             )
+            result["required_context"] = ["waste_form", "hazardous_characteristics", "disposal_method", "process"]
+            return result
 
         result = self._base_result(
             "waste",
@@ -2083,6 +2529,7 @@ class LawScreeningDatabase:
         cas_number: str | None = None,
         substance_name: str | None = None,
         language: str = "ja",
+        context: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Look up multi-law screening results by CAS and/or substance name."""
         if not self._loaded:
@@ -2092,6 +2539,7 @@ class LawScreeningDatabase:
         query = {
             "cas_number": cas_number,
             "substance_name": substance_name,
+            "context": context or {},
         }
 
         if not (cas_number or substance_name):
@@ -2115,14 +2563,26 @@ class LawScreeningDatabase:
 
         cas_candidates, matched_substances = self._resolve_candidates(cas_number, substance_name)
 
-        results = [
-            self._result_from_master("cscl", cas_candidates, language),
-            self._result_prtr(cas_candidates, language),
-            self._result_from_master("poison_control", cas_candidates, language),
-            self._result_ish(cas_candidates, language),
-            self._result_waste(cas_candidates, language),
-            self._result_from_master("cwc", cas_candidates, language),
-        ]
+        def result_for_core(law_code: str) -> dict[str, Any]:
+            coverage = self._master_coverage.get(law_code, {})
+            if self._index_available and coverage.get("dataset_loaded"):
+                return self._result_indexed(law_code, cas_candidates, language)
+            if law_code in MASTER_DATASET_FILES:
+                return self._result_from_master(law_code, cas_candidates, language)
+            if law_code == "prtr":
+                return self._result_prtr(cas_candidates, language)
+            if law_code == "ish":
+                return self._result_ish(cas_candidates, language)
+            return self._result_waste(cas_candidates, language)
+
+        results = [result_for_core(law_code) for law_code in CORE_LAW_CODES]
+        related_codes = sorted(
+            (set(self._indexed_by_law) | set(self._master_coverage)) - set(CORE_LAW_CODES) - set(CONTEXTUAL_LAW_CODES)
+        )
+        results.extend(self._result_indexed(law_code, cas_candidates, language) for law_code in related_codes)
+        screening_context = context or {}
+        results.append(self._result_dust_rule(screening_context, language))
+        results.append(self._result_occupational_health(cas_candidates, screening_context, language))
 
         matched = any(result["status"] in {"applies", "requires_context"} for result in results)
 
@@ -2135,7 +2595,7 @@ class LawScreeningDatabase:
         }
 
     def _available_law_domains(self) -> dict[str, bool]:
-        return {
+        available = {
             "cscl": self._master_available["cscl"],
             "cscl_master_complete": self._is_master_dataset_complete("cscl"),
             "prtr": self._regulatory_dataset_loaded,
@@ -2146,4 +2606,23 @@ class LawScreeningDatabase:
             "cwc": self._master_available["cwc"],
             "cwc_master_complete": self._is_master_dataset_complete("cwc"),
             "alias_master": self._alias_master_loaded,
+            "dust_rule": True,
+            "occupational_health": True,
+        }
+        for law_code, rows in self._indexed_by_law.items():
+            available[law_code] = bool(rows)
+        return available
+
+    def dataset_status(self) -> dict[str, Any]:
+        """Return public-safe runtime dataset and coverage health metadata."""
+        if not self._loaded:
+            self._load_data()
+        return {
+            "loaded": self._regulatory_dataset_loaded or self._index_available,
+            "uses_sqlite_bundle": self._uses_sqlite_bundle,
+            "source": self._regulatory_source_path(),
+            "index_loaded": self._index_available,
+            "indexed_law_domains": sorted(self._indexed_by_law),
+            "available_law_domains": self._available_law_domains(),
+            "coverage": self._master_coverage,
         }

@@ -1,23 +1,781 @@
 {
   "cscl": {
-    "entries": 63,
-    "mapped_entries": 30,
-    "master_rows": 33,
-    "unresolved_entries": 33,
-    "is_complete": false
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_01_001",
+      "RJ_01_002",
+      "RJ_01_010",
+      "RJ_01_020"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_01_001",
+      "RJ_01_002",
+      "RJ_01_010",
+      "RJ_01_020"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_01_001&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_01_002&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_01_010&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_01_020&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "349CO0000000202"
+    ],
+    "law_names_ja": [
+      "化学物質の審査及び製造等の規制に関する法律"
+    ],
+    "law_names_en": [
+      "Act on the Regulation of Manufacture and Evaluation of Chemical Substances"
+    ],
+    "required_context": [
+      "annual_quantity",
+      "concentration",
+      "manufacture_or_import",
+      "substance_identity",
+      "use"
+    ],
+    "source_count": 4,
+    "legal_entries": 323,
+    "mapped_legal_entries": 127,
+    "unresolved_legal_entries": 196,
+    "positive_cas_rows": 3005,
+    "unique_positive_cas": 3003,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
+    "entries": 64,
+    "mapped_entries": 26,
+    "master_rows": 3032,
+    "unresolved_entries": 38,
+    "mapping_complete": false
+  },
+  "prtr": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_02_002"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_02_002"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_02_002&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "412CO0000000138"
+    ],
+    "law_names_ja": [
+      "特定化学物質の環境への排出量の把握等及び管理の改善の促進に関する法律"
+    ],
+    "law_names_en": [
+      "PRTR Act"
+    ],
+    "required_context": [
+      "annual_handling_quantity",
+      "business_type",
+      "concentration",
+      "facility",
+      "release_or_transfer"
+    ],
+    "source_count": 1,
+    "legal_entries": 649,
+    "mapped_legal_entries": 139,
+    "unresolved_legal_entries": 510,
+    "positive_cas_rows": 10854,
+    "unique_positive_cas": 10854,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
+    "entries": 651,
+    "mapped_entries": 359,
+    "master_rows": 0,
+    "unresolved_entries": 292,
+    "mapping_complete": false
   },
   "poison_control": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_03_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_03_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_03_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "340CO0000000002"
+    ],
+    "law_names_ja": [
+      "毒物及び劇物取締法"
+    ],
+    "law_names_en": [
+      "Poisonous and Deleterious Substances Control Act"
+    ],
+    "required_context": [
+      "concentration",
+      "exemption_conditions",
+      "formulation",
+      "intended_use",
+      "salt_or_isomer"
+    ],
+    "source_count": 1,
+    "legal_entries": 588,
+    "mapped_legal_entries": 55,
+    "unresolved_legal_entries": 524,
+    "positive_cas_rows": 2693,
+    "unique_positive_cas": 2690,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
     "entries": 456,
-    "mapped_entries": 212,
-    "master_rows": 220,
-    "unresolved_entries": 244,
-    "is_complete": false
+    "mapped_entries": 200,
+    "master_rows": 2890,
+    "unresolved_entries": 256,
+    "mapping_complete": false
+  },
+  "ish": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_04_011",
+      "RJ_04_012",
+      "RJ_04_021",
+      "RJ_04_022",
+      "RJ_04_023",
+      "RJ_04_024",
+      "RJ_04_031",
+      "RJ_04_041",
+      "RJ_04_045",
+      "RJ_04_051",
+      "RJ_04_061",
+      "RJ_04_070",
+      "RJ_04_071"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_04_011",
+      "RJ_04_012",
+      "RJ_04_021",
+      "RJ_04_022",
+      "RJ_04_023",
+      "RJ_04_024",
+      "RJ_04_031",
+      "RJ_04_041",
+      "RJ_04_045",
+      "RJ_04_051",
+      "RJ_04_061",
+      "RJ_04_070",
+      "RJ_04_071"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_011&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_012&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_021&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_022&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_023&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_024&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_031&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_041&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_045&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_051&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_061&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_070&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_04_071&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "347AC0000000057",
+      "347CO0000000318",
+      "347M50002000032",
+      "347M50002000036",
+      "347M50002000037",
+      "347M50002000039"
+    ],
+    "law_names_ja": [
+      "労働安全衛生法関連規制"
+    ],
+    "law_names_en": [
+      "Industrial Safety and Health Act related regulations"
+    ],
+    "required_context": [
+      "concentration",
+      "exposure_route",
+      "handling_quantity",
+      "material_form",
+      "work_process",
+      "workplace"
+    ],
+    "source_count": 13,
+    "legal_entries": 5993,
+    "mapped_legal_entries": 2018,
+    "unresolved_legal_entries": 3964,
+    "positive_cas_rows": 15861,
+    "unique_positive_cas": 7950,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "waste": {
+    "dataset_name": "e-Gov Waste Management Act targeted solvent screening",
+    "dataset_version": "2026-08-28T09:36:22Z",
+    "dataset_loaded": true,
+    "source_urls": [
+      "https://laws.e-gov.go.jp/api/1/lawdata/346CO0000000300"
+    ],
+    "source_update_date": "2026-08-28",
+    "law_ids": [
+      "346CO0000000300"
+    ],
+    "entries": 12,
+    "mapped_entries": 12,
+    "master_rows": 12,
+    "unresolved_entries": 0,
+    "mapping_complete": true,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "specified hazardous industrial-waste solvent subset; waste form and process remain required"
   },
   "cwc": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_11_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_11_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_11_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "407CO0000000192"
+    ],
+    "law_names_ja": [
+      "化学兵器の禁止及び特定物質の規制等に関する法律"
+    ],
+    "law_names_en": [
+      "Chemical Weapons Prohibition Act"
+    ],
+    "required_context": [
+      "annual_quantity",
+      "concentration",
+      "end_use",
+      "import_or_export",
+      "production_or_use"
+    ],
+    "source_count": 1,
+    "legal_entries": 65,
+    "mapped_legal_entries": 22,
+    "unresolved_legal_entries": 43,
+    "positive_cas_rows": 833,
+    "unique_positive_cas": 833,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
     "entries": 67,
     "mapped_entries": 21,
-    "master_rows": 25,
+    "master_rows": 849,
     "unresolved_entries": 46,
-    "is_complete": false
+    "mapping_complete": false
+  },
+  "air_pollution": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_13_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_13_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_13_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "343AC0000000097"
+    ],
+    "law_names_ja": [
+      "大気汚染防止法"
+    ],
+    "law_names_en": [
+      "Air Pollution Control Act"
+    ],
+    "required_context": [
+      "emission_process",
+      "emission_quantity",
+      "facility",
+      "local_rule"
+    ],
+    "source_count": 1,
+    "legal_entries": 330,
+    "mapped_legal_entries": 125,
+    "unresolved_legal_entries": 173,
+    "positive_cas_rows": 8983,
+    "unique_positive_cas": 8964,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "cosmetics": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_22_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_22_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_22_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "335AC0000000145"
+    ],
+    "law_names_ja": [
+      "医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律"
+    ],
+    "law_names_en": [
+      "Pharmaceuticals and Medical Devices Act"
+    ],
+    "required_context": [
+      "concentration",
+      "cosmetic_product_type",
+      "ingredient_role",
+      "intended_use",
+      "product_claims"
+    ],
+    "source_count": 1,
+    "legal_entries": 136,
+    "mapped_legal_entries": 28,
+    "unresolved_legal_entries": 102,
+    "positive_cas_rows": 1574,
+    "unique_positive_cas": 1574,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "explosives": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_21_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_21_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_21_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "325AC0000000149"
+    ],
+    "law_names_ja": [
+      "火薬類取締法"
+    ],
+    "law_names_en": [
+      "Explosives Control Act"
+    ],
+    "required_context": [
+      "composition",
+      "manufacture",
+      "quantity",
+      "storage",
+      "use"
+    ],
+    "source_count": 1,
+    "legal_entries": 17,
+    "mapped_legal_entries": 0,
+    "unresolved_legal_entries": 17,
+    "positive_cas_rows": 61,
+    "unique_positive_cas": 61,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "fire_service": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_17_001",
+      "RJ_17_002",
+      "RJ_17_003"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_17_001",
+      "RJ_17_002",
+      "RJ_17_003"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_17_001&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_17_002&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_17_003&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "323AC1000000186"
+    ],
+    "law_names_ja": [
+      "消防法"
+    ],
+    "law_names_en": [
+      "Fire Service Act"
+    ],
+    "required_context": [
+      "concentration",
+      "facility",
+      "handling_quantity",
+      "local_ordinance",
+      "notification",
+      "physical_properties",
+      "storage_quantity"
+    ],
+    "source_count": 3,
+    "legal_entries": 213,
+    "mapped_legal_entries": 26,
+    "unresolved_legal_entries": 187,
+    "positive_cas_rows": 2155,
+    "unique_positive_cas": 2142,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "food_contact": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_20_005",
+      "RJ_20_006"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_20_005",
+      "RJ_20_006"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_20_005&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_20_006&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "322AC0000000233"
+    ],
+    "law_names_ja": [
+      "食品衛生法"
+    ],
+    "law_names_en": [
+      "Food Sanitation Act"
+    ],
+    "required_context": [
+      "concentration",
+      "food_contact_use",
+      "food_type",
+      "material_category",
+      "maximum_temperature",
+      "migration_conditions"
+    ],
+    "source_count": 2,
+    "legal_entries": 2549,
+    "mapped_legal_entries": 289,
+    "unresolved_legal_entries": 1495,
+    "positive_cas_rows": 2520,
+    "unique_positive_cas": 2354,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "high_pressure_gas": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_19_001",
+      "RJ_19_002",
+      "RJ_19_003"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_19_001",
+      "RJ_19_002",
+      "RJ_19_003"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_19_001&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_19_002&_e_slt=",
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_19_003&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "326AC0000000204"
+    ],
+    "law_names_ja": [
+      "高圧ガス保安法"
+    ],
+    "law_names_en": [
+      "High Pressure Gas Safety Act"
+    ],
+    "required_context": [
+      "facility",
+      "physical_state",
+      "pressure",
+      "refrigerant",
+      "refrigeration_capacity",
+      "storage_quantity",
+      "temperature"
+    ],
+    "source_count": 3,
+    "legal_entries": 177,
+    "mapped_legal_entries": 60,
+    "unresolved_legal_entries": 75,
+    "positive_cas_rows": 233,
+    "unique_positive_cas": 113,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "household_products": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_16_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_16_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_16_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "348AC0000000112"
+    ],
+    "law_names_ja": [
+      "有害物質を含有する家庭用品の規制に関する法律"
+    ],
+    "law_names_en": [
+      "Household Products Containing Harmful Substances Act"
+    ],
+    "required_context": [
+      "concentration",
+      "intended_consumer_use",
+      "product_type"
+    ],
+    "source_count": 1,
+    "legal_entries": 21,
+    "mapped_legal_entries": 7,
+    "unresolved_legal_entries": 14,
+    "positive_cas_rows": 169,
+    "unique_positive_cas": 169,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "narcotics": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_23_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_23_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_23_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "328AC0000000014"
+    ],
+    "law_names_ja": [
+      "麻薬及び向精神薬取締法"
+    ],
+    "law_names_en": [
+      "Narcotics and Psychotropics Control Act"
+    ],
+    "required_context": [
+      "import_or_export",
+      "license",
+      "quantity",
+      "research_or_medical",
+      "use"
+    ],
+    "source_count": 1,
+    "legal_entries": 379,
+    "mapped_legal_entries": 250,
+    "unresolved_legal_entries": 129,
+    "positive_cas_rows": 794,
+    "unique_positive_cas": 794,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "ozone_layer": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_12_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_12_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_12_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "363AC0000000053"
+    ],
+    "law_names_ja": [
+      "特定物質等の規制等によるオゾン層の保護に関する法律"
+    ],
+    "law_names_en": [
+      "Ozone Layer Protection Act"
+    ],
+    "required_context": [
+      "export",
+      "import",
+      "manufacture",
+      "quantity",
+      "use"
+    ],
+    "source_count": 1,
+    "legal_entries": 114,
+    "mapped_legal_entries": 61,
+    "unresolved_legal_entries": 53,
+    "positive_cas_rows": 543,
+    "unique_positive_cas": 543,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "soil_contamination": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_15_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_15_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_15_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "414AC0000000053"
+    ],
+    "law_names_ja": [
+      "土壌汚染対策法"
+    ],
+    "law_names_en": [
+      "Soil Contamination Countermeasures Act"
+    ],
+    "required_context": [
+      "excavation_or_transfer",
+      "facility_history",
+      "land_use",
+      "soil_concentration"
+    ],
+    "source_count": 1,
+    "legal_entries": 26,
+    "mapped_legal_entries": 5,
+    "unresolved_legal_entries": 21,
+    "positive_cas_rows": 4390,
+    "unique_positive_cas": 4390,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "water_pollution": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "nite-chrip-20260731",
+    "dataset_loaded": true,
+    "all_sources_loaded": true,
+    "loaded_source_ids": [
+      "RJ_14_001"
+    ],
+    "missing_source_ids": [],
+    "source_ids": [
+      "RJ_14_001"
+    ],
+    "source_urls": [
+      "https://www.chem-info.nite.go.jp/chem/chrip/chrip_search/sltLst?slScNm=RJ_14_001&_e_slt="
+    ],
+    "source_update_date": "2026-07-31",
+    "law_ids": [
+      "345AC0000000138"
+    ],
+    "law_names_ja": [
+      "水質汚濁防止法"
+    ],
+    "law_names_en": [
+      "Water Pollution Control Act"
+    ],
+    "required_context": [
+      "concentration",
+      "discharge_destination",
+      "effluent",
+      "facility",
+      "local_rule"
+    ],
+    "source_count": 1,
+    "legal_entries": 107,
+    "mapped_legal_entries": 33,
+    "unresolved_legal_entries": 74,
+    "positive_cas_rows": 6937,
+    "unique_positive_cas": 6937,
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
   }
 }

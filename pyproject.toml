@@ -1,6 +1,6 @@
 [project]
 name = "ra-law-db"
-version = "0.3.1"
+version = "0.4.0"
 description = "Japanese chemical law screening package and published dataset"
 authors = [{ name = "Ameyanagi", email = "contact@ameyanagi.com" }]
 readme = "README.md"

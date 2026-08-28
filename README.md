@@ -26,14 +26,22 @@ from ra_law_db import get_law_screening_database
 
 db = get_law_screening_database()
 
-lookup_result = db.lookup(cas_number="75-09-2", language="ja")
+lookup_result = db.lookup(
+    cas_number="75-09-2",
+    language="ja",
+    context={
+        "material_form": "powder",
+        "work_process": "weighing and mixing",
+        "dust_generation": "medium",
+    },
+)
 search_result = db.search(query="ジクロロメタン", mode="auto", limit=10, min_score=0.6)
 ```
 
 Public runtime API:
 
 - `get_law_screening_database(law_db_path: str | None = None)`
-- `LawScreeningDatabase.lookup(cas_number=None, substance_name=None, language="ja")`
+- `LawScreeningDatabase.lookup(cas_number=None, substance_name=None, language="ja", context=None)`
 - `LawScreeningDatabase.search(query, mode="auto", law_id=None, limit=20, min_score=0.6)`
 
 Default behavior:
@@ -76,6 +84,29 @@ At runtime, the bundled database is resolved safely via `importlib.resources` an
 - `exports/`: compatibility export files
   - `regulatory_substances.csv`
 - `masters/`: public-safe law master datasets and alias rows
+  - `regulatory_index.csv`: authoritative NITE-CHRIP CAS positive-list rows
+  - `dataset_coverage.json`: source-level update, hash, load, and mapping coverage
+  - `master_coverage.json`: law-domain aggregate coverage and negative-conclusion capability
+
+## Status semantics
+
+- `applies`: an authoritative positive match establishes application.
+- `requires_context`: the substance is listed, but concentration, quantity,
+  use, process, business, or facility conditions are needed.
+- `not_applies`: used only when the screening dataset demonstrably supports a
+  negative conclusion or an explicit authoritative negative exists.
+- `unknown`: coverage or context cannot safely establish a conclusion.
+
+No dataset hit is not automatically a legal non-applicability finding. Results
+are screening output, not final legal determinations. Each result exposes its
+status reason, notes, dataset name/version/load state/coverage, source/update
+date, evidence, and manual-verification actions.
+
+The runtime also returns process-context screening for the Dust Ordinance,
+Pneumoconiosis Act, special health examinations, and pneumoconiosis medical
+examinations. These cannot be determined from CAS alone; provide material form,
+work process, dust generation, work frequency, assignment history, and facility
+conditions.
 
 ## Generation and releases
 
@@ -86,6 +117,8 @@ Release model:
 - the package version moves with the bundled SQLite database
 - a new bundled DB refresh should be released as a new `ra-law-db` package version
 - direct consumers receive data updates by upgrading `ra-law-db`
+- the private scraper performs a scheduled official-source refresh and opens a
+  review PR; schema drift or missing core snapshots stops release generation
 
 ## Development
 
