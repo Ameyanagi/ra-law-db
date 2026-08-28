@@ -7,10 +7,24 @@ import pytest
 from ra_law_db import LawScreeningDatabase
 
 
-SIX_SUBSTANCES = {
-    "56-81-5": {},
-    "57-55-6": {"cscl": "requires_context", "ish": "requires_context"},
+REPRESENTATIVE_SUBSTANCES = {
+    # Common gases
+    "124-38-9": {"ish": "requires_context", "high_pressure_gas": "requires_context"},
     "1333-74-0": {"ish": "requires_context", "high_pressure_gas": "requires_context"},
+    # Common laboratory solvent
+    "67-56-1": {
+        "poison_control": "requires_context",
+        "ish": "requires_context",
+        "fire_service": "requires_context",
+    },
+    # Elemental metal; deliberately separate from chromium(VI) compounds
+    "7440-47-3": {
+        "prtr": "requires_context",
+        "ish": "requires_context",
+        "air_pollution": "requires_context",
+        "water_pollution": "requires_context",
+    },
+    # Common metal oxides and catalyst/support materials
     "1317-38-0": {
         "ish": "requires_context",
         "air_pollution": "requires_context",
@@ -22,6 +36,34 @@ SIX_SUBSTANCES = {
         "water_pollution": "requires_context",
     },
     "1344-28-1": {"water_pollution": "requires_context"},
+    # Multi-domain positive controls
+    "108-88-3": {
+        "cscl": "requires_context",
+        "prtr": "requires_context",
+        "poison_control": "requires_context",
+        "ish": "requires_context",
+    },
+    "71-43-2": {
+        "cscl": "requires_context",
+        "prtr": "requires_context",
+        "ish": "requires_context",
+    },
+    "67-64-1": {"ish": "requires_context", "fire_service": "requires_context"},
+    "75-09-2": {"prtr": "requires_context", "ish": "requires_context"},
+    "7439-92-1": {
+        "prtr": "requires_context",
+        "ish": "requires_context",
+        "soil_contamination": "requires_context",
+    },
+    "7778-50-9": {
+        "prtr": "requires_context",
+        "poison_control": "requires_context",
+        "ish": "requires_context",
+    },
+    "7664-93-9": {"poison_control": "requires_context", "ish": "requires_context"},
+    # Conservative no-hit controls
+    "7732-18-5": {"food_contact": "requires_context"},
+    "7647-14-5": {},
 }
 
 
@@ -31,8 +73,8 @@ def bundled_db() -> LawScreeningDatabase:
     return LawScreeningDatabase.get_instance()
 
 
-@pytest.mark.parametrize(("cas_number", "positive_statuses"), SIX_SUBSTANCES.items())
-def test_six_substances_are_conservative_and_evidenced(
+@pytest.mark.parametrize(("cas_number", "positive_statuses"), REPRESENTATIVE_SUBSTANCES.items())
+def test_representative_substances_are_conservative_and_evidenced(
     bundled_db: LawScreeningDatabase,
     cas_number: str,
     positive_statuses: dict[str, str],
@@ -60,7 +102,7 @@ def test_six_substances_are_conservative_and_evidenced(
         assert result["evidence"]["source_urls"]
 
 
-@pytest.mark.parametrize("cas_number", ["108-88-3", "71-43-2", "67-64-1", "7732-18-5", "7647-14-5"])
+@pytest.mark.parametrize("cas_number", REPRESENTATIVE_SUBSTANCES)
 def test_general_compounds_never_get_unsupported_negative_status(
     bundled_db: LawScreeningDatabase,
     cas_number: str,
@@ -101,6 +143,25 @@ def test_copper_oxidation_state_is_not_conflated(
     exact_hits = [hit for hit in payload["substance_hits"] if hit["score"] == 1.0]
     assert {hit["cas_number"] for hit in exact_hits} == {expected_cas}
     assert excluded_cas not in {hit["cas_number"] for hit in exact_hits}
+
+
+@pytest.mark.parametrize(
+    ("query", "expected_cas"),
+    [
+        ("Chromium", "7440-47-3"),
+        ("クロム", "7440-47-3"),
+        ("Potassium dichromate", "7778-50-9"),
+        ("重クロム酸カリウム", "7778-50-9"),
+    ],
+)
+def test_elemental_chromium_and_chromium_vi_compound_are_distinct(
+    bundled_db: LawScreeningDatabase,
+    query: str,
+    expected_cas: str,
+) -> None:
+    payload = bundled_db.search(query=query, mode="name", limit=5, min_score=0.6)
+    assert payload["substance_hits"][0]["cas_number"] == expected_cas
+    assert payload["substance_hits"][0]["score"] == 1.0
 
 
 def test_powder_work_surfaces_dust_and_health_examination_screening(
