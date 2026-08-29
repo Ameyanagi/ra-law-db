@@ -1,0 +1,6566 @@
+{
+  "rules_file": "/Users/ryuichi/dev/ra-law-db/masters/class_group_rules.csv",
+  "summary": {
+    "rules": 552,
+    "rules_with_hits": 489,
+    "cas_classed_by_rules": 15010,
+    "unresolved_by_source": {
+      "RJ_04_031": 0,
+      "RJ_04_041": 0,
+      "RJ_03_001": 0,
+      "RJ_02_002": 75,
+      "RJ_11_001": 0,
+      "RJ_17_001": 695
+    },
+    "findings_by_kind": {
+      "multi_match": 43,
+      "no_hits": 63
+    },
+    "hard_findings": 0,
+    "law_context_loaded": true
+  },
+  "findings": [
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|クロム酸及びその塩",
+      "detail": "also matched by ish|カドミウム及びその化合物; the stricter designation (ish|クロム酸及びその塩) prevails",
+      "examples": [
+        "14312-00-6 クロム酸カドミウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|クロム酸及びその塩",
+      "detail": "also matched by ish|水銀及びその無機化合物; the stricter designation (ish|クロム酸及びその塩) prevails",
+      "examples": [
+        "13444-75-2 クロム酸水銀（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|コバルト及びその無機化合物",
+      "detail": "also matched by ish|水銀及びその無機化合物; the stricter designation (ish|コバルト及びその無機化合物) prevails",
+      "examples": [
+        "27685-51-4 水銀（２＋）＝（Ｔ－４）－テトラキス（チオシアナト－κＮ）コバルタート（２－）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ジクロルベンジジン及びその塩",
+      "detail": "also matched by ish|塩素化ビフェニル（別名ＰＣＢ）; the stricter designation (ish|ジクロルベンジジン及びその塩) prevails",
+      "examples": [
+        "91-94-1 ３，３’－ジクロロビフェニル－４，４’－ジイルジアミン",
+        "612-83-9 Ｎ，Ｎ’－（３，３’－ジクロロビフェニル－４，４’－ジイル）ジアンモニウム＝ジクロリド"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）",
+      "detail": "also matched by ish|カドミウム及びその化合物; the stricter designation (ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）) prevails",
+      "examples": [
+        "12006-15-4 ヒ化カドミウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）",
+      "detail": "also matched by ish|マンガン及びその化合物; the stricter designation (ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）) prevails",
+      "examples": [
+        "7784-38-5 ヒ酸水素マンガン（ＩＩ）",
+        "12005-95-7 ヒ化マンガン",
+        "27526-45-0 ヒ酸マンガン"
+      ],
+      "count": 3,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）",
+      "detail": "also matched by ish|水銀及びその無機化合物; the stricter designation (ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）) prevails",
+      "examples": [
+        "7784-37-4 ヒ酸水銀（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|重クロム酸及びその塩",
+      "detail": "also matched by ish|クロム酸及びその塩 | ish|水銀及びその無機化合物; the stricter designation (ish|重クロム酸及びその塩) prevails",
+      "examples": [
+        "7789-10-8 二クロム酸水銀（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|アンチモン化合物及びこれを含有する製剤; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1315-05-5 セレン化アンチモン"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|カドミウム化合物; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1306-24-7 セレン化カドミウム",
+        "10060-09-0 セレン酸カドミウム（ＩＩ）・二水和物",
+        "12214-12-9 一硫化一セレン化二カドミウム（ＩＩ）",
+        "12626-36-7 硫セレン化カドミウム",
+        "13814-59-0 Cadmium selenite"
+      ],
+      "count": 9,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|バリウム化合物; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1304-39-8 セレン化バリウム",
+        "7787-41-9 セレン酸バリウム",
+        "13718-59-7 亜セレン酸バリウム"
+      ],
+      "count": 3,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機亜鉛塩類; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1315-09-9 セレン化亜鉛",
+        "13597-46-1 亜セレン酸亜鉛"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銀塩類; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1302-09-6 セレン化二銀"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銅塩類; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1317-41-5 セレン化銅（ＩＩ）",
+        "10031-45-5 セレン酸銅（ＩＩ）・五水和物",
+        "10214-40-1 Copper(2+) selenite",
+        "15123-69-0 セレン酸銅（ＩＩ）"
+      ],
+      "count": 4,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機錫塩類; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1315-06-6 セレン化スズ（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|セレン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|鉛化合物; the stricter designation (poison_control|セレン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "12069-00-0 セレン化鉛"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|四アルキル鉛",
+      "detail": "also matched by poison_control|鉛化合物; the stricter designation (poison_control|四アルキル鉛) prevails",
+      "examples": [
+        "75-74-1 テトラメチル鉛",
+        "78-00-2 テトラエチル鉛",
+        "1762-26-1 エチルトリメチル鉛",
+        "1762-27-2 ジエチルジメチル鉛",
+        "1762-28-3 トリエチルメチル鉛"
+      ],
+      "count": 6,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|水銀化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|クロム酸塩類及びこれを含有する製剤; the stricter designation (poison_control|水銀化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "13444-75-2 クロム酸水銀（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|水銀化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|クロム酸塩類及びこれを含有する製剤 | poison_control|重クロム酸塩類及びこれを含有する製剤; the stricter designation (poison_control|水銀化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "7789-10-8 二クロム酸水銀（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|水銀化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|バリウム化合物; the stricter designation (poison_control|水銀化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "10048-99-4 テトラヨード水銀酸バリウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|水銀化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤; the stricter designation (poison_control|水銀化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "502-39-6 （３－シアノグアニジノ）（メチル）水銀"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|水銀化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銅塩類; the stricter designation (poison_control|水銀化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "13876-85-2 テトラヨード水銀酸二銅",
+        "27228-67-7 四ヨウ化水銀酸銅（ＩＩ）"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|水銀化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|蓚酸塩類及びこれを含有する製剤; the stricter designation (poison_control|水銀化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "2949-11-3 二水銀（１＋）＝オキサラート"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|カドミウム化合物; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "542-83-6 シアン化カドミウム（ＩＩ）",
+        "14402-75-6 シアン化カドミウムカリウム錯塩"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|バリウム化合物; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "542-62-1 シアン化バリウム",
+        "562-81-2 バリウム＝（ＳＰ－４－１）－テトラシアニドプラチナート（２－）"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "5804-85-3 (cyano-C)diethylaluminium",
+        "13601-11-1 ヘキサシアノクロム酸三カリウム",
+        "15002-31-0 Tetrapotassium hexakis(cyano-C)ruthenate"
+      ],
+      "count": 3,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤 | poison_control|水銀化合物及びこれを含有する製剤; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "591-89-9 テトラシアノ水銀酸二カリウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤 | poison_control|無機亜鉛塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "557-13-1 テトラシアノ亜鉛酸二カリウム",
+        "14049-79-7 ヘキサシアノコバルト（ＩＩＩ）酸亜鉛（ＩＩ）",
+        "14244-62-3 テトラシアノ亜鉛酸カリウム"
+      ],
+      "count": 3,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤 | poison_control|無機銀塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "506-61-6 ジシアノ銀酸カリウム",
+        "21430-69-3 Sodium bis(cyano-C)argentate"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤 | poison_control|無機銅塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "14264-31-4 トリシアノ銅酸ナトリウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|有機シアン化合物及びこれを含有する製剤 | poison_control|鉛化合物; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "592-05-2 λ（２）－プルンバンジカルボニトリル"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機亜鉛塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "557-21-1 シアン化亜鉛（ＩＩ）"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機金塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "506-65-0 シアン化金（Ｉ）",
+        "535-37-5 シアン化金",
+        "14263-59-3 （ＳＰ－４－１）－テトラシアニド金酸（１－）カリウム",
+        "37187-64-7 シアン化金",
+        "118499-69-7 シアン化金"
+      ],
+      "count": 6,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銀塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "506-64-9 シアン化銀"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|無機シアン化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銅塩類; the stricter designation (poison_control|無機シアン化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "544-92-3 シアン化銅（Ｉ）",
+        "4367-08-2 シアン化銅（ＩＩ）",
+        "13682-73-0 ジシアニド銅酸（１－）カリウム",
+        "66358-72-3 トリシアニド銅酸（２－）二ナトリウム三水和物"
+      ],
+      "count": 4,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|アンチモン化合物及びこれを含有する製剤; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "12255-36-6 Triantimony arsenide"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|カドミウム化合物; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "12006-15-4 ヒ化カドミウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|バリウム化合物; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "12255-50-4 ヒ化バリウム"
+      ],
+      "count": 1,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機亜鉛塩類; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "1303-39-5 テトラキス［トリオキシドヒ酸（１－）］三酸化五亜鉛（ＩＩ）四水和物",
+        "10326-24-6 亜ヒ酸亜鉛（ＩＩ）",
+        "12006-40-5 ヒ化亜鉛",
+        "12044-55-2 二ヒ化一亜鉛",
+        "12511-97-6 ヒ化亜鉛"
+      ],
+      "count": 7,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銀塩類; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "7784-08-9 亜ヒ酸三銀",
+        "12005-82-2 ヘキサフルオロヒ酸銀（Ｉ）",
+        "12417-99-1 Trisilver arsenide",
+        "13510-44-6 ヒ酸銀（Ｉ）"
+      ],
+      "count": 4,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機銅塩類; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "10103-61-4 ヒ酸銅（１：？）",
+        "10290-12-7 アルソン酸銅（ＩＩ）",
+        "12005-75-3 ヒ化銅（Ｉ）",
+        "29871-13-4 ヒ酸銅（ＩＩ）（１：？）",
+        "33382-64-8 亜ヒ酸三銅（１＋）"
+      ],
+      "count": 5,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|無機錫塩類; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "12044-32-5 ヒ化スズ（ＳｎＡｓ）",
+        "12255-99-1 ヒ化スズ"
+      ],
+      "count": 2,
+      "fix_hint": ""
+    },
+    {
+      "kind": "multi_match",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|砒素化合物及びこれを含有する製剤",
+      "detail": "also matched by poison_control|鉛化合物; the stricter designation (poison_control|砒素化合物及びこれを含有する製剤) prevails",
+      "examples": [
+        "3687-31-8 ビス（ヒ酸）三鉛（ＩＩ）",
+        "7645-25-2 ヒ酸鉛（１：？）",
+        "7784-40-9 ヒ酸水素鉛（ＩＩ）",
+        "10031-13-7 亜ヒ酸鉛（ＩＩ）",
+        "10102-48-4 ヒ酸の鉛（４＋）塩（３：２）"
+      ],
+      "count": 6,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|アルフア－ナフチルアミン及びその塩",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|オルト－トリジン及びその塩",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ジアニシジン及びその塩",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ベンゾトリクロリド",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ニッケルカルボニル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|五酸化バナジウム",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|三酸化二アンチモン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|塩化ビニル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|エチレンオキシド",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|酸化プロピレン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|エチレンイミン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|四塩化炭素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|トリクロロエチレン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|テトラクロロエチレン（別名パークロルエチレン）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|１，１，２，２－テトラクロロエタン（別名四塩化アセチレン）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|１，２－ジクロロエタン（別名二塩化エチレン）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ジクロロメタン（別名二塩化メチレン）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|臭化メチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|沃化メチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|硫酸ジメチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|オルト－フタロジニトリル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|オルト－トルイジン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|パラ－ニトロクロルベンゼン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|パラ－ジメチルアミノアゾベンゼン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|３，３’－ジクロロ－４，４’－ジアミノジフェニルメタン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "soft",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ジメチル－２，２－ジクロロビニルホスフェイト（ＤＤＶＰ）",
+      "detail": "matches no CAS in the source sheet — regex probably wrong or spelling differs",
+      "examples": [],
+      "count": 0,
+      "fix_hint": "test the pattern against the NITE official names of this group"
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ベータ－プロピオラクトン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|ニトログリコール",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|リフラクトリーセラミックファイバー",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|塩素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "soft",
+      "source_id": "RJ_04_031",
+      "rule": "ish|溶接ヒューム",
+      "detail": "matches no CAS in the source sheet — regex probably wrong or spelling differs",
+      "examples": [],
+      "count": 0,
+      "fix_hint": "test the pattern against the NITE official names of this group"
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_031",
+      "rule": "ish|塩化水素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_041",
+      "rule": "ish|ミネラルスピリツト（ミネラルシンナー、ペトロリウムスピリツト、ホワイトスピリツト及びミネラルターペンを含む。）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_04_041",
+      "rule": "ish|石油ナフサ",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|弗化水素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|塩化水素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|ブロム水素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|クロルエチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|クロルメチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|ブロムエチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|ブロムメチル",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "soft",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|弗化アンモニウム及びこれを含有する製剤",
+      "detail": "matches no CAS in the source sheet — regex probably wrong or spelling differs",
+      "examples": [],
+      "count": 0,
+      "fix_hint": "test the pattern against the NITE official names of this group"
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|三塩化硼素及びこれを含有する製剤",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "soft",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|アバメクチン一・八％以下を含有する製剤",
+      "detail": "matches no CAS in the source sheet — regex probably wrong or spelling differs",
+      "examples": [],
+      "count": 0,
+      "fix_hint": "test the pattern against the NITE official names of this group"
+    },
+    {
+      "kind": "no_hits",
+      "severity": "soft",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|塩化水素と硫酸とを含有する製剤",
+      "detail": "matches no CAS in the source sheet — regex probably wrong or spelling differs",
+      "examples": [],
+      "count": 0,
+      "fix_hint": "test the pattern against the NITE official names of this group"
+    },
+    {
+      "kind": "no_hits",
+      "severity": "soft",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|燐化アルミニウムとその分解促進剤とを含有する製剤",
+      "detail": "matches no CAS in the source sheet — regex probably wrong or spelling differs",
+      "examples": [],
+      "count": 0,
+      "fix_hint": "test the pattern against the NITE official names of this group"
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|燐化水素及びこれを含有する製剤",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_03_001",
+      "rule": "poison_control|三弗化硼素及びこれを含有する製剤",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|ヒドロキシルアミン",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|過塩素酸",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|過酸化水素",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|硝酸",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|過よう素酸",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|赤りん",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|硫黄",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|カリウム",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|ナトリウム",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_17_001",
+      "rule": "fire_service|黄りん",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_02_002",
+      "rule": "prtr|ヘキサデシルトリメチルアンモニウム＝クロリド",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_11_001",
+      "rule": "cwc|Ｏ－イソプロピル＝メチルホスホノクロリダート（別名クロロサリン）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_11_001",
+      "rule": "cwc|Ｏ－ピナコリル＝メチルホスホノクロリダート（別名クロロソマン）",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_11_001",
+      "rule": "cwc|Ｎ－［ビス（ジエチルアミノ）メチリデン］－Ｐ－メチルホスホンアミド酸＝フルオリド",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    },
+    {
+      "kind": "no_hits",
+      "severity": "info",
+      "source_id": "RJ_11_001",
+      "rule": "cwc|２，２－ジフェニル－２－ヒドロキシ酢酸",
+      "detail": "matches no unclassed CAS; the group is already covered by the legal-row join",
+      "examples": [],
+      "count": 0,
+      "fix_hint": ""
+    }
+  ],
+  "rule_hits": {
+    "cwc|アルキルホスホニルジフルオリド（アルキル基の炭素数が３以下であるものに限る。）": 6,
+    "cwc|アルキル＝Ｎ－［１－（ジアルキルアミノ）アルキリデン］ホスホロアミドフルオリダート（ホスホロアミドフルオリダートに結合するアルキル基又はジアルキルアミノのアルキル基がシクロアルキル基であるもの及びアルキリデン基がシクロアルキルメチリデン基であるものを含み、ホスホロアミドフルオリダートに結合するアルキル基及びジアルキルアミノのアルキル基の炭素数が１０以下であり、かつ、アルキリデン基の炭素数が１１（アルキリデン基がシクロアルキルメチリデン基である場合にあっては、シクロアルキルのアルキル基の炭素数が１０）以下であるものに限る。）並びにそのアルキル化塩類及びプロトン化塩類": 3,
+    "cwc|エチルジエタノールアミン": 1,
+    "cwc|キヌクリジン－３－オール": 1,
+    "cwc|サキシトキシン": 1,
+    "cwc|ジアルキル＝Ｎ，Ｎ－ジアルキルホスホルアミダート（ジアルキル及びＮ，Ｎ－ジアルキルホスホルアミダートのアルキル基の炭素数が３以下であるものに限る。）": 19,
+    "cwc|トリス（２－クロロエチル）アミン（別名ＨＮ３）": 1,
+    "cwc|ビス（２－クロロエチル）エチルアミン（別名ＨＮ１）": 2,
+    "cwc|ビス（２－クロロエチル）スルフィド（別名マスタードガス）": 2,
+    "cwc|ビス（２－クロロエチル）メチルアミン（別名ＨＮ２）": 1,
+    "cwc|ビス（２－ヒドロキシエチル）スルフィド（別名チオジグリコール）": 1,
+    "cwc|炭素数が３以下である１のアルキル基との結合以外に炭素原子との結合のないりん原子を含む化合物であって、次に掲げるもの以外のもの。イ　１の項の第３欄（１）から（４）まで及び第４欄に掲げる物質　ロ　Ｏ－エチル＝Ｓ－フェニル＝エチルホスホノチオロチオナート（別名ホノホス）": 178,
+    "cwc|１，３－ビス（２－クロロエチルチオ）－ｎ－プロパン": 1,
+    "cwc|１，４－ビス（２－クロロエチルチオ）－ｎ－ブタン": 1,
+    "cwc|１，５－ビス（２－クロロエチルチオ）－ｎ－ペンタン": 1,
+    "cwc|２－クロロビニルジクロロアルシン（別名ルイサイト１）": 1,
+    "cwc|３，３－ジメチルブタン－２－オール（別名ピナコリルアルコール）": 2,
+    "cwc|３－キヌクリジニル＝ベンジラート（別名ＢＺ）": 2,
+    "cwc|Ｎ，Ｎ，Ｎ′，Ｎ′－テトラアルキル－Ｎ，Ｎ′－ビス｛［３－（ジメチルカルバモイルオキシ）ピリジン－２－イル］メチル｝－Ｎ，Ｎ′－（２，Ｘ１－ジオキソアルカン－１，Ｘ２－ジイル）ジアンモニウム＝ジブロミド（アルカンの構造が直鎖であり、当該アルカンの炭素数が４以上１２以下であり、かつ、テトラアルキルのアルキル基の炭素数が１０以下であるものに限る。）（Ｘ１は当該アルカンの炭素数から１を減じた数を、Ｘ２は当該アルカンの炭素数と等しい数を表すものとする。）": 1,
+    "cwc|Ｎ，Ｎ－ジアルキルアミノエタン－２－オール（アルキル基の炭素数が３以下であるものに限り、Ｎ，Ｎ－ジメチルアミノエタノール及びＮ，Ｎ－ジエチルアミノエタノールを除く。）及びそのプロトン化塩類": 12,
+    "cwc|Ｎ，Ｎ－ジアルキルアミノエタン－２－チオール（アルキル基の炭素数が３以下であるものに限る。）及びそのプロトン化塩類": 12,
+    "cwc|Ｎ，Ｎ－ジアルキルアミノエチル－２－クロリド（アルキル基の炭素数が３以下であるものに限る。）及びそのプロトン化塩類": 19,
+    "cwc|Ｎ，Ｎ－ジアルキルホスホルアミジク＝ジハリド（アルキル基の炭素数が３以下であるものに限る。）": 15,
+    "cwc|Ｎ－アセチルオキシアルキル－Ｎ，Ｎ，Ｎ′，Ｎ′－テトラアルキル－Ｎ′－｛［３－（ジメチルカルバモイルオキシ）ピリジン－２－イル］メチル｝－Ｎ，Ｎ′－（デカン－１，Ｘ－ジイル）ジアンモニウム＝ジブロミド（アセチルオキシアルキル基がシアノアルキル基又はヒドロキシアルキル基であるものを含み、アセチルオキシアルキル（アセチルオキシアルキル基がシアノアルキル基又はヒドロキシアルキル基である場合にあっては、それぞれシアノアルキル又はヒドロキシアルキル）及びテトラアルキルのアルキル基の炭素数が１０以下であり、かつ、アセチルオキシ基（アセチルオキシアルキル基がシアノアルキル基又はヒドロキシアルキル基である場合にあっては、それぞれシアノ基又はヒドロキシ基）がその結合するアルキル基と当該アルキル基の位置番号１から８までのいずれかの炭素原子において結合しているものに限る。）（Ｘは、１から１０までの整数を表すものとする。）": 1,
+    "cwc|Ｏ，Ｏ’－ジエチル＝Ｓ－［２－（ジエチルアミノ）エチル］＝ホスホロチオラート（別名アミトン）並びにそのアルキル化塩類及びプロトン化塩類": 3,
+    "cwc|Ｏ－アルキル＝アルキルホスホノフルオリダート（Ｏ－アルキルのアルキル基がシクロアルキル基であるものを含み、Ｏ－アルキルのアルキル基の炭素数が１０以下であり、かつ、アルキルホスホノフルオリダートのアルキル基の炭素数が３以下であるものに限る。）": 215,
+    "cwc|Ｏ－アルキル＝Ｎ，Ｎ－ジアルキル＝ホスホルアミドシアニダート（Ｏ－アルキルのアルキル基がシクロアルキル基であるものを含み、Ｏ－アルキルのアルキル基の炭素数が１０以下であり、かつ、Ｎ，Ｎ－ジアルキルのアルキル基の炭素数が３以下であるものに限る。）": 61,
+    "cwc|Ｏ－アルキル＝Ｏ－２－ジアルキルアミノエチル＝アルキルホスホニット（Ｏ－アルキルのアルキル基がシクロアルキル基であるものを含み、Ｏ－アルキルのアルキル基の炭素数が１０以下であり、かつ、Ｏ－２－ジアルキルアミノエチル及びアルキルホスホニットのアルキル基の炭素数が３以下であるものに限る。）並びにそのアルキル化塩類及びプロトン化塩類": 4,
+    "cwc|Ｏ－アルキル＝Ｓ－２－ジアルキルアミノエチル＝アルキルホスホノチオラート（Ｏ－アルキルのアルキル基がシクロアルキル基であるものを含み、Ｏ－アルキルのアルキル基の炭素数が１０以下であり、かつ、Ｓ－２－ジアルキルアミノエチル及びアルキルホスホノチオラートのアルキル基の炭素数が３以下であるものに限る。）並びにそのアルキル化塩類及びプロトン化塩類": 118,
+    "cwc|Ｐ－アルキル－Ｎ－［１－（ジアルキルアミノ）アルキリデン］ホスホンアミド酸＝フルオリド（Ｐ－アルキル又はジアルキルアミノのアルキル基がシクロアルキル基であるもの及びアルキリデン基がシクロアルキルメチリデン基であるものを含み、Ｐ－アルキル及びジアルキルアミノのアルキル基の炭素数が１０以下であり、かつ、アルキリデン基の炭素数が１１（アルキリデン基がシクロアルキルメチリデン基である場合にあっては、シクロアルキルのアルキル基の炭素数が１０）以下であるものに限る。）並びにそのアルキル化塩類及びプロトン化塩類": 2,
+    "cwc|Ｓ－２－ジアルキルアミノエチル＝ヒドロゲン＝アルキルホスホノチオラート（Ｓ－２－ジアルキルアミノエチル及びアルキルホスホノチオラートのアルキル基の炭素数が３以下であるものに限る。）並びにそのアルキル化塩類及びプロトン化塩類": 7,
+    "fire_service|よう素酸塩類": 3,
+    "fire_service|アゾ化合物": 3,
+    "fire_service|アルカリ金属（カリウム及びナトリウムを除く。）及びアルカリ土類金属": 1,
+    "fire_service|アルキルアルミニウム": 8,
+    "fire_service|アルキルリチウム": 2,
+    "fire_service|アルコール類": 4,
+    "fire_service|カルシウム又はアルミニウムの炭化物": 1,
+    "fire_service|ジアゾ化合物": 1,
+    "fire_service|ニトロ化合物": 14,
+    "fire_service|ハロゲン間化合物": 2,
+    "fire_service|ヒドロキシルアミン塩類": 2,
+    "fire_service|ペルオキソほう酸塩類": 1,
+    "fire_service|ペルオキソ二硫酸塩類": 3,
+    "fire_service|亜塩素酸塩類": 1,
+    "fire_service|亜硝酸塩類": 4,
+    "fire_service|塩素化けい素化合物": 1,
+    "fire_service|塩素酸塩類": 7,
+    "fire_service|有機過酸化物": 45,
+    "fire_service|次亜塩素酸塩類": 2,
+    "fire_service|無機過酸化物": 10,
+    "fire_service|特殊引火物": 4,
+    "fire_service|硝酸エステル類": 5,
+    "fire_service|硝酸塩類": 34,
+    "fire_service|硫化りん": 2,
+    "fire_service|第一石油類": 10,
+    "fire_service|第三石油類": 5,
+    "fire_service|第二石油類": 13,
+    "fire_service|臭素酸塩類": 3,
+    "fire_service|過よう素酸塩類": 2,
+    "fire_service|過マンガン酸塩類": 4,
+    "fire_service|過塩素酸塩類": 9,
+    "fire_service|重クロム酸塩類": 4,
+    "fire_service|金属のりん化物": 3,
+    "fire_service|金属のアジ化物": 3,
+    "fire_service|金属の水素化物": 4,
+    "ish|アルキル水銀化合物": 10,
+    "ish|アンモニア": 1,
+    "ish|インジウム化合物": 5,
+    "ish|オーラミン": 1,
+    "ish|カドミウム及びその化合物": 131,
+    "ish|キシレン": 3,
+    "ish|クレゾール": 3,
+    "ish|クロム酸及びその塩": 81,
+    "ish|コバルト及びその無機化合物": 137,
+    "ish|コールタール": 2,
+    "ish|コールタールナフサ（ソルベントナフサを含む。）": 1,
+    "ish|ジクロルベンジジン及びその塩": 3,
+    "ish|トリレンジイソシアネート": 7,
+    "ish|ニッケル化合物（２４に掲げる物を除き、粉状の物に限る。）": 210,
+    "ish|ベリリウム及びその化合物": 26,
+    "ish|ベンゼン": 1,
+    "ish|ペンタクロルフェノール（別名ＰＣＰ）及びそのナトリウム塩": 2,
+    "ish|マゼンタ": 2,
+    "ish|マンガン及びその化合物": 219,
+    "ish|メチルシクロヘキサノン": 1,
+    "ish|メチルシクロヘキサノール": 1,
+    "ish|塩素化ビフェニル（別名ＰＣＢ）": 288,
+    "ish|弗化水素": 2,
+    "ish|水銀及びその無機化合物": 51,
+    "ish|砒素及びその化合物（アルシン及び砒化ガリウムを除く。）": 296,
+    "ish|硫化水素": 14,
+    "ish|重クロム酸及びその塩": 24,
+    "poison_control|アナバシン、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|アニリン塩類": 3,
+    "poison_control|アバメクチン及びこれを含有する製剤": 3,
+    "poison_control|アルミン酸ナトリウム": 1,
+    "poison_control|アンチモン化合物及びこれを含有する製剤": 66,
+    "poison_control|アンモニア": 1,
+    "poison_control|イソプロピル（オキシ）フエニル－Ｎ－メチルカルバメート類": 2,
+    "poison_control|エチルジフエニルジチオホスフエイト及びこれを含有する製剤": 1,
+    "poison_control|エチルパラニトロフェニルチオノベンゼンホスホネイト（別名ＥＰＮ）": 2,
+    "poison_control|エチレンジアミン及びこれを含有する製剤": 1,
+    "poison_control|エピクロルヒドリン及びこれを含有する製剤": 2,
+    "poison_control|エマメクチン、その塩類及びこれらのいずれかを含有する製剤": 2,
+    "poison_control|オルトケイ酸テトラメチル及びこれを含有する製剤": 1,
+    "poison_control|カドミウム化合物": 119,
+    "poison_control|キシリレンジアミン及びこれを含有する製剤": 1,
+    "poison_control|キシレン及びこれを含有する製剤": 3,
+    "poison_control|クレゾール": 3,
+    "poison_control|クロトンアルデヒド及びこれを含有する製剤": 2,
+    "poison_control|クロム酸塩類及びこれを含有する製剤": 81,
+    "poison_control|クロルジメホルム、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|クロルピリホス及びこれを含有する製剤": 1,
+    "poison_control|クロロアセチルクロライド及びこれを含有する製剤": 1,
+    "poison_control|クロロプレン及びこれを含有する製剤": 1,
+    "poison_control|サリノマイシン、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|ジエチル―（二・四―ジクロルフエニル）―チオホスフエイト": 1,
+    "poison_control|ジエチル―Ｓ―（二―オキソ―六―クロルベンゾオキサゾロメチル）―ジチオホスフエイト及びこれを含有する製剤": 1,
+    "poison_control|ジエチル－四－メチルスルフイニルフエニル－チオホスフエイト（フェンスルホチオン）": 1,
+    "poison_control|ジエチル－Ｓ－（エチルチオエチル）－ジチオホスフエイト（ジスルホトン）": 1,
+    "poison_control|ジエチレントリアミン及びこれを含有する製剤": 1,
+    "poison_control|ジクロルジニトロメタン及びこれを含有する製剤": 1,
+    "poison_control|ジニトロクレゾール": 3,
+    "poison_control|ジニトロクレゾール塩類及びこれを含有する製剤": 1,
+    "poison_control|ジニトロフエノール及びこれを含有する製剤": 5,
+    "poison_control|ジノカップ及びこれを含有する製剤": 2,
+    "poison_control|ジブチル（ジクロロ）スタンナン及びこれを含有する製剤": 1,
+    "poison_control|ジブロムクロルプロパン（別名ＤＢＣＰ）": 1,
+    "poison_control|ジメチルエチルメルカプトエチルチオホスフエイト（別名メチルジメトン）": 1,
+    "poison_control|ジメチルジチオホスホリルフエニル酢酸エチル（フェントエート）": 1,
+    "poison_control|ジメチルジブロムジクロルエチルホスフエイト（ナレド）": 1,
+    "poison_control|ジメチルメチルカルバミルエチルチオエチルオホスフエイト": 1,
+    "poison_control|ジメチル硫酸": 1,
+    "poison_control|ジメチル－４－メチルメルカプト－３－メチルフエニルチオホスフエイト": 1,
+    "poison_control|ジ（二―クロルイソプロピル）エーテル及びこれを含有する製剤": 1,
+    "poison_control|ストリキニーネ、その塩類及びこれらのいずれかを含有する製剤": 3,
+    "poison_control|スルホナール": 1,
+    "poison_control|セレン化合物及びこれを含有する製剤": 159,
+    "poison_control|センデユラマイシン、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|チオフエノール及びこれを含有する製剤": 1,
+    "poison_control|テトラエチルメチレンビスジチオホスフエイト（エチオン）": 1,
+    "poison_control|トリクロルヒドロキシエチルジメチルホスホネイト（トリクロルホン）": 1,
+    "poison_control|トルイジン": 3,
+    "poison_control|トルイジン塩類": 4,
+    "poison_control|トルイレンジアミン及びその塩類": 9,
+    "poison_control|ニコチン塩類及びこれを含有する製剤": 3,
+    "poison_control|ノニルフエノール及びこれを含有する製剤": 3,
+    "poison_control|バリウム化合物": 97,
+    "poison_control|ヒドロキシルアミン塩類及びこれを含有する製剤": 4,
+    "poison_control|ビス（四―イソシアナトシクロヘキシル）メタン及びこれを含有する製剤": 1,
+    "poison_control|ピクリン酸塩類": 3,
+    "poison_control|フェナザキン及びこれを含有する製剤": 1,
+    "poison_control|フェニレンジアミン及びその塩類": 6,
+    "poison_control|ブチル（トリクロロ）スタンナン及びこれを含有する製剤": 1,
+    "poison_control|ブラストサイジンＳ塩類及びこれを含有する製剤": 1,
+    "poison_control|ヘキサクロルシクロヘキサン（リンデン）": 2,
+    "poison_control|ヘキサメチレンジアミン及びこれを含有する製剤": 1,
+    "poison_control|ヘキサメチレンジイソシアナート及びこれを含有する製剤": 1,
+    "poison_control|ヘプタクロール／クロルデン類": 7,
+    "poison_control|ベンゾイル＝クロリド及びこれを含有する製剤": 1,
+    "poison_control|ペンタクロルフェノール塩類及びこれを含有する製剤": 4,
+    "poison_control|メタンアルソン酸カルシウム及びこれを含有する製剤": 1,
+    "poison_control|メタンアルソン酸鉄及びこれを含有する製剤": 1,
+    "poison_control|メチルイソチオシアネート及びこれを含有する製剤": 1,
+    "poison_control|メチル－（４－ブロム－２，５－ジクロルフェニル）－チオノベンゼンホスホネイト及びこれを含有する製剤": 1,
+    "poison_control|モネンシン、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|モノクロル酢酸": 1,
+    "poison_control|モノゲルマン及びこれを含有する製剤": 1,
+    "poison_control|モノフルオール酢酸塩類及びこれを含有する製剤": 1,
+    "poison_control|ラサロシド、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|一―ビニル―二―ピロリドン及びこれを含有する製剤": 1,
+    "poison_control|三―ジメチルジチオホスホリル―Ｓ―メチル―五―メトキシ―一・三・四―チアジアゾリン―二―オン及びこれを含有する製剤": 1,
+    "poison_control|三―（ジフルオロメチル）―一―メチル―Ｎ―［（三Ｒ）―一・一・三―トリメチル―二・三―ジヒドロ―一Ｈ―インデン―四―イル］―一Ｈ―ピラゾール―四―カルボキサミド及びこれを含有する製剤": 1,
+    "poison_control|三―（ジメトキシホスフイニルオキシ）―Ｎ―メチル―シス―クロトナミド及びこれを含有する製剤": 1,
+    "poison_control|二―クロルエチルトリメチルアンモニウム塩類及びこれを含有する製剤": 1,
+    "poison_control|二―セカンダリ―ブチルフエノール及びこれを含有する製剤": 1,
+    "poison_control|二―チオ―三・五―ジメチルテトラヒドロ―一・三・五―チアジアジン及びこれを含有する製剤": 1,
+    "poison_control|二―ヒドロキシプロピル＝アクリラート及びこれを含有する製剤": 1,
+    "poison_control|二―メチルビフエニル―三―イルメチル＝（一ＲＳ・二ＲＳ）―二―（Ｚ）―（二―クロロ―三・三・三―トリフルオロ―一―プロペニル）―三・三―ジメチルシクロプロパンカルボキシラート及びこれを含有する製剤": 1,
+    "poison_control|二―ｔ―ブチル―五―（四―ｔ―ブチルベンジルチオ）―四―クロロピリダジン―三（二Ｈ）―オン及びこれを含有する製剤": 1,
+    "poison_control|二・三―ジ―（ジエチルジチオホスホロ）―パラジオキサン": 1,
+    "poison_control|二・二′―ジピリジリウム―一・一′―エチレンジブロミド": 1,
+    "poison_control|二・四―ジクロル―六―ニトロフエノール、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|亜硝酸三級ブチル及びこれを含有する製剤": 1,
+    "poison_control|亜硝酸塩類": 10,
+    "poison_control|可溶性ウラン化合物及びこれを含有する製剤": 11,
+    "poison_control|四―クロロ―二―フルオロ―五―［（ＲＳ）―（二・二・二―トリフルオロエチル）スルフイニル］フエニル＝五―［（トリフルオロメチル）チオ］ペンチル＝エーテル（別名フルペンチオフエノツクス）及びこれを含有する製剤": 1,
+    "poison_control|四アルキル鉛": 6,
+    "poison_control|塩素酸塩類及びこれを含有する製剤": 10,
+    "poison_control|有機シアン化合物及びこれを含有する製剤": 601,
+    "poison_control|水酸化カリウム": 1,
+    "poison_control|水酸化トリアリール錫、その塩類及びこれらの無水物並びにこれらのいずれかを含有する製剤": 6,
+    "poison_control|水酸化トリアルキル錫、その塩類及びこれらの無水物並びにこれらのいずれかを含有する製剤": 19,
+    "poison_control|水銀化合物及びこれを含有する製剤": 86,
+    "poison_control|沃化メチル及びこれを含有する製剤": 1,
+    "poison_control|無機シアン化合物及びこれを含有する製剤": 64,
+    "poison_control|無機亜鉛塩類": 63,
+    "poison_control|無機金塩類": 21,
+    "poison_control|無機銀塩類": 45,
+    "poison_control|無機銅塩類": 69,
+    "poison_control|無機錫塩類": 29,
+    "poison_control|燐化アルミニウム": 1,
+    "poison_control|砒素化合物及びこれを含有する製剤": 152,
+    "poison_control|硅弗化水素酸": 1,
+    "poison_control|硅弗化水素酸塩類及びこれを含有する製剤": 11,
+    "poison_control|硝酸タリウム": 2,
+    "poison_control|硫化ナトリウム及びこれを含有する製剤": 1,
+    "poison_control|硫化燐": 2,
+    "poison_control|硫酸タリウム": 1,
+    "poison_control|硫酸パラジメチルアミノフエニルジアゾニウム、その塩類及びこれらのいずれかを含有する製剤": 2,
+    "poison_control|硼弗化水素酸及びその塩類": 70,
+    "poison_control|蓚酸": 1,
+    "poison_control|蓚酸塩類及びこれを含有する製剤": 101,
+    "poison_control|酢酸タリウム及びこれを含有する製剤": 1,
+    "poison_control|重クロム酸塩類及びこれを含有する製剤": 26,
+    "poison_control|鉛化合物": 194,
+    "poison_control|黄燐": 1,
+    "poison_control|（ジクロロメチル）ベンゼン及びこれを含有する製剤": 1,
+    "poison_control|（トリクロロメチル）ベンゼン及びこれを含有する製剤": 1,
+    "poison_control|（Ｓ）－２，３，５，６－テトラヒドロ－６－フェニルイミダゾ［２，１－ｂ］チアゾール、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|１，１’－イミノジ（オクタメチレン）ジグアニジン（別名イミノクタジン）、その塩類及びこれらのいずれかを含有する製剤": 2,
+    "poison_control|１，１’－ジメチル－４，４’－ジピリジニウムヒドロキシド、その塩類及びこれらのいずれかを含有する製剤": 3,
+    "poison_control|１，３－ジカルバモイルチオ－２－（Ｎ，Ｎ－ジメチルアミノ）－プロパン、その塩類及びこれらのいずれかを含有する製剤": 2,
+    "poison_control|１，３－ジクロロプロペン及びこれを含有する製剤": 2,
+    "poison_control|１－（４－フルオロフェニル）プロパン－２－アミン、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|１－（４－メトキシフェニル）ピペラジン、その塩類及びこれらのいずれかを含有する製剤": 2,
+    "poison_control|２，４，５－トリクロルフエノキシ酢酸エステル類": 4,
+    "poison_control|２－セカンダリーブチルフエニル－Ｎ－メチルカルバメート（別名ＢＰＭＣ）及びこれを含有する製剤": 1,
+    "poison_control|２－ターシャリーブチル－５－メチルフエノール及びこれを含有する製剤": 1,
+    "poison_control|２－（ジメチルアミノ）エチル＝メタクリラート及びこれを含有する製剤": 1,
+    "poison_control|３－アミノ－１－プロパノール及びこれを含有する製剤": 1,
+    "poison_control|５－イソシアナト－１－（イソシアナトメチル）－１，３，３－トリメチルシクロヘキサン及びこれを含有する製剤": 1,
+    "poison_control|５－メトキシ－Ｎ，Ｎ－ジメチルトリプタミン、その塩類及びこれらのいずれかを含有する製剤": 2,
+    "poison_control|７－ブロモ－６－クロロ－３－［３－［３－ヒドロキシ－２－ピペリジル］－２－オキソプロピル］－４（３Ｈ）－キナゾリノン（ハロフジノン）": 1,
+    "poison_control|Ｌ―二―アミノ―四―〔（ヒドロキシ）（メチル）ホスフイノイル〕ブチリル―Ｌ―アラニル―Ｌ―アラニン、その塩類及びこれらのいずれかを含有する製剤": 1,
+    "poison_control|Ｎ－アルキルアニリン及びその塩類": 28,
+    "poison_control|Ｎ－アルキルトルイジン及びその塩類": 6,
+    "poison_control|Ｎ－メチル－１－ナフチルカルバメート": 1,
+    "poison_control|Ｏ・Ｏ′―ジエチル＝Ｏ″―（二―キノキサリニル）＝チオホスフアート（別名キナルホス）及びこれを含有する製剤": 1,
+    "poison_control|Ｏ－エチル－Ｏ－四－メチルチオフエニル－Ｓ－プロピルジチオホスフエイト（スルプロホス）": 1,
+    "poison_control|ｔ―ブチル＝（Ｅ）―四―（一・三―ジメチル―五―フエノキシ―四―ピラゾリルメチレンアミノオキシメチル）ベンゾアート及びこれを含有する製剤": 1,
+    "prtr|ふっ化水素及びその水溶性塩": 13,
+    "prtr|ほう素化合物": 1437,
+    "prtr|りん酸トリトリル": 4,
+    "prtr|アクリル酸及びその水溶性塩": 2,
+    "prtr|アジピン酸、（Ｎ－（２－アミノエチル）エタン－１，２－ジアミン又はＮ，Ｎ’－ビス（２－アミノエチル）エタン－１，２－ジアミン）と２－（クロロメチル）オキシランの重縮合物": 3,
+    "prtr|アジピン酸ジ－２－エチルヘキシル": 1,
+    "prtr|アニリン": 1,
+    "prtr|アルカノール（炭素数が１０のものに限る。）（別名デカノール）": 165,
+    "prtr|アルカン－１－アミン（アルカンの構造が直鎖であり、かつ、当該アルカンの炭素数が８、１０、１２、１４、１６又は１８のもの及びその混合物に限る。）、（Ｚ）－オクタデカ－９－エン－１－アミン及び（９Ｚ，１２Ｚ）－オクタデカ－９，１２－ジエン－１－アミン並びにこれらの混合物": 18,
+    "prtr|アルカン－１－アミン（アルカンの構造が直鎖であり、かつ、当該アルカンの炭素数が８、１０、１２、１４、１６又は１８のもの及びその混合物に限る。）のオキシラン重付加物、（Ｚ）－オクタデカ－９－エン－１－アミンのオキシラン重付加物及び（９Ｚ，１２Ｚ）－オクタデカ－９，１２－ジエン－１－アミンのオキシラン重付加物の混合物": 19,
+    "prtr|アルキルフェノール（アルキル基の炭素数が９のものに限る。）": 22,
+    "prtr|アルキル（ベンジル）（ジメチル）アンモニウムの塩（アルキル基の炭素数が１２から１６までのもの及びその混合物に限る。）": 35,
+    "prtr|アルファ－アルキル－オメガ－ヒドロキシポリ（オキシエタン－１，２－ジイル）（アルキル基の炭素数が１６から１８までのもの及びその混合物であって、数平均分子量が１，０００未満のものに限る。）及びアルファ－アルケニル－オメガ－ヒドロキシポリ（オキシエタン－１，２－ジイル）（アルケニル基の炭素数が１６から１８までのもの及びその混合物であって、数平均分子量が１，０００未満のものに限る。）並びにこれらの混合物": 6,
+    "prtr|アルファ－アルキル－オメガ－ヒドロキシポリ（オキシエチレン）（アルキル基の炭素数が９から１１までのもの及びその混合物であって、数平均分子量が１，０００未満のものに限る。）": 6,
+    "prtr|アルファ－アルキル－オメガ－ヒドロキシポリ［オキシエタン－１，２－ジイル／オキシ（メチルエタン－１，２－ジイル）］（アルキル基の構造が分枝であり、かつ、当該アルキル基の炭素数が９から１１までのものの混合物（当該アルキル基の炭素数が１０のものを主成分とするものに限る。）に限る。）": 3,
+    "prtr|アルファ－（イソシアナトベンジル）－オメガ－（イソシアナトフェニル）ポリ［（イソシアナトフェニレン）メチレン］": 2,
+    "prtr|アルファ－（４，６－ジメトキシ－２－ピリミジニルカルバモイルスルファモイル）－オルト－トルイル酸メチル（別名ベンスルフロンメチル）": 1,
+    "prtr|アンチモン及びその化合物": 311,
+    "prtr|イソプロピルアンモニウム＝（ＲＳ）－２－（４－イソプロピル－４－メチル－５－オキソ－２－イミダゾリン－２－イル）ニコチナート（別名イマザピル又はイマザピルイソプロピルアミン塩）": 1,
+    "prtr|インジウム及びその化合物": 100,
+    "prtr|エチリデンノルボルネン": 2,
+    "prtr|エチレンジアミン": 1,
+    "prtr|エチレンジアミン四酢酸並びにそのカリウム塩及びナトリウム塩": 23,
+    "prtr|エピクロロヒドリン": 2,
+    "prtr|オクタブロモジフェニルエーテル": 2,
+    "prtr|オルト－ニトロトルエン": 1,
+    "prtr|カドミウム及びその化合物": 305,
+    "prtr|キシレン": 3,
+    "prtr|クレゾール": 4,
+    "prtr|クロム及び三価クロム化合物": 150,
+    "prtr|クロロアニリン": 3,
+    "prtr|クロロトリフルオロエタン（別名ＨＣＦＣ－１３３）": 3,
+    "prtr|グリホサート並びにそのアンモニウム塩、イソプロピルアミン塩、カリウム塩及びナトリウム塩": 4,
+    "prtr|コバルト及びその化合物": 843,
+    "prtr|サリチル酸メチル": 1,
+    "prtr|シクロヘキサ－１－エン－１，２－ジカルボキシイミドメチル＝（１ＲＳ）－シス－トランス－２，２－ジメチル－３－（２－メチルプロパ－１－エニル）シクロプロパンカルボキシラート（別名テトラメトリン）": 7,
+    "prtr|ジクロロアニリン": 6,
+    "prtr|ジクロロテトラフルオロエタン（別名ＣＦＣ－１１４）": 2,
+    "prtr|ジクロロベンゼン": 4,
+    "prtr|ジクロロペンタフルオロプロパン（別名ＨＣＦＣ－２２５）": 10,
+    "prtr|ジシクロペンタジエン": 2,
+    "prtr|ジデシル（ジメチル）アンモニウムの塩": 10,
+    "prtr|ジニトロトルエン": 9,
+    "prtr|ジブロモテトラフルオロエタン（別名ハロン－２４０２）": 3,
+    "prtr|ジメチル（１－フェニルエチル）ベンゼン": 9,
+    "prtr|セリウム及びその化合物": 340,
+    "prtr|セレン及びその化合物": 394,
+    "prtr|タリウム及びその化合物": 98,
+    "prtr|ダイオキシン類": 1,
+    "prtr|テトラヒドロメチル無水フタル酸": 13,
+    "prtr|テトラメチルアンモニウム＝ヒドロキシド": 1,
+    "prtr|テルル及びその化合物": 158,
+    "prtr|トランス－Ｎ－（６－クロロ－３－ピリジルメチル）－Ｎ’－シアノ－Ｎ－メチルアセトアミジン（別名アセタミプリド）": 1,
+    "prtr|トリエチルアミン": 1,
+    "prtr|トリエチレンテトラミン": 1,
+    "prtr|トリクロロトリフルオロエタン（別名ＣＦＣ－１１３）": 3,
+    "prtr|トリクロロベンゼン": 3,
+    "prtr|トリシクロ［５．２．１．０（２，６）］デカ－４－エン－３－イル＝プロピオナート": 2,
+    "prtr|トリメチルベンゼン": 3,
+    "prtr|トリメチル（オクタデシル）アンモニウムの塩": 9,
+    "prtr|トリレンジイソシアネート": 7,
+    "prtr|トルイジン": 3,
+    "prtr|トルエンジアミン": 9,
+    "prtr|ナトリウム＝アルケンスルホナート（アルケンの炭素数が１４から１６までのもの及びその混合物に限る。）及びナトリウム＝ヒドロキシアルカンスルホナート（アルカンの炭素数が１４から１６までのもの及びその混合物に限る。）並びにこれらの混合物": 25,
+    "prtr|ナトリウム＝（ドデカノイルオキシ）ベンゼンスルホナート": 1,
+    "prtr|ナトリウム＝１，１’－ビフェニル－２－オラート": 1,
+    "prtr|ナトリウム＝１－オキソ－１ラムダ（５）－ピリジン－２－チオラート": 2,
+    "prtr|ニッケル化合物": 552,
+    "prtr|ニトリロ三酢酸及びそのナトリウム塩": 6,
+    "prtr|バナジウム化合物": 350,
+    "prtr|パラ－アミノフェノール": 1,
+    "prtr|パラ－アルキルフェノール（アルキル基の炭素数が８のものに限る。）": 10,
+    "prtr|ヒドラジン": 2,
+    "prtr|ビス（アルキル）（ジメチル）アンモニウムの塩（アルキル基の構造が直鎖であり、かつ、当該アルキル基の炭素数が１２、１４、１６、１８又は２０のもの及びその混合物に限る。）": 52,
+    "prtr|ビス（トリブチルスズ）＝オキシド": 3,
+    "prtr|ビス（２－エチルヘキシル）＝（Ｚ）－ブタ－２－エンジオアート": 1,
+    "prtr|ピペラジン": 1,
+    "prtr|フェニレンジアミン": 3,
+    "prtr|フタル酸ジトリデシル": 1,
+    "prtr|ヘキサンジヒドラジド": 1,
+    "prtr|ベリリウム及びその化合物": 62,
+    "prtr|ベンゼン": 1,
+    "prtr|ベンゼン－１，２，４，５－テトラカルボン酸": 1,
+    "prtr|ペルオキソ二硫酸の水溶性塩": 5,
+    "prtr|ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩": 20,
+    "prtr|ペルフルオロ（オクタン－１－スルホン酸）（別名ＰＦＯＳ）": 1,
+    "prtr|ポリ塩化ビフェニル（別名ＰＣＢ）": 296,
+    "prtr|ポリ（オキシエチレン）＝アルキルエーテル（アルキル基の炭素数が１２から１５までのもの及びその混合物に限る。）": 101,
+    "prtr|ポリ（オキシエチレン）＝アルキルフェニルエーテル（アルキル基の炭素数が８のものに限る。）": 4,
+    "prtr|ポリ（オキシエチレン）＝アルキルフェニルエーテル（アルキル基の炭素数が９のものに限る。）": 44,
+    "prtr|ポリ（オキシエチレン）＝ドデシルエーテル硫酸エステルナトリウム": 5,
+    "prtr|マンガン及びその化合物": 424,
+    "prtr|メチルナフタレン": 2,
+    "prtr|メチル＝２－（３－オキソ－２－ペンチルシクロペンチル）アセタート": 1,
+    "prtr|メチレンビス（４，１－フェニレン）＝ジイソシアネート": 1,
+    "prtr|モリブデン及びその化合物": 480,
+    "prtr|亜鉛の水溶性化合物": 134,
+    "prtr|六価クロム化合物": 151,
+    "prtr|四ナトリウム＝５，８－ビス（カルボジチオアト）－２，５，８，１１，１４－ペンタアザペンタデカンビス（ジチオアート）": 1,
+    "prtr|塩化パラフィン（炭素数が１０から１３までのもの及びその混合物に限る。）": 25,
+    "prtr|塩化直鎖パラフィン（炭素数が１４から１７までのもの及びその混合物に限る。）": 7,
+    "prtr|塩素酸並びにそのカリウム塩及びナトリウム塩": 3,
+    "prtr|有機スズ化合物（ビス（トリブチルスズ）＝オキシドを除く。）": 1017,
+    "prtr|水素化テルフェニル": 3,
+    "prtr|水銀及びその化合物": 346,
+    "prtr|炭化けい素": 158,
+    "prtr|無機シアン化合物（錯塩及びシアン酸塩を除く。）": 22,
+    "prtr|直鎖アルキルベンゼンスルホン酸及びその塩（アルキル基の炭素数が１０から１４までのもの及びその混合物に限る。）": 46,
+    "prtr|石綿": 7,
+    "prtr|砒素及びその無機化合物": 371,
+    "prtr|臭素酸の水溶性塩": 2,
+    "prtr|過塩素酸並びにそのアンモニウム塩、カリウム塩、ナトリウム塩、マグネシウム塩及びリチウム塩": 10,
+    "prtr|鉛及びその化合物": 596,
+    "prtr|銀及びその水溶性化合物": 46,
+    "prtr|銅水溶性塩（錯塩を除く。）": 51,
+    "prtr|（１－ヒドロキシエタン－１，１－ジイル）ジホスホン酸並びにそのカリウム塩及びナトリウム塩": 15,
+    "prtr|（１Ｒ，２Ｒ，４Ｒ）－１，７，７－トリメチルビシクロ［２．２．１］ヘプタン－２－イル＝アセタート及び（１Ｓ，２Ｓ，４Ｓ）－１，７，７－トリメチルビシクロ［２．２．１］ヘプタン－２－イル＝アセタートの混合物（別名イソボルニル＝アセテート）": 1,
+    "prtr|（３－アルカンアミドプロピル）（メチル）［２－（アルカノイルオキシ）エチル］アンモニウム＝クロリド（アルカン及びアルカノイルの構造が直鎖であり、かつ、当該アルカン及び当該アルカノイルのそれぞれの炭素数が１４、１６又は１８のもの及びその混合物に限る。）": 3,
+    "prtr|（４－エトキシフェニル）［３－（４－フルオロ－３－フェノキシフェニル）プロピル］ジメチルシラン（別名シラフルオフェン）": 1,
+    "prtr|（４Ｓ，４ａＲ，５Ｓ，５ａＲ，６Ｓ，１２ａＳ）－４－（ジメチルアミノ）－３，５，６，１０，１２，１２ａ－ヘキサヒドロキシ－６－メチル－１，１１－ジオキソ－１，４，４ａ，５，５ａ，６，１１，１２ａ－オクタヒドロテトラセン－２－カルボキサミド（別名オキシテトラサイクリン）": 1,
+    "prtr|（Ｅ）－３－メチル－４－（２，６，６－トリメチルシクロヘキサ－２－エン－１－イル）ブタ－３－エン－２－オン": 1,
+    "prtr|（Ｅ）－４－（２，６，６－トリメチルシクロヘキサ－１－エン－１－イル）ブタ－３－エン－２－オン": 1,
+    "prtr|（ＲＳ）－１－パラ－クロロフェニル－４，４－ジメチル－３－（１Ｈ－１，２，４－トリアゾール－１－イルメチル）ペンタン－３－オール（別名テブコナゾール）": 1,
+    "prtr|（ＲＳ）－１－メチル－２－ニトロ－３－（テトラヒドロ－３－フリルメチル）グアニジン（別名ジノテフラン）": 1,
+    "prtr|（ＲＳ）－５－クロロ－Ｎ－（１，３－ジヒドロ－１，１，３－トリメチルイソベンゾフラン－４－イル）－１，３－ジメチル－１Ｈ－ピラゾール－４－カルボキサミド（別名フラメトピル）": 1,
+    "prtr|（ＲＳ）－Ｎ－［２－（１，３－ジメチルブチル）－３－チエニル］－１－メチル－３－（トリフルオロメチル）－１Ｈ－ピラゾール－４－カルボキサミド（別名ペンチオピラド）": 1,
+    "prtr|１，１’－エチレン－２，２’－ビピリジニウム＝ジブロミド（別名ジクアトジブロミド又はジクワット）": 1,
+    "prtr|１，１’－ジメチル－４，４’－ビピリジニウム＝ジクロリド（別名パラコート又はパラコートジクロリド）": 1,
+    "prtr|１，１’－（イミノジオクタメチレン）ジグアニジン＝トリアセタート（別名イミノクタジン酢酸塩）": 1,
+    "prtr|１，１’－［（１Ｒ，２Ｒ，３Ｓ，４Ｒ，５Ｒ，６Ｓ）－４－［［５－デオキシ－２－Ｏ－［２－デオキシ－２－（メチルアミノ）－アルファ－Ｌ－グルコピラノシル］－３－Ｃ－ホルミル－アルファ－Ｌ－リキソフラノシル］オキシ］－２，５，６－トリヒドロキシシクロヘキサン－１，３－ジイル］ジグアニジン（別名ストレプトマイシン）": 1,
+    "prtr|１，２－エポキシ－３－（トリルオキシ）プロパン": 7,
+    "prtr|１，２－ジクロロエチレン": 2,
+    "prtr|１，３，５－トリス（２，３－エポキシプロピル）－１，３，５－トリアジン－２，４，６（１Ｈ，３Ｈ，５Ｈ）－トリオン": 1,
+    "prtr|１，３，５－トリス［３－（ジメチルアミノ）プロピル］ヘキサヒドロ－１，３，５－トリアジン": 1,
+    "prtr|１，３－ジカルバモイルチオ－２－（Ｎ，Ｎ－ジメチルアミノ）－プロパン（別名カルタップ）": 1,
+    "prtr|１，３－ジクロロプロペン（別名Ｄ－Ｄ）": 2,
+    "prtr|１，３－ジクロロ－２－プロパノール": 1,
+    "prtr|１－アセチル－１，２，３，４－テトラヒドロ－３－［（３－ピリジルメチル）アミノ］－６－［１，２，２，２－テトラフルオロ－１－（トリフルオロメチル）エチル］キナゾリン－２－オン（別名ピリフルキナゾン）": 1,
+    "prtr|１－アリルオキシ－２，３－エポキシプロパン": 2,
+    "prtr|１－（２，４－ジクロロフェニル）－Ｎ－（２，４－ジフルオロフェニル）－Ｎ－イソプロピル－５－オキソ－４，５－ジヒドロ－１Ｈ－１，２，４－トリアゾール－４－カルボキサミド（別名イプフェンカルバゾン）": 1,
+    "prtr|１－（５－ターシャリ－ブチル－１，３，４－チアジアゾール－２－イル）－１，３－ジメチル尿素（別名テブチウロン）": 1,
+    "prtr|１－［（１Ｒ，２Ｒ，５Ｓ，７Ｒ）－２，６，６，８－テトラメチルトリシクロ［５．３．１．０（１，５）］ウンデカ－８－エン－９－イル］エタノン": 1,
+    "prtr|１－［４－［２－クロロ－４－（トリフルオロメチル）フェノキシ］－２－フルオロフェニル］－３－（２，６－ジフルオロベンゾイル）尿素（別名フルフェノクスロン）": 1,
+    "prtr|２’，４’－ジフルオロ－２－（３－トリフルオロメチルフェノキシ）ニコチンアニリド": 1,
+    "prtr|２，２－ジメチルプロパン酸＝（Ｅ）－２－（４－ターシャリ－ブチルフェニル）－２－シアノ－１－（１，３，４－トリメチルピラゾール－５－イル）ビニル（別名シエノピラフェン）": 1,
+    "prtr|２，２－ジメチル－３－メチリデンビシクロ［２．２．１］ヘプタン（別名カンフェン）": 3,
+    "prtr|２，３－エポキシ－１－プロパノール": 2,
+    "prtr|２，３－ジクロロ－Ｎ－４－フルオロフェニルマレイミド（別名フルオルイミド）": 1,
+    "prtr|２，４，４－トリメチルペンタ－１－エン及び２，４，４－トリメチルペンタ－２－エンの混合物": 3,
+    "prtr|２－クロロ－２’－エチル－Ｎ－（２－メトキシ－１－メチルエチル）－６’－メチルアセトアニリド（別名メトラクロール）": 2,
+    "prtr|２－ターシャリ－ブチルアミノ－４－シクロプロピルアミノ－６－メチルチオ－１，３，５－トリアジン": 1,
+    "prtr|２－ターシャリ－ブチルシクロヘキシル＝アセタート": 3,
+    "prtr|２－ヒドロキシ安息香酸（Ｚ）－３－ヘキセニル": 1,
+    "prtr|２－フェノキシエチル＝イソブチレート": 1,
+    "prtr|２－ブテナール": 1,
+    "prtr|２－メチルチオ－４－エチルアミノ－６－（１，２－ジメチルプロピルアミノ）－ｓ－トリアジン（別名ジメタメトリン）": 1,
+    "prtr|２－メチル－Ｎ－［３－（１－メチルエトキシ）フェニル］ベンズアミド（別名メプロニル）": 1,
+    "prtr|２－メルカプトベンゾチアゾール": 1,
+    "prtr|２－（２，４－ジクロロ－３－メチルフェノキシ）プロピオンアニリド（別名クロメプロップ）": 1,
+    "prtr|２－（４－ターシャリ－ブチルフェニル）－２－シアノ－３－オキソ－３－（２－トリフルオロメチルフェニル）プロパン酸＝２－メトキシエチル（別名シフルメトフェン）": 1,
+    "prtr|２－（４－メチルシクロヘキサ－３－エン－１－イル）プロパン－２－イル＝アセタート（別名酢酸テルピニル）": 1,
+    "prtr|２－（Ｎ－ドデシル－Ｎ，Ｎ－ジメチルアンモニオ）アセタート": 2,
+    "prtr|２－［２－クロロ－４－メシル－３－［（テトラヒドロフラン－２－イルメトキシ）メチル］ベンゾイル］シクロヘキサン－１，３－ジオン（別名テフリルトリオン）": 1,
+    "prtr|３’－イソプロポキシ－２－トリフルオロメチルベンズアニリド（別名フルトラニル）": 1,
+    "prtr|３’－クロロ－４，４’－ジメチル－１，２，３－チアジアゾール－５－カルボキサニリド（別名チアジニル）": 1,
+    "prtr|３，４－ジクロロ－２’－シアノ－１，２－チアゾール－５－カルボキサニリド（別名イソチアニル）": 1,
+    "prtr|３－アリルオキシ－１，２－ベンゾイソチアゾール－１，１－ジオキシド（別名プロベナゾール）": 1,
+    "prtr|３－ターシャリ－ブチル－５－クロロ－６－メチルウラシル（別名ターバシル）": 1,
+    "prtr|３－フェノキシベンジル＝３－（２，２－ジクロロビニル）－２，２－ジメチルシクロプロパンカルボキシラート（別名ペルメトリン）": 9,
+    "prtr|３－メチルペンタ－３－エン－２－オンと３－メチリデン－７－メチルオクタ－１，６－ジエンの反応生成物であって、１－（２，３，８，８－テトラメチル－１，２，３，４，５，６，７，８－オクタヒドロ－２－ナフチル）エタノン、１－（２，３，８，８－テトラメチル－１，２，３，４，６，７，８，８ａ－オクタヒドロ－２－ナフチル）エタノン及び１－（２，３，８，８－テトラメチル－１，２，３，５，６，７，８，８ａ－オクタヒドロ－２－ナフチル）エタノンの混合物を８０重量パーセント以上含有するもの": 3,
+    "prtr|３－（２－クロロ－１，３－チアゾール－５－イルメチル）－５－メチル－Ｎ－ニトロ－１，３，５－オキサジアジナン－４－イミン（別名チアメトキサム）": 1,
+    "prtr|３－（３，３－ジメチルウレイド）フェニル＝ターシャリ－ブチルカルバマート（別名カルブチレート）": 1,
+    "prtr|３－（４－イソプロピルフェニル）－２－メチルプロパナール": 1,
+    "prtr|３－（４－ターシャリ－ブチルフェニル）プロパナール": 1,
+    "prtr|３－（５－ターシャリ－ブチル－１，２－オキサゾール－３－イル）－１，１－ジメチル尿素（別名イソウロン）": 1,
+    "prtr|４－クロロフェニル＝２，４，５－トリクロロフェニル＝スルホン（別名テトラジホン）": 1,
+    "prtr|４－ターシャリ－ブチルシクロヘキシル＝アセタート": 1,
+    "prtr|４－ヒドロキシ安息香酸プロピル（別名パラオキシ安息香酸プロピル）": 1,
+    "prtr|６，７，８，９，１０，１０－ヘキサクロロ－１，５，５ａ，６，９，９ａ－ヘキサヒドロ－６，９－メタノ－２，４，３－ベンゾジオキサチエピン＝３－オキシド（別名エンドスルファン又はベンゾエピン）": 2,
+    "prtr|７－メチル－３－メチレンオクタ－１，６－ジエン（別名ミルセン）": 1,
+    "prtr|Ｎ’－［１，１－ジメチル－２－（メチルスルホニル）エチル］－３－ヨード－Ｎ－［２－メチル－４－［１，２，２，２－テトラフルオロ－１－（トリフルオロメチル）エチル］フェニル］フタルアミド（別名フルベンジアミド）": 1,
+    "prtr|Ｎ，Ｎ，Ｎ－トリメチルドデカン－１－アミニウムの塩": 11,
+    "prtr|Ｎ，Ｎ－ジシクロヘキシルアミン": 1,
+    "prtr|Ｎ，Ｎ－ジプロピルチオカルバミン酸＝Ｓ－ベンジル（別名プロスルホカルブ）": 1,
+    "prtr|Ｎ，Ｎ－ジメチルテトラデカン－１－アミン": 1,
+    "prtr|Ｎ，Ｎ－ビス（２－ヒドロキシエチル）アルカンアミド（アルカンの構造が直鎖であり、かつ、当該アルカンの炭素数が８、１０、１２、１４、１６又は１８のもの及びその混合物に限る。）、（Ｚ）－Ｎ，Ｎ－ビス（２－ヒドロキシエチル）オクタデカ－９－エンアミド及び（９Ｚ，１２Ｚ）－Ｎ，Ｎ－ビス（２－ヒドロキシエチル）オクタデカ－９，１２－ジエンアミド並びにこれらの混合物": 17,
+    "prtr|Ｎ－エチル－Ｎ，Ｎ－ジメチルテトラデカン－１－アミニウムの塩": 4,
+    "prtr|Ｎ－ブチルカルバミド酸＝３－ヨード－２－プロピニル": 1,
+    "prtr|Ｎ－メチルジチオカルバミン酸ナトリウム（別名メタムナトリウム塩）": 1,
+    "prtr|Ｎ－メチルジデカン－１－イルアミン": 1,
+    "prtr|Ｎ－（３，５－ジクロロフェニル）－１，２－ジメチルシクロプロパン－１，２－ジカルボキシミド（別名プロシミドン）": 1,
+    "prtr|Ｎ－（４－クロロフェニル）－１－シクロヘキセン－１，２－ジカルボキシミド（別名クロルフタリム）": 1,
+    "prtr|Ｎ－（６－メトキシ－２－ピリジル）－Ｎ－メチルチオカルバミン酸Ｏ－３－ターシャリ－ブチルフェニル（別名ピリブチカルブ）": 1,
+    "prtr|Ｏ－エチル＝Ｏ－４－ニトロフェニル＝フェニルホスホノチオアート（別名ＥＰＮ）": 2,
+    "prtr|Ｏ－（２，６－ジクロロ－パラ－トリル）＝Ｏ，Ｏ－ジメチル＝ホスホロチオアート（別名トルクロホスメチル）": 1,
+    "prtr|［（３－アルカンアミドプロピル）（ジメチル）アンモニオ］アセタート（アルカンの構造が直鎖であり、かつ、当該アルカンの炭素数が８、１０、１２、１４、１６又は１８のもの及びその混合物に限る。）及び（Ｚ）－［［３－（オクタデカ－９－エンアミド）プロピル］（ジメチル）アンモニオ］アセタート並びにこれらの混合物": 11,
+    "prtr|［２－［３－（４－クロロフェニル）プロピル］－２，４，４－トリメチル－１，３－オキサゾリジン－３－イル］（１Ｈ－イミダゾール－１－イル）メタノン": 1,
+    "prtr|［３－（４，５－ジヒドロイソオキサゾール－３－イル）－４－メシル－２－メチルフェニル］（５－ヒドロキシ－１－メチルピラゾール－４－イル）メタノン": 1
+  },
+  "unresolved": {
+    "RJ_04_031": [],
+    "RJ_04_041": [],
+    "RJ_03_001": [],
+    "RJ_02_002": [
+      {
+        "cas_number": "1300-71-6",
+        "name": "キシレノール",
+        "candidates": [
+          "キシレン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6358-40-3",
+        "name": "ピグメント　レッド　１１５",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8013-90-9",
+        "name": "ヨノン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "12385-08-9",
+        "name": "ベンゼンジオール",
+        "candidates": [
+          "ベンゼン",
+          "ジクロロベンゼン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "12539-57-0",
+        "name": "アザニリジンメチリウム",
+        "candidates": [
+          "セリウム及びその化合物",
+          "タリウム及びその化合物",
+          "ベリリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "16509-11-8",
+        "name": "Otimerate sodium",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "17524-05-9",
+        "name": "アセチルアセトナート　二価金属錯塩",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27178-34-3",
+        "name": "ｔｅｒｔ－ブチルフェノール",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "パラ－アルキルフェノール（アルキル基の炭素数が８のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27342-75-2",
+        "name": "２，２’－ジクロロ－ａｒ，ａｒ’－メチレンジアニリン",
+        "candidates": [
+          "アニリン",
+          "エチレンジアミン",
+          "クロロアニリン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27342-88-7",
+        "name": "ドデカノール",
+        "candidates": [
+          "アルカノール（炭素数が１０のものに限る。）（別名デカノール）",
+          "アルカノール（炭素数が１０のものに限る。）（別名デカノール）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "29988-00-9",
+        "name": "ａｒ，ａｒ’－ジクロロ－ａｒ，ａｒ’－メチレンジアニリン",
+        "candidates": [
+          "アニリン",
+          "エチレンジアミン",
+          "クロロアニリン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "34777-72-5",
+        "name": "２－クロロアニリン・ホルムアルデヒド重合物",
+        "candidates": [
+          "クロロアニリン",
+          "アニリン",
+          "ジクロロアニリン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "36813-24-8",
+        "name": "クロロプロパ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "51053-44-2",
+        "name": "アシッド　ブルー－１７１",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "51613-67-3",
+        "name": "Magnesium alloy, base, Mg 0-100,Ni 0-100",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "54675-76-2",
+        "name": "アビエチン酸マグネシウム",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "56944-10-6",
+        "name": "Barium alloy, nonbase, Ba,Ni",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "60085-15-6",
+        "name": "オクタデカンアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "61788-63-4",
+        "name": "ビス（水素化牛脂アルキル）（メチル）アミン",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "61788-90-7",
+        "name": "ココ－アルキル（ジメチル）アミン＝オキシド",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "61788-93-0",
+        "name": "（ココ－アルキル）ジメチルアミン",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "61788-95-2",
+        "name": "（水素化牛脂アルキル）ジメチルアミン",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "63393-82-8",
+        "name": "アルコール（Ｃ＝１２～１５）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "64237-91-8",
+        "name": "炭化チタン合金（ＴｉＣ＝７５，Ｎｉ＝１５，Ｍｏ２Ｃ＝１０）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "66455-17-2",
+        "name": "アルコール（Ｃ＝９～１１）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "67700-98-5",
+        "name": "アルキル（Ｃ＝１０～１６）ジメチルアミン",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "67762-25-8",
+        "name": "アルコール（Ｃ＝１２～１８）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "67762-41-8",
+        "name": "アルコール（Ｃ＝１０～１６）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68130-43-8",
+        "name": "ナトリウム＝アルキル（Ｃ＝８～１８）＝スルファート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68308-64-5",
+        "name": "（ココ－アルキル）（エチル）（ジメチル）アンモニウム＝エチル＝スルファート",
+        "candidates": [
+          "アルキル（ベンジル）（ジメチル）アンモニウムの塩（アルキル基の炭素数が１２から１６までのもの及びその混合物に限る。）",
+          "ジデシル（ジメチル）アンモニウムの塩",
+          "ビス（アルキル）（ジメチル）アンモニウムの塩（アルキル基の構造が直鎖であり、かつ、当該アルキル基の炭素数が１２、１４、１６、１８又は２０のもの及びその混合物に限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68308-67-8",
+        "name": "エチル（ジメチル）（大豆アルキル）アンモニウム＝エチル＝スルファート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68333-92-6",
+        "name": "ペルフルオロ脂肪酸（Ｃ＝７～１３）",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68391-03-7",
+        "name": "アルキル（Ｃ＝１２～１８）（トリメチル）アンモニウム＝クロリド",
+        "candidates": [
+          "ヘキサデシルトリメチルアンモニウム＝クロリド",
+          "ジデシル（ジメチル）アンモニウムの塩",
+          "トリメチルベンゼン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68391-04-8",
+        "name": "アルキル（Ｃ＝１２～１８）ジメチルアミン",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68439-70-3",
+        "name": "アルキル（Ｃ＝１２～１６）ジメチルアミン",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68515-48-0",
+        "name": "ジアルキル（Ｃ＝８～１０，分枝型，Ｃ＝９を高含有）＝フタラート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68551-07-5",
+        "name": "アルコール（Ｃ＝８～１８）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68585-47-7",
+        "name": "ナトリウム＝アルキル（Ｃ＝１０～１６）＝スルファート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68603-15-6",
+        "name": "アルコール（Ｃ＝６～１２）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68814-69-7",
+        "name": "ジメチル（牛脂アルキル）アミン",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68814-95-9",
+        "name": "トリアルキル（Ｃ＝８～１０）アミン",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68855-56-1",
+        "name": "アルコール（Ｃ＝１２～１６）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68890-70-0",
+        "name": "硫酸モノアルキル（Ｃ＝１２～１５）エステルのナトリウム塩",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68938-43-2",
+        "name": "塩素化マイクロクリスタリン炭化水素ワックス（石油系）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68952-35-2",
+        "name": "（クレゾール性タール酸）＝フェニル＝ホスファート",
+        "candidates": [
+          "クレゾール",
+          "クレゾール"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68955-19-1",
+        "name": "硫酸モノアルキル（Ｃ＝１２～１８）エステルのナトリウム塩",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68955-55-5",
+        "name": "アルキル（Ｃ＝１２～１８）ジメチルアミン＝Ｎ－オキシド",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "69278-80-4",
+        "name": "エタンアミンとペルフルオロ脂肪酸（Ｃ＝７～１３）の化合物",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "70592-80-2",
+        "name": "アルキル（Ｃ＝１０～１６）ジメチルアミン＝Ｎ－オキシド",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "71076-86-3",
+        "name": "アルコール（Ｃ＝６～９）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "71975-58-1",
+        "name": "2,4(or 2,5)-xylenol",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "72623-77-9",
+        "name": "ペルフルオロ脂肪酸（Ｃ＝６～１８）のアンモニウム塩",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "72906-11-7",
+        "name": "ナトリウム＝アルキル（Ｃ＝９～１３）＝スルファート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "72968-38-8",
+        "name": "ペルフルオロ脂肪酸（Ｃ＝７～１３）のアンモニウム塩",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "73296-89-6",
+        "name": "ナトリウム＝アルキル（Ｃ＝１２～１６）＝スルファート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "75782-86-4",
+        "name": "アルコール（Ｃ＝１２～１３）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "80206-82-2",
+        "name": "アルコール（Ｃ＝１２～１４）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "85408-48-6",
+        "name": "アルキル（Ｃ＝１０～１８）ジメチルアミン＝Ｎ－オキシド",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "85408-49-7",
+        "name": "アルキル（Ｃ＝１２～１６）ジメチルアミン＝Ｎ－オキシド",
+        "candidates": [
+          "トリエチルアミン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "90583-25-8",
+        "name": "ナトリウム＝アルキル（Ｃ＝６～１２）＝スルファート",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "90583-28-1",
+        "name": "硫酸モノアルキル（Ｃ＝１０～１４）エステルのナトリウム塩",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "91032-01-8",
+        "name": "ペルフルオロ脂肪酸（Ｃ＝７～１９）",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "91648-56-5",
+        "name": "｛２－（２－エトキシエトキシ）エタノールの２’’－［アルキル（Ｃ＝１２～１５、直鎖型及び分枝型）オキシ］誘導体｝＝水素＝スルファートのナトリウム塩",
+        "candidates": [
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "セリウム及びその化合物",
+          "タリウム及びその化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "93572-72-6",
+        "name": "ペルフルオロアルカン（Ｃ＝６～１２）スルホン酸",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩",
+          "アルカノール（炭素数が１０のものに限る。）（別名デカノール）",
+          "アルカノール（炭素数が１０のものに限る。）（別名デカノール）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "93821-11-5",
+        "name": "アルコール（Ｃ＝９～１１、Ｃ＝１０を高含有、直鎖型及び分枝型）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97553-43-0",
+        "name": "クロロパラフィン（Ｃ＞１０、直鎖型、石油系）",
+        "candidates": [
+          "塩化パラフィン（炭素数が１０から１３までのもの及びその混合物に限る。）",
+          "塩化直鎖パラフィン（炭素数が１４から１７までのもの及びその混合物に限る。）",
+          "塩化直鎖パラフィン（炭素数が１４から１７までのもの及びその混合物に限る。）"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97593-00-5",
+        "name": "アルケン（Ｃ＝７～９、Ｃ＝８を高含有、分枝型）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "126950-60-5",
+        "name": "ｓｅｃ－アルコール（Ｃ＝１２～１４）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "134016-39-0",
+        "name": "３（または４）－メチルペンタン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "156963-66-5",
+        "name": "３－［２－クロロ－４－（メチルスルホニル）ベンゾイル］－４－（フェニルスルファニル）ビシクロ［３．２．１］オクタ－３－エン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "160336-23-2",
+        "name": "アルキル（Ｃ＝３～３６、分岐型）ベンゼン",
+        "candidates": [
+          "ベンゼン",
+          "アルキルフェノール（アルキル基の炭素数が９のものに限る。）",
+          "ジクロロベンゼン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "160611-14-3",
+        "name": "アルコール（Ｃ＝５～３８）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "212013-54-2",
+        "name": "ペルフルオロ脂肪酸（Ｃ＝７～１９）のアンモニウム塩",
+        "candidates": [
+          "ペルフルオロオクタン酸（別名ＰＦＯＡ）及びその塩"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "740817-83-8",
+        "name": "アルコール（Ｃ＝１２～１３、分枝、直鎖）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1116380-81-4",
+        "name": "（脂肪酸（Ｃ＝１２～２０、不飽和Ｃ＝１２～２０）の２－｛［３－（アシル（Ｃ＝１２～２０、不飽和Ｃ＝１２～２０）アミノ）プロピル］（メチル）アミノ｝エチル＝エステル）塩酸塩",
+        "candidates": [],
+        "law_candidates": []
+      }
+    ],
+    "RJ_11_001": [],
+    "RJ_17_001": [
+      {
+        "cas_number": "51-28-5",
+        "name": "２，４－ジニトロフェノール",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "55-18-5",
+        "name": "Ｎ－ニトロソジエチルアミン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "70-25-7",
+        "name": "１－メチル－３－ニトロ－１－ニトロソグアニジン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "74-89-5",
+        "name": "メチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "75-04-7",
+        "name": "エタンアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "75-33-2",
+        "name": "プロパン－２－チオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "76-13-1",
+        "name": "１，１，２－トリクロロ－１，２，２－トリフルオロエタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "77-76-9",
+        "name": "２，２，－ジメトキシプロパン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "77-90-7",
+        "name": "アセチルクエン酸トリブチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "77-93-0",
+        "name": "トリエチル＝２－ヒドロキシ－１，２，３－プロパントリカルボキシラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "78-39-7",
+        "name": "オルト酢酸トリエチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "78-51-3",
+        "name": "リン酸トリ－ｎ－ブトキシエチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "78-86-4",
+        "name": "モノクロロブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "79-19-6",
+        "name": "チオセミカルバジド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "79-29-8",
+        "name": "２，３－ジメチルブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "80-40-0",
+        "name": "エチル＝４－メチルベンゼンスルホナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "81-14-1",
+        "name": "３，５－ジニトロ－４－ｔ－ブチル－２，６－ジメチルアセトフェノン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "84-76-4",
+        "name": "ジノニル＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "84-77-5",
+        "name": "ジデシル＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "87-33-2",
+        "name": "１，４：３，６－ジアンヒドロ－２，５－ジ－Ｏ－ニトロ－Ｄ－グルシトール",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "87-60-5",
+        "name": "３－クロロ－２－メチルアニリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "88-10-8",
+        "name": "Ｎ，Ｎ’－ジエチルカルバミン酸クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "88-16-4",
+        "name": "１－クロロ－２－（トリフルオロメチル）ベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "89-60-1",
+        "name": "４－クロロ－３－ニトロトルエン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "89-87-2",
+        "name": "ジメチル　ニトロベンゼン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "90-99-3",
+        "name": "クロロ－ジフェニルメタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "91-53-2",
+        "name": "６－エトキシ－２，２，４－トリメチル－１，２－ジヒドロキノリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "92-59-1",
+        "name": "ベンジルエチルアニリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "93-53-8",
+        "name": "２－フェニルプロパナール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "94-04-2",
+        "name": "ビニル＝２－エチルヘキサノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "94-58-6",
+        "name": "１，２－メチレンジオキシ－４－プロピルベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "95-52-3",
+        "name": "フルオロトルエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "95-74-9",
+        "name": "３－クロロ－４－メチルアニリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "96-13-9",
+        "name": "２，３－ジブロモプロパン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "96-14-0",
+        "name": "３－メチルペンタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "96-37-7",
+        "name": "メチルシクロペンタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "96-47-9",
+        "name": "２－メチルオキソラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "96-80-0",
+        "name": "２－ジイソプロピルアミノエタノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97-54-1",
+        "name": "ｏ－メトキシ－ｐ－プロペニルフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97-61-0",
+        "name": "２－メチルペンタン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97-95-0",
+        "name": "２－エチルブタン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97-96-1",
+        "name": "２－エチルブタナール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "98-12-4",
+        "name": "（トリクロロシリル）シクロヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "98-15-7",
+        "name": "ｍ－トリフルオロメチルクロロベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "98-49-7",
+        "name": "ジイソプロピルベンゼン　モノハイドロパーオキサイド（ｍ，ｐ－異性体）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "100-16-3",
+        "name": "ニトロフェニル　ヒドラジン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "100-50-5",
+        "name": "シクロヘキサ－３－エン－１－カルボアルデヒド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "100-55-0",
+        "name": "３－ピリジルメタノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "100-73-2",
+        "name": "3,4-dihydro-2H-pyran-2-carbaldehyde",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "102-47-6",
+        "name": "１，２－ジクロロ－４－（クロロメチル）ベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "102-52-3",
+        "name": "１，１，３，３－テトラメトキシプロパン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "102-76-1",
+        "name": "グリセリン＝トリアセテート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "102-85-2",
+        "name": "トリ－ｎ－ブチルホスファイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "103-09-3",
+        "name": "２－エチルヘキシル＝アセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "103-60-6",
+        "name": "２－フェノキシエチル＝イソブチラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "103-75-3",
+        "name": "２－エトキシ－３，４－ジヒドリロ－２Ｈ－ピラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "103-80-0",
+        "name": "フェニル酢酸クロライド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "104-40-5",
+        "name": "４－ノニルフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "104-53-0",
+        "name": "３－フェニルプロパナール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "104-61-0",
+        "name": "５－ペンチルオキソラン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "105-34-0",
+        "name": "メチル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "105-56-6",
+        "name": "エチル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "105-75-9",
+        "name": "ジブチル＝フマラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "105-87-3",
+        "name": "酢酸ゲラニル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "106-18-3",
+        "name": "ブチル＝ドデカノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "106-19-4",
+        "name": "ジプロピル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "106-58-1",
+        "name": "１，４－ジメチルピペラジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "106-69-4",
+        "name": "１，２，６－ヘキサントリオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "106-71-8",
+        "name": "２－シアノエチル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "107-59-5",
+        "name": "ｔｅｒｔ－ブチル＝クロロアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "107-81-3",
+        "name": "２－ブロモペンタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "107-88-0",
+        "name": "１，３－ブタンジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "107-89-1",
+        "name": "３－ヒドロキシブチルアルデヒド",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-09-8",
+        "name": "４－メチルペンタン－２－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-12-3",
+        "name": "３－メチルブタノイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-16-7",
+        "name": "１－（ジメチルアミノ）プロパン－２－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-22-5",
+        "name": "酢酸イソプロペニル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-36-1",
+        "name": "1,3-Dibromobenzene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-57-6",
+        "name": "ｍ－ジビニルベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "108-61-2",
+        "name": "２，２’－オキシビスプロパン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-17-1",
+        "name": "オキシビス（エチレンオキシエチレン）＝ジメタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-31-9",
+        "name": "ジヘキシル＝ノナンジオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-36-4",
+        "name": "オクチル＝ステアラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-43-3",
+        "name": "ジブチル＝デカンジオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-67-1",
+        "name": "ペンタ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-90-0",
+        "name": "エチル＝イソシアナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "109-93-3",
+        "name": "（ビニルオキシ）エテン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-27-0",
+        "name": "イソプロピル＝テトラデカノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-33-8",
+        "name": "ジヘキシル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-40-7",
+        "name": "ジエチル＝デカンジオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-53-2",
+        "name": "１－ブロモペンタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-56-5",
+        "name": "１，４－ジクロロブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-58-7",
+        "name": "ペンチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-63-4",
+        "name": "ブタン－１，４－ジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-72-5",
+        "name": "Ｎ－エチルエチレンジアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-74-7",
+        "name": "プロピル＝ホルマート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-75-8",
+        "name": "２－クロロエチルビニルエーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "110-78-1",
+        "name": "１－イソシアナトプロパン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-03-5",
+        "name": "オレイン酸＝２，３－ジヒドロキシプロピル",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-26-2",
+        "name": "ヘキサン－１－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-29-5",
+        "name": "ペンタン－１，５－ジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-34-2",
+        "name": "１－（ビニルオキシ）ブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-45-5",
+        "name": "２－アリルオキシエチルアルコール",
+        "candidates": [
+          "アルコール類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-55-7",
+        "name": "エチレン＝ジアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-64-8",
+        "name": "オクタノイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-83-1",
+        "name": "ｎ－オクチルブロミド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111-94-4",
+        "name": "ビス（シアノエチル）アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-04-9",
+        "name": "トリクロロ（オクタデシル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-13-0",
+        "name": "デカノイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-14-1",
+        "name": "オクチル＝アセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-15-2",
+        "name": "ジエチレングリコールモノエチルエーテルアセテート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-16-3",
+        "name": "ドデカノイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-27-6",
+        "name": "トリエチレングリコール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-50-5",
+        "name": "トリエチレングリコールモノエチルエーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-60-7",
+        "name": "２，２’－［オキシビス（エタン－２，１－ジイルオキシ）］ジエタノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-62-9",
+        "name": "メチル＝オレアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-64-1",
+        "name": "テトラデカノイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-67-4",
+        "name": "パルミトイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-70-9",
+        "name": "トリデシルアルコール",
+        "candidates": [
+          "アルコール類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-73-2",
+        "name": "１－［２－（２－ブトキシエトキシ）エトキシ］ブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-75-4",
+        "name": "Ｎ－テトラデシルジメチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-80-1",
+        "name": "オレイン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-82-3",
+        "name": "１－ブロモヘキサデカン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-88-9",
+        "name": "オクタデカ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112-91-4",
+        "name": "オレオニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "115-22-0",
+        "name": "３－ヒドロキシ－３－メチルブタン－２－オン",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "115-80-0",
+        "name": "オルソプロピオン酸エチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "117-83-9",
+        "name": "ビス（２－ブトキシエチル）＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "119-06-2",
+        "name": "ジトリデシル＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "119-36-8",
+        "name": "メチル＝２－ヒドロキシベンゾアート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "119-38-0",
+        "name": "１－イソプロピル－３－メチル－１Ｈ－ピラゾール－５－イル＝ジメチルカルバマート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "120-55-8",
+        "name": "オキシジエチレン＝ジベンゾアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "120-58-1",
+        "name": "３，４－メチレンジオキシ－１－（１’－プロペニル）ベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "121-17-5",
+        "name": "１－クロロ－２－ニトロ－４－（トリフルオロメチル）ベンゼン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "121-29-9",
+        "name": "（Ｓ）－２－メチル－４－オキソ－３－［（Ｚ）－ペンタ－２，４－ジエン－１－イル］シクロペンタ－２－エン－１－イル＝（１Ｒ，３Ｒ）－３－［（Ｅ）－３－メトキシ－２－メチル－３－オキソプロパ－１－エン－１－イル］－２，２－ジメチルシクロプロパンカルボキシラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "121-46-0",
+        "name": "ビシクロ（２・２・１）ヘプタ－２，５－ジエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "121-82-4",
+        "name": "ヘキサヒドロ－１，３，５－トリニトロ－１，３，５－トリアジン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "122-56-5",
+        "name": "トリブチルボラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "122-62-3",
+        "name": "セバシン酸ビス（２－エチルヘキシル）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "122-98-5",
+        "name": "２－アニリノエタノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-01-3",
+        "name": "ドデシルベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-04-6",
+        "name": "３－（クロロメチル）ヘプタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-05-7",
+        "name": "２－エチルヘキサナール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-18-2",
+        "name": "２，６，８－トリメチルノナン－４－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-20-6",
+        "name": "ビニル＝ブチラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-34-2",
+        "name": "アリル－（２，３－ジヒドロキシプロピル）－エーテル",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "123-79-5",
+        "name": "ジオクチル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "124-17-4",
+        "name": "ジエチレングリコールモノブチルエーテルアセテート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "124-40-3",
+        "name": "ジメチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "124-70-9",
+        "name": "ジクロロ（メチル）（ビニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "127-51-5",
+        "name": "３－メチル－４－（２，６，６－トリメチルシクロヘキサ－２－エン－１－イル）ブタ－３－エン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "131-73-7",
+        "name": "ビス（２，４，６－トリニトロフェニル）アミン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "131-74-8",
+        "name": "アンモニウム＝２，４，６－トリニトロフェノラート",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "135-20-6",
+        "name": "Ｎ－ヒドロキシ－Ｎ－フェニル亜硝酸アミドのモノアンモニウム塩",
+        "candidates": [
+          "硝酸",
+          "ヒドロキシルアミン",
+          "亜硝酸塩類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "136-60-7",
+        "name": "ブチル＝ベンゾアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "136-83-4",
+        "name": "ｏ－ノニルフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "139-84-4",
+        "name": "ｍ－ノニルフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "140-03-4",
+        "name": "１２－アセチルリシノール酸メチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "141-02-6",
+        "name": "フマル酸ジ（２－エチルヘキシル）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "141-04-8",
+        "name": "ジイソブチル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "141-17-3",
+        "name": "アジピン酸ジ（ブトキシエトキシエチル）ジエステル",
+        "candidates": [
+          "硝酸エステル類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "141-24-2",
+        "name": "メチル＝（Ｒ，Ｚ）－１２－ヒドロキシオクタデカ－９－エノアート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "141-57-1",
+        "name": "トリクロロ（プロピル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "141-91-3",
+        "name": "2,6-dimethylmorpholine",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "142-16-5",
+        "name": "ビス（２－エチルヘキシル）＝マレアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "142-77-8",
+        "name": "オレイン酸ｎ－ブチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "142-91-6",
+        "name": "イソプロピル＝パルミタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "143-15-7",
+        "name": "１－ブロモドデカン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "143-28-2",
+        "name": "９－オクタデセン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "149-74-6",
+        "name": "ジクロロ（メチル）（フェニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "151-13-3",
+        "name": "ブチル＝（Ｚ，Ｒ）－１２－ヒドロキシオクタデカ－９－エノアート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "288-94-8",
+        "name": "１Ｈ－テトラゾール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "289-95-2",
+        "name": "Pyrimidine",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "300-57-2",
+        "name": "Allylbenzene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "301-10-0",
+        "name": "スズ＝ビス（２－エチルヘキサノアート）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "329-01-1",
+        "name": "Benzene, 1-isocyanato-3-(trifluoromethyl)-",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "352-32-9",
+        "name": "フルオロトルエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "352-70-5",
+        "name": "フルオロトルエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "352-87-4",
+        "name": "２，２，２－トリフルオロエチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "352-93-2",
+        "name": "Diethyl sulphide",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "371-41-5",
+        "name": "ｐ－フルオロフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "372-18-9",
+        "name": "ジフルオロベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "383-63-1",
+        "name": "エチル＝トリフルオロアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "460-00-4",
+        "name": "ｐ－ブロモ　フロロベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "462-06-6",
+        "name": "フルオロベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "462-95-3",
+        "name": "（エトキシメトキシ）エタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "463-04-7",
+        "name": "ペンチル＝ニトリット",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "493-01-6",
+        "name": "ｃｉｓ－デカヒドロナフタレン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "493-02-7",
+        "name": "ｔｒａｎｓ－デカヒドロナフタレン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "497-18-7",
+        "name": "カルボノヒドラジド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "502-44-3",
+        "name": "ε－カプロラクトン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "503-17-3",
+        "name": "２－ブチン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "503-74-2",
+        "name": "３－メチルブタン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "507-09-5",
+        "name": "チオ酢酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "507-19-7",
+        "name": "ブロムブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "513-36-0",
+        "name": "モノクロロブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "513-42-8",
+        "name": "２－メチルプロパ－２－エン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "517-23-7",
+        "name": "３－アセチル－オキソラン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "534-15-6",
+        "name": "１，１－ジメトキシエタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "536-90-3",
+        "name": "ｍ－アニシジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "538-23-8",
+        "name": "プロパン－１，２，３－トリイル＝トリオクタノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "540-18-1",
+        "name": "ペンチル＝ブチラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "540-42-1",
+        "name": "イソブチル＝プロピオナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "540-84-1",
+        "name": "２，２，４－トリメチルペンタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "541-16-2",
+        "name": "Bis(1,1-dimethylethyl) malonate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "542-08-5",
+        "name": "イソプロピル＝アセトアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "542-28-9",
+        "name": "オキサン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "542-59-6",
+        "name": "２－ヒドロキシエチル＝アセタート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "542-69-8",
+        "name": "ヨウ化－ｎ－ブチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "543-49-7",
+        "name": "ヘプタン－２－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "543-87-3",
+        "name": "３－メチルブタン－１－イル＝ニトラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "544-10-5",
+        "name": "１－クロロヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "544-25-2",
+        "name": "トロピリデン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "544-76-3",
+        "name": "ヘキサデカン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "554-12-1",
+        "name": "メチル＝プロピオナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "556-56-9",
+        "name": "3-iodopropene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "556-88-7",
+        "name": "ニトログアニジン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "557-17-5",
+        "name": "Methyl propyl ether",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "557-20-0",
+        "name": "ジエチル亜鉛",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "557-31-3",
+        "name": "Allyl ethyl ether",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "557-40-4",
+        "name": "ジアリルエーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "563-41-7",
+        "name": "セミカルバジド一塩酸塩",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "563-45-1",
+        "name": "３－メチルブタ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "563-46-2",
+        "name": "２－メチルブタ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "563-58-6",
+        "name": "1,1-dichloropropene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "565-80-0",
+        "name": "２，４－ジメチルペンタン－３－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "573-56-8",
+        "name": "２，６－ジニトロフェノール",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "578-54-1",
+        "name": "２－エチルアニリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "583-53-9",
+        "name": "1,2-Dibromobenzene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "584-02-1",
+        "name": "ペンタン－３－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "584-03-2",
+        "name": "１，２－ブタンジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "586-98-1",
+        "name": "２－ピリジルメタノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "589-55-9",
+        "name": "ヘプタン－４－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "589-90-2",
+        "name": "ジメチルシクロヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "589-92-4",
+        "name": "４－メチルシクロヘキサノン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "590-90-9",
+        "name": "４－ヒドロキシ－２－ブタノン",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "591-24-2",
+        "name": "３－メチルシクロヘキサノン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "591-93-5",
+        "name": "ペンタ－１，４－ジエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-34-7",
+        "name": "ブチル＝カルボノクロリダート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-42-7",
+        "name": "１，５－ヘキサジエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-43-8",
+        "name": "ヘキサ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-45-0",
+        "name": "ヘキサ－１，４－ジエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-46-1",
+        "name": "Cis,trans-hexa-2,4-diene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-55-2",
+        "name": "2-bromoethyl ethyl ether",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-62-1",
+        "name": "（メチル－ＯＮＮ－アゾキシ）メチル＝アセタート",
+        "candidates": [
+          "アゾ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-76-7",
+        "name": "１－ヘプテン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-77-8",
+        "name": "ヘプタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-78-9",
+        "name": "ヘプタ－３－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "592-84-7",
+        "name": "ブチル＝ホルマート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "594-39-8",
+        "name": "２－メチルブタン－２－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "594-58-1",
+        "name": "α－クロルイソ酪酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "598-20-9",
+        "name": "１，２－ジブロモ－１－クロロエタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "598-99-2",
+        "name": "Methyl trichloroacetate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "600-36-2",
+        "name": "２，４－ジメチルペンタン－３－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "615-79-2",
+        "name": "エチル＝２，４－ジオキソペンタノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "617-50-5",
+        "name": "イソプロピル＝イソブチラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "617-89-0",
+        "name": "フルフリルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "618-46-2",
+        "name": "３－クロロベンゾイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "620-20-2",
+        "name": "１－クロロ－３－（クロロメチル）ベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "621-77-2",
+        "name": "トリペンチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "622-44-6",
+        "name": "N-(dichloromethylene)aniline",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "622-57-1",
+        "name": "Ｎ－エチル－ｐ－トルイジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "623-37-0",
+        "name": "ヘキサン－３－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "623-51-8",
+        "name": "エチル＝スルファニルアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "623-84-7",
+        "name": "プロパン－１，２－ジイル＝ジアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "624-29-3",
+        "name": "ジメチルシクロヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "625-27-4",
+        "name": "２－メチルペンタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "625-30-9",
+        "name": "ペンタン－２－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "625-36-5",
+        "name": "β－クロロプロピオニルクロライド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "625-55-8",
+        "name": "イソプロピル＝ホルマート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "625-58-1",
+        "name": "Ethyl nitrate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "626-93-7",
+        "name": "ヘキサン－２－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "627-20-3",
+        "name": "（Ｚ）－ペンタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "627-30-5",
+        "name": "３－クロロプロパン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "627-63-4",
+        "name": "フマル酸ジクロライド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "627-93-0",
+        "name": "ジメチル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-09-1",
+        "name": "３－クロロプロピル＝アセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-20-6",
+        "name": "γクロロブチロニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-28-4",
+        "name": "Butyl methyl ether",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-32-0",
+        "name": "Ethyl propyl ether",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-35-3",
+        "name": "２－ヒドロキシエチル＝ホルマート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-46-6",
+        "name": "５－メチルヘキサン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-81-9",
+        "name": "Butyl ethyl ether",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "628-92-2",
+        "name": "Cycloheptene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "629-19-6",
+        "name": "ジプロピルジスルファン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "629-40-3",
+        "name": "オクタンジニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "637-78-5",
+        "name": "イソプロピル＝プロピオナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "638-29-9",
+        "name": "ペンタノイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "640-15-3",
+        "name": "ジチオりん酸Ｓ－２－（エチルチオ）エチル－Ｏ，Ｏ－ジメチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "646-04-8",
+        "name": "（Ｅ）－ペンタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "674-76-0",
+        "name": "（Ｅ）－４－メチルペンタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "676-58-4",
+        "name": "クロロ（メチル）マグネシウム",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "682-01-9",
+        "name": "テトラプロピル＝シリカート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "685-91-6",
+        "name": "Ｎ，Ｎ－ジエチルアセトアミド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "691-38-3",
+        "name": "（Ｚ）－４－メチルペンタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "693-04-9",
+        "name": "ｎ－ブチルマグネシウムクロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "694-05-3",
+        "name": "1,2,3,6-tetrahydropyridine",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "695-12-5",
+        "name": "ビニルシクロヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "696-44-6",
+        "name": "Ｎ－メチル－ｍ－トルイジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "705-86-2",
+        "name": "６－ペンチルオキサン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "706-31-0",
+        "name": "シクロドデカ－１，５，９－トリエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "710-04-3",
+        "name": "６－ヘキシルオキサン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "713-95-1",
+        "name": "６－ヘプチルオキサン－２－オン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "763-29-1",
+        "name": "２－メチルペンタ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "764-01-2",
+        "name": "But-2-yn-1-ol",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "765-30-0",
+        "name": "シクロプロピルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "766-09-6",
+        "name": "1-ethylpiperidine",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "766-15-4",
+        "name": "４，４－ジメチル－１，３－ジオキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "768-56-9",
+        "name": "ブタ－３－エン－１－イルベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "769-78-8",
+        "name": "ビニル＝ベンゾアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "786-19-6",
+        "name": "ジエチル－４－クロルフェニルメルカプトメチルジチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "818-44-0",
+        "name": "ビニル＝オクタノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "821-09-0",
+        "name": "ペンタ－４－エン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "873-66-5",
+        "name": "Trans-beta-methylstyrene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "924-16-3",
+        "name": "Ｎ－ニトロソジブチルアミン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "926-54-5",
+        "name": "Trans-2-methylpenta-1,3-diene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "926-56-7",
+        "name": "4-methylpenta-1,3-diene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "926-63-6",
+        "name": "Dimethyl(propyl)amine",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "926-64-7",
+        "name": "（ジメチルアミノ）アセトニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "926-65-8",
+        "name": "イソプロポキシエテン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "928-45-0",
+        "name": "Butyl nitrate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "928-55-2",
+        "name": "１－エトキシプロパ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "928-65-4",
+        "name": "トリクロロヘキシルシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "931-36-2",
+        "name": "２－エチル－５－メチル－１Ｈ－イミダゾール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "933-88-0",
+        "name": "２－メチルベンゾイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "939-97-9",
+        "name": "４－ｔｅｒｔ－ブチルベンズアルデヒド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "992-92-7",
+        "name": "チタン（４＋）＝テトラメトキシド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "998-30-1",
+        "name": "トリエトキシシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "999-21-3",
+        "name": "マレイン酸ジ－２－ペンテニルエステル（マレイン酸ジアリルエステル）",
+        "candidates": [
+          "硝酸エステル類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1026-92-2",
+        "name": "ジアリル＝テレフタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1066-35-9",
+        "name": "クロロ（ジメチル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1067-97-6",
+        "name": "トリブチルスタンナノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1070-10-6",
+        "name": "チタン（ＩＶ）＝テトラキス（２－エチルヘキサン－１－オラート）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1070-70-8",
+        "name": "ブタン－１，４－ジイル＝ジアクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1071-46-1",
+        "name": "エチル＝水素＝マロナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1071-93-8",
+        "name": "アジピン酸ジヒドラジド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1073-67-2",
+        "name": "ｐ－クロロスチレン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1087-21-4",
+        "name": "イソフタル酸ジアリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1116-98-9",
+        "name": "ｔｅｒｔ－ブチル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1118-58-7",
+        "name": "2-methylpenta-1,3-diene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1120-36-1",
+        "name": "テトラデカ－１－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1125-27-5",
+        "name": "ジクロロ（エチル）（フェニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1126-78-9",
+        "name": "Ｎ－ブチルアニリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1189-08-8",
+        "name": "ブタン－１，３－ジイル＝ジメタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1191-15-7",
+        "name": "ジイソブチルアルマン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1195-32-0",
+        "name": "１－イソプロペニル－４－メチルベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1299-86-1",
+        "name": "Tetraaluminium tricarbide",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1300-16-9",
+        "name": "ノニルフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1330-61-6",
+        "name": "イソデシル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1330-80-9",
+        "name": "オレイン酸とプロパン－１，２－ジオールのエステル（１：１）",
+        "candidates": [
+          "硝酸エステル類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1331-15-3",
+        "name": "ジメチル－１，４－ジオキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1336-93-2",
+        "name": "ナフテン酸のマンガン塩",
+        "candidates": [
+          "過マンガン酸塩類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1338-24-5",
+        "name": "ナフテン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1338-39-2",
+        "name": "ソルビタンラウリン酸モノエステル",
+        "candidates": [
+          "硝酸エステル類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1338-43-8",
+        "name": "ソルビタンオレイン酸モノエステル",
+        "candidates": [
+          "硝酸エステル類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1438-82-0",
+        "name": "１，１，１，３，３－ペンタメチルジシロキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1445-45-0",
+        "name": "１，１，１－トリメトキシエタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1464-53-5",
+        "name": "２，２’－ビオキシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1548-13-6",
+        "name": "alpha,alpha,alpha-trifluoro-p-tolyl isocyanate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1559-35-9",
+        "name": "２－［（２－エチルヘキシル）オキシ］エタノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1569-69-3",
+        "name": "シクロヘキサンチオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1609-86-5",
+        "name": "２－イソシアナト－２－メチルプロパン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1615-80-1",
+        "name": "１，２－ジエチルヒドラジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1623-15-0",
+        "name": "ブチル＝二水素＝ホスファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1623-24-1",
+        "name": "イソプロピル＝二水素＝ホスファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1656-63-9",
+        "name": "トリラウリル－トリチオ－ホスファイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1679-09-0",
+        "name": "２－メチルブタン－２－チオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1680-21-3",
+        "name": "エチレンビス（オキシエチレン）＝ジアクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1709-71-3",
+        "name": "３－（アクリロイルオキシ）－２－ヒドロキシプロピル＝アクリラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1719-53-5",
+        "name": "ジクロロ（ジエチル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1719-57-9",
+        "name": "クロロ（クロロメチル）（ジメチル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1726-23-4",
+        "name": "トリブチル＝ベンゼン－１，２，４－トリカルボキシラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1752-30-3",
+        "name": "アセトンチオセミカルバゾン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1795-48-8",
+        "name": "Isopropyl isocyanate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1809-21-8",
+        "name": "ジプロピル＝ホスホナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1822-45-3",
+        "name": "Ｎ，Ｎ，Ｎ’，Ｎ’－テトラメチルプロパン－１，２－ジアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1830-78-0",
+        "name": "２－ヒドロキシプロパン－１，３－ジイル＝ジメタクリラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1838-59-1",
+        "name": "ギ酸アリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1967-31-3",
+        "name": "２－クロロテレフタル酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1985-51-9",
+        "name": "２，２－ジメチルプロパン－１，３－ジイル＝ジメタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "1996-88-9",
+        "name": "３，３，４，４，５，５，６，６，７，７，８，８，９，９，１０，１０，１０－ヘプタデカフルオロデシル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2044-64-6",
+        "name": "ジメチルアセトアセタミド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2050-92-2",
+        "name": "ジ－ｎ－ペンチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2051-00-5",
+        "name": "ジイソペンチル＝オキサラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2064-80-4",
+        "name": "１，９－ジオクチル＝ノナンジオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2106-49-2",
+        "name": "１－クロロ－２－フルオロ－３－ニトロベンゼン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2146-71-6",
+        "name": "ビニル＝ラウラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2155-60-4",
+        "name": "ジブチル＝２－メチリデンスクシナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2155-70-6",
+        "name": "トリブタン－１－イルスタンニル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2155-94-4",
+        "name": "Ｎ，Ｎ－ジメチルプロパ－２－エン－１－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2156-97-0",
+        "name": "ドデシル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2177-70-0",
+        "name": "フェニル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2207-04-7",
+        "name": "ジメチルシクロヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2210-28-8",
+        "name": "プロピル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2210-32-4",
+        "name": "ジ－ｓｅｃ－ブチル＝フマラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2223-82-7",
+        "name": "２，２－ジメチルプロパン－１，３－ジイル＝ジアクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2224-15-9",
+        "name": "２，２’－［１，２－エタンジイルビス（オキシメチレン）］ビス（オキシラン）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2231-57-4",
+        "name": "チオカルバジド（チオカルボヒドラジド）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2235-46-3",
+        "name": "Ｎ，Ｎ－ジエチル－３－オキソブチルアミド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2279-76-7",
+        "name": "クロロ（トリプロパン－１－イル）スタンナン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2285-12-3",
+        "name": "alpha,alpha,alpha-trifluoro-o-tolyl isocyanate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2287-83-4",
+        "name": "ビス（２－エチルヘキシル）＝２－メチリデンスクシナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2358-84-1",
+        "name": "ジエチレングリコールジメタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2365-48-2",
+        "name": "メチル＝スルファニルアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2409-52-1",
+        "name": "ジエチル＝２－メチリデンスクシナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2421-27-4",
+        "name": "２－ヒドロキシブチル＝アクリラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2425-77-6",
+        "name": "２－ヘキシルデカン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2437-25-4",
+        "name": "ドデカンニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2461-15-6",
+        "name": "２－｛［（２－エチルヘキシル）オキシ］メチル｝オキシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2478-10-6",
+        "name": "４－ヒドロキシブチル＝アクリラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2487-90-3",
+        "name": "トリメトキシシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2495-25-2",
+        "name": "トリデシル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2495-27-4",
+        "name": "ヘキサデシル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2495-35-4",
+        "name": "アクリル酸ベンジル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2495-37-6",
+        "name": "メタクリル酸ベンジル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2530-83-8",
+        "name": "トリメトキシ［３－（オキシラン－２－イルメトキシ）プロピル］シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2549-51-1",
+        "name": "モノクロロ酢酸ビニル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2553-19-7",
+        "name": "ジエトキシ（ジフェニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2561-85-5",
+        "name": "２－ドデシルコハク酸無水物",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2589-57-3",
+        "name": "ジメチル＝２，２’－（ジアゼン－１，２－ジイル）ビス（２－メチルプロパノアート）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2644-70-4",
+        "name": "ヒドラジン＝モノヒドロクロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2674-91-1",
+        "name": "ジメチルエチルスルフィニルイソプロピルチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2765-29-9",
+        "name": "シクロドデカ－１，５，９－トリエン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2768-07-2",
+        "name": "３－メトキシブチル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2915-53-9",
+        "name": "ジオクチル＝マレアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2915-57-3",
+        "name": "ビス（２－エチルヘキシル）＝スクシナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2917-26-2",
+        "name": "ヘキサデカン－１－チオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2929-86-4",
+        "name": "トリス（デシル）＝ホスフィット",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2935-44-6",
+        "name": "ヘキサン－２，５－ジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2948-89-2",
+        "name": "ジアリル＝フェニルホスホナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2975-41-9",
+        "name": "Indan-2-amine",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2996-92-1",
+        "name": "トリメトキシ（フェニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "2998-18-7",
+        "name": "ｓｅｃ－ブチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3050-69-9",
+        "name": "ｎ－ヘキサン酸ビニル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3068-88-0",
+        "name": "β－ブチロラクトン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3084-50-2",
+        "name": "トリブチルホスファン＝スルフィド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3087-37-4",
+        "name": "チタン（４＋）＝テトラプロパン－１－オラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3098-92-8",
+        "name": "ビニル＝シンナマート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3153-36-4",
+        "name": "エチル＝４－クロロブタノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3173-53-3",
+        "name": "シクロヘキシルイソシアネート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3179-63-3",
+        "name": "ジメチルアミノプロパノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3179-76-8",
+        "name": "３－［ジエトキシ（メチル）シリル］プロパン－１－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3188-13-4",
+        "name": "クロロメトキシエタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3277-26-7",
+        "name": "１，１，３，３－テトラメチルジシロキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3302-10-1",
+        "name": "３，５，５－トリメチルヘキサン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3305-68-8",
+        "name": "トリス［（Ｚ）－オクタデカ－９－エン－１－イル］＝ホスファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3309-87-3",
+        "name": "ジメチル－Ｓ－パラクロルフェニルチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3377-92-2",
+        "name": "ビニル＝２，２－ジメチルプロパノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3497-00-5",
+        "name": "フェニルホスホノチオ酸＝ジクロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3568-29-4",
+        "name": "１，３－ビス（２－オキシラン－２－イルメトキシ）プロパン－２－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3648-18-8",
+        "name": "ジオクチルビス［（１－オキソドデシル）オキシ］スズ",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3687-46-5",
+        "name": "デシル＝オレアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3792-59-4",
+        "name": "Ｏ－エチル－Ｏ－２，４－ジクロルフェニル－フェニルチオノホスホネート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "3906-30-7",
+        "name": "Ｎ，Ｎ－ジメチルオレイン酸アミド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4083-64-1",
+        "name": "トシルイソシアネート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4152-09-4",
+        "name": "Ｎ－ベンジルエチレンジアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4206-61-5",
+        "name": "１，９－ビス（オキシラン－２－イル）－２，５，８－トリオキサノナン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4245-35-6",
+        "name": "３－メチルブチル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4245-37-8",
+        "name": "ビニル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4254-14-2",
+        "name": "（Ｒ）－プロパン－１，２－ジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4254-15-3",
+        "name": "（Ｓ）－プロパン－１，２－ジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4316-42-1",
+        "name": "１－ブチル－１Ｈ－イミダゾール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4385-05-1",
+        "name": "Ｎ，Ｎ－ジメチル－２－（モルホリン－４－イル）エタンアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4435-53-4",
+        "name": "３－メトキシ－ｎ－ブチル＝アセテート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4484-72-4",
+        "name": "トリクロロ（ドデシル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4554-16-9",
+        "name": "２，３－ジブロモプロパンニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4655-34-9",
+        "name": "イソプロピル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4659-45-4",
+        "name": "２，６－ジクロロベンゾイル＝クロリド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4704-31-8",
+        "name": "ビニル＝デカノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4719-04-4",
+        "name": "ヘキサヒドロ－１，３，５－トリス（２－ヒドロキシエチル）－１，３，５－トリアジン",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4766-57-8",
+        "name": "テトラブトキシシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "4782-29-0",
+        "name": "ビス（トリブタン－１－イルスタンニル）＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5283-66-9",
+        "name": "トリクロロ（オクチル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5283-67-0",
+        "name": "トリクロロ（ノニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5341-61-7",
+        "name": "ヒドラジン＝二塩酸塩",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5349-28-0",
+        "name": "ロダン酢酸エチルエステル",
+        "candidates": [
+          "硝酸エステル類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5419-55-6",
+        "name": "ホウ酸トリス（１－メチルエチル）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5459-58-5",
+        "name": "ブチル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5509-65-9",
+        "name": "２，６－ジフルオロアニリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5827-05-4",
+        "name": "ジイソプロピル－Ｓ－（エチルスルフィニルメチル）－ジチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5894-60-0",
+        "name": "トリクロロ（ヘキサデシル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "5919-74-4",
+        "name": "２，３－ジヒドロキシプロピル＝メタクリラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6032-29-7",
+        "name": "ペンタン－２－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6192-44-5",
+        "name": "２－フェノキシエチル＝アセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6261-22-9",
+        "name": "２－ペンチン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6283-25-6",
+        "name": "２－クロロ－５－ニトロアニリン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6294-31-1",
+        "name": "ジヘキシルスルファン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6420-47-9",
+        "name": "２－ｓｅｃ－ブチル－４，６－ジニトロフェノールと２，２’，２’’－ニトリロトリエタノールの化合物（１：１）",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6443-92-1",
+        "name": "（Ｚ）－ヘプタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6606-59-3",
+        "name": "ヘキサン－１，６－ジイル＝ジメタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6661-54-7",
+        "name": "４－メチルベンゼン－１－スルホン酸ブトキシエチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6843-66-9",
+        "name": "ジメトキシ（ジフェニル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6920-22-5",
+        "name": "ヘキサン－１，２－ジオール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6928-85-4",
+        "name": "４－メチルピペラジン－１－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6938-94-9",
+        "name": "ジイソプロピル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "6976-93-8",
+        "name": "２－メトキシエチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7087-68-5",
+        "name": "Ｎ，Ｎ－ジイソプロピルエチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7251-90-3",
+        "name": "２－ブトキシエチル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7283-69-4",
+        "name": "ジイソブチル＝フマラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7283-70-7",
+        "name": "ジイソプロピル＝フマラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7328-17-8",
+        "name": "アクリル酸　２－［２－（エチルオキシ）エチルオキシ］エチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7328-22-5",
+        "name": "２－（２－ブトキシエトキシ）エチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7360-38-5",
+        "name": "トリス（２－エチルヘキサン酸）グリセリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7439-89-6",
+        "name": "鉄",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7439-98-7",
+        "name": "モリブデン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-16-6",
+        "name": "ロジウム",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-25-7",
+        "name": "タンタル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-31-5",
+        "name": "スズ",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-33-7",
+        "name": "タングステン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-36-0",
+        "name": "アンチモン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-43-9",
+        "name": "カドミウム",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-48-4",
+        "name": "コバルト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-65-5",
+        "name": "イットリウム",
+        "candidates": [
+          "ナトリウム",
+          "カリウム"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-66-6",
+        "name": "亜鉛",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-69-9",
+        "name": "ビスマス",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7440-74-6",
+        "name": "インジウム",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7521-80-4",
+        "name": "ブチル（トリクロロ）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7642-10-6",
+        "name": "（Ｚ）－ヘプタ－３－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7688-21-3",
+        "name": "（Ｚ）－ヘキサ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7700-17-6",
+        "name": "１－フェニルエチル＝（Ｅ）－３－［（ジメトキシホスホリル）オキシ］ブタ－２－エノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7782-79-8",
+        "name": "アジ化水素酸",
+        "candidates": [
+          "過酸化水素"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7783-97-3",
+        "name": "Silver iodate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7787-71-5",
+        "name": "Bromine trifluoride",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "7787-93-1",
+        "name": "ジクロロ（３－クロロプロピル）（メチル）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8001-25-0",
+        "name": "Olive oil",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8001-26-1",
+        "name": "Linseed oil",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8001-31-8",
+        "name": "ヤシ油",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8001-79-4",
+        "name": "ヒマシ油",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8002-09-3",
+        "name": "パインオイル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8002-13-9",
+        "name": "ナタネ油",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8002-75-3",
+        "name": "パーム油",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8008-57-9",
+        "name": "Orange oil, sweet",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8030-30-6",
+        "name": "ナフサ",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "8052-41-3",
+        "name": "ストッダード溶剤",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "9016-45-9",
+        "name": "α－ヒドロ－ω－（ノニルフェノキシ）ポリ（オキシエチレン）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "9016-87-9",
+        "name": "ポリメチレンポリフェニレン＝イソシアナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "9036-19-5",
+        "name": "ポリ（オキシエチレン）＝（１，１，３，３－テトラメチルブチル）フェニル＝エーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "9056-38-6",
+        "name": "デンプン＝ニトラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10024-47-2",
+        "name": "イソブチル＝オレアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10034-93-2",
+        "name": "ヒドラジン－１，２－ジイウム＝スルファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10137-69-6",
+        "name": "Trichloro-3-cyclohexen-1-ylsilane",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10213-77-1",
+        "name": "トリプロピレングリコールモノメチルエーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10288-28-5",
+        "name": "２－カルバモイルアゾ－２－シアノプロパン",
+        "candidates": [
+          "アゾ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10431-98-8",
+        "name": "２－エチル－４，５－ジヒドロ－１，３－オキサゾール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10461-98-0",
+        "name": "シクロヘキシリデン（フェニル）アセトニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10486-00-7",
+        "name": "過ホウ酸ナトリウム―水（１／４）",
+        "candidates": [
+          "ナトリウム",
+          "カリウム"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "10595-06-9",
+        "name": "２－フェノキシエチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "12002-48-1",
+        "name": "トリクロロベンゼン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "12108-13-3",
+        "name": "トリカルボニル（メチル－η（５）－シクロペンタジエニル）マンガン",
+        "candidates": [
+          "過マンガン酸塩類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "12542-85-7",
+        "name": "Aluminum, trichlorotrimethyldi-",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13023-13-7",
+        "name": "トリ－（Ｚ）－オクタデカ－９－エン－１－イル＝ホスフィット",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13195-64-7",
+        "name": "マロン酸ジイソプロピル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13360-63-9",
+        "name": "ブチルエチルアミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13361-30-3",
+        "name": "イソプロピル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13361-31-4",
+        "name": "イソブチル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13402-02-3",
+        "name": "ヘキサデシル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13464-80-7",
+        "name": "硫酸ジヒドラジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13464-97-6",
+        "name": "硝酸ヒドラジン",
+        "candidates": [
+          "硝酸"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13472-08-7",
+        "name": "２，２’－ジメチル－２，２’－ジアゼンジイルジブタンニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13494-80-9",
+        "name": "テルル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13674-87-8",
+        "name": "トリス（１，３－ジクロロ－２－プロピル）ホスファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13822-56-5",
+        "name": "３－（トリメトキシシリル）プロパン－１－アミン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "13967-90-3",
+        "name": "Barium bromate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14314-27-3",
+        "name": "Chlorous acid, potassium salt",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14319-64-3",
+        "name": "ビシクロ［２．２．１］ヘプタ－５－エン－２－イル（トリクロロ）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14452-57-4",
+        "name": "二酸化マグネシウム",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14660-16-3",
+        "name": "（２－エチルヘキシル）ホスホン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14686-13-6",
+        "name": "（Ｅ）－ヘプタ－２－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14686-14-7",
+        "name": "（Ｅ）－ヘプタ－３－エン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14778-49-5",
+        "name": "ビス［２－（アクリロイルオキシ）エチル］＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14782-75-3",
+        "name": "ジイソプロポキシ　アルミニウム　エチル　アセトアセテート",
+        "candidates": [
+          "アルキルアルミニウム"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14861-06-4",
+        "name": "ビニル＝ブタ－２－エノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "14970-87-7",
+        "name": "トリエチレングリコールジメルカプタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15022-08-9",
+        "name": "ジアリル＝カルボナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15458-75-0",
+        "name": "ホスホリルトリス（オキシエチレン）＝トリメタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15484-80-7",
+        "name": "ビニル＝４－ｔｅｒｔ－ブチルベンゾアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15521-18-3",
+        "name": "2-(dimethylamino)propan-1-ol",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15595-62-7",
+        "name": "Carbonochloridic acid, 4-(1,1-dimethylethyl)cyclohexyl ester, cis-",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15630-89-4",
+        "name": "炭酸二ナトリウムの過酸化水素との化合物（２：３）",
+        "candidates": [
+          "ナトリウム",
+          "過酸化水素",
+          "カリウム"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "15875-13-5",
+        "name": "１，３，５－トリス（ジメチルアミノプロピル）ヘキサヒドロ－１，３，５－トリアジン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "16069-23-1",
+        "name": "２－［（ジフェノキシホスホリル）オキシ］エチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "16096-30-3",
+        "name": "２，２’－［（１－メチル－１，２－エタンジイル）ビス（オキシメチレン）］ビスオキシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "16096-31-4",
+        "name": "１，６－ビス（オキシラン－２－イルメトキシ）ヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "16454-60-7",
+        "name": "ネオジム（３＋）＝トリニトラート六水和物",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "16958-92-2",
+        "name": "ジトリデシル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "17392-83-5",
+        "name": "乳酸メチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "17462-58-7",
+        "name": "ｓｅｃ－ブチル＝カルボノクロリダート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "17831-71-9",
+        "name": "オキシビス（エチレンオキシエチレン）＝ジアクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "18230-61-0",
+        "name": "ジイソプロピル（ジメトキシ）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "18395-30-7",
+        "name": "イソブチル（トリメトキシ）シラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "18809-57-9",
+        "name": "４－エチルメルカプトフェニル－Ｎ－メチルカルバメート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "18880-00-7",
+        "name": "ｐ－ｔｅｒｔ－ブチル　ベンジルブロマイド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "19074-24-9",
+        "name": "ビス（２－エチルヘキシル）＝ドデカンジオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "19210-21-0",
+        "name": "（Ｓ）－２－クロロプロパン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "19234-20-9",
+        "name": "２－（イソプロピルオキシ）エチル＝アセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "19472-74-3",
+        "name": "（２－ブロモフェニル）アセトニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "19706-80-0",
+        "name": "２，２’－（ジアゼン－１，２－ジイル）ビス（３－ヒドロキシ－２－メチルプロパンニトリル）",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "22047-49-0",
+        "name": "２－エチルヘキシル＝ステアラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "22592-15-0",
+        "name": "１－クロロペンタ－２－イン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "22722-98-1",
+        "name": "ナトリウム＝ジヒドリドビス［２－（メトキシ－κＯ）エタノラト－κＯ］アルミナート（１－）",
+        "candidates": [
+          "ナトリウム",
+          "カリウム"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "24151-93-7",
+        "name": "Ｓ－（２－メチル－１－ピペリジル－カルボニルメチル）ジプロピルジチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "24424-99-5",
+        "name": "ビス（ｔｅｒｔ－ブトキシカルボニル）＝オキシド",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "24468-13-1",
+        "name": "クロル炭酸－２－エチルヘキシル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "24599-21-1",
+        "name": "２－（ホスホノオキシ）エチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "24772-51-8",
+        "name": "（Ｔ－４）－ビス（ブタン－２－オラト）［１－エトロキシ－１，３－ビス（オキソ－κＯ）ブタン－２－イド］アルミニウム",
+        "candidates": [
+          "アルキルアルミニウム"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25068-38-6",
+        "name": "ポリ［２－（クロロメチル）オキシラン－ａｌｔ－４，４’－（プロパン－２，２－ジイル）ジフェノール］",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25103-12-2",
+        "name": "トリイソオクチル＝ホスフィット",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25149-46-6",
+        "name": "２－（ｔｅｒｔ－ブチルジアゼニル）－２－メチルプロパンニトリル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25155-15-1",
+        "name": "シメン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25155-23-1",
+        "name": "トリス（ジメチルフェニル）＝ホスファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25167-70-8",
+        "name": "ジイソブチレン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25354-97-6",
+        "name": "２－ヘキシルデカン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25377-72-4",
+        "name": "ペンテン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "25550-58-7",
+        "name": "ジニトロフェノール",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26248-42-0",
+        "name": "トリデカノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26249-20-7",
+        "name": "１，２（又は２，３）－エポキシブタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26401-27-4",
+        "name": "イソオクチル＝ジフェニル＝ホスフィット",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26530-20-1",
+        "name": "２－オクチルイソチアゾール－３（２Ｈ）－オン",
+        "candidates": [
+          "アゾ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26544-23-0",
+        "name": "ジフェニルイソデシルフォスファイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26571-79-9",
+        "name": "クロルフェニルトリクロルシラン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "26896-18-4",
+        "name": "イソノナン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27138-31-4",
+        "name": "オキシビス（プロパン－３，１－ジイル）＝ジベンゾアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27178-16-1",
+        "name": "アジピン酸ジイソデシル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27458-92-0",
+        "name": "イソトリデカノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "27949-52-6",
+        "name": "ブチル－Ｓ－ベンジル－Ｓ－エチルジチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "28064-81-5",
+        "name": "PROPANOL, CHLORO-",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "28469-92-3",
+        "name": "2,6-dichlorostyrene",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "28473-21-4",
+        "name": "ノナノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "29014-71-9",
+        "name": "ジブチル＝フマラート重合物",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "29806-73-3",
+        "name": "２－エチルヘキシル＝パルミタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "29806-75-5",
+        "name": "２－エチルヘキシル＝テトラデカノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "29964-84-9",
+        "name": "イソデシル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "30025-38-8",
+        "name": "Propanol, (2-ethoxymethylethoxy)-",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "30399-84-9",
+        "name": "イソオクタデカン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "30697-40-6",
+        "name": "２－（アクリロイルオキシ）エチル＝水素＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "31093-47-7",
+        "name": "デシルベンゼンスルホン酸",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "31394-54-4",
+        "name": "２－メチルヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "31565-37-4",
+        "name": "イソトリデシル＝ステアラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "32210-23-4",
+        "name": "４－ｔｅｒｔ－ブチルシクロヘキシル＝アセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "32388-55-9",
+        "name": "１－［（３Ｒ，３ａＲ，７Ｒ，８ａＳ）－３，６，８，８－テトラメチル－２，３，４，７，８，８ａ－ヘキサヒドロ－１Ｈ－３ａ，７－メタノアズレン－５－イル］エタノン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "32750-89-3",
+        "name": "メチル＝３－［ジブチルアミノ（チオカルボニル）チオ］プロピオナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "32804-77-6",
+        "name": "２－エトキシエチル＝シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "33703-08-1",
+        "name": "ジイソノニル＝アジパート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "34364-26-6",
+        "name": "ビスマス（３＋）＝トリネオデカノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "35996-61-3",
+        "name": "２－クロル－１－（２，４－ジクロルフェニル）ビニルエチルメチルホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "36614-38-7",
+        "name": "ジメチル－（イソプロピルチオエチル）－ジチオホスフェイト",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "38056-88-1",
+        "name": "２－（アクリロイルオキシ）エチル＝２－ヒドロキシエチル＝フタラート",
+        "candidates": [
+          "ヒドロキシルアミン"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "38640-62-9",
+        "name": "ジイソプロピルナフタレン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "40458-98-8",
+        "name": "ジイソプロピルナフタレン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "41744-75-6",
+        "name": "１６－メチルヘプタデカン－１－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "42125-46-2",
+        "name": "4-tert-Butylcyclohexyl chloroformate",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "42397-64-8",
+        "name": "１，６－ジニトロピレン",
+        "candidates": [
+          "ニトロ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "45103-58-0",
+        "name": "２－（２－メトキシエトキシ）エチル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "48145-04-6",
+        "name": "２－フェノキシエチル＝アクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "50893-36-2",
+        "name": "１－クロロエチル＝エチル＝カルボナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "51839-50-0",
+        "name": "４，４’－ジアミノ－３－エチルジフェニルメタン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "52012-13-2",
+        "name": "エチレングリコール＝ホスファート（１：？）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "52583-42-3",
+        "name": "Nitric acid, mixt. with nitrogen oxide (N2O4) (2:1)",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "52688-11-6",
+        "name": "シクロヘキシル＝２－シアノアセタート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "52888-80-9",
+        "name": "Ｓ－ベンジル＝ジプロピルカルバモチオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "52933-00-3",
+        "name": "ジイソプロピル＝水素＝ホスファートとイソプロピル＝二水素＝ホスファートの混合物",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "53778-73-7",
+        "name": "１－メトキシブタン－２－オール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "54381-26-9",
+        "name": "Ｏ－［２－クロロ－４－（メチルスルファニル）フェニル］＝Ｏ－メチル＝Ｎ－エチルホスホルアミドチオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "55934-93-5",
+        "name": "［２－（２－ブトキシメチルエトキシ）メチルエトキシ］－プロパノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "57813-59-9",
+        "name": "２－スルファニルエチル＝オクタノアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "59313-58-5",
+        "name": "Benzoic acid, 4-(1,1-dimethylethyl)-, oxiranylmethyl ester",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "61789-36-4",
+        "name": "ナフテン酸のカルシウム塩",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "61791-92-2",
+        "name": "ジトリデシル＝マレアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "64475-85-0",
+        "name": "石油スピリット",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "64742-95-6",
+        "name": "軽質芳香族系石油ソルベントナフサ",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "67953-31-5",
+        "name": "ビス（８－メチルノニル）＝水素＝ホスファート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68439-46-3",
+        "name": "エトキシ化アルコール（Ｃ＝９～１１）",
+        "candidates": [
+          "アルコール類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68514-79-4",
+        "name": "ハイドロファイナー－パワーフォーマー改質油",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68604-84-2",
+        "name": "ダイマー酸ジメチル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68606-10-0",
+        "name": "デブタナイザー塔底ガソリン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68912-13-0",
+        "name": "トリシクロ［５．２．１．０（２，６）］デカ－３－エニル＝プロピオナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "68920-66-1",
+        "name": "エトキシ化アルコール（Ｃ＝１６～１８及び不飽和Ｃ＝１８）",
+        "candidates": [
+          "アルコール類"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "70042-58-9",
+        "name": "Carbonochloridic acid, (1,1-dimethylethyl)cyclohexyl ester",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "73513-42-5",
+        "name": "イソヘキサン",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "80440-82-0",
+        "name": "トリプロピレングリコールジグリシジルエーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "81228-87-7",
+        "name": "Carbonochloridic acid, cyclobutyl ester",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "83771-46-4",
+        "name": "イソオクタデシル＝メタクリラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "85507-79-5",
+        "name": "ジウンデシル（分枝、直鎖）＝フタラート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "85785-20-2",
+        "name": "Ｓ－ベンジル＝エチル（３－メチルブタン－２－イル）カルバモチオアート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "87247-00-5",
+        "name": "４－ノニルフェノール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "89784-60-1",
+        "name": "チオリン酸Ｏ－１－（４－クロロフェニル）－４－ピラゾリル－Ｏ－エチル－Ｓ－プロピル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "95418-58-9",
+        "name": "ｔｅｒｔ－ブチル＝ｐ－ビニルフェニル＝エーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "97593-00-5",
+        "name": "アルケン（Ｃ＝７～９、Ｃ＝８を高含有、分枝型）",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "98886-44-3",
+        "name": "Ｓ－ｓｅｃ－ブチル＝Ｏ－エチル＝（２－オキソ－１，３－チアゾリジン－３－イル）ホスホノチオアート",
+        "candidates": [
+          "アゾ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "99464-83-2",
+        "name": "１－クロロエチル＝シクロヘキシル＝カルボナート",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "111872-58-3",
+        "name": "２－（４－ブロモジフルオロメトキシフェニル）－２－メチルプロピル＝３－フェノキシベンジルエーテル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "112281-77-3",
+        "name": "１－［２－（２，４－ジクロロフェニル）－３－（１，１，２，２－テトラフルオロエトキシ）プロパン－１－イル］－１Ｈ－１，２，４－トリアゾール",
+        "candidates": [
+          "アゾ化合物"
+        ],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "116680-33-2",
+        "name": "１－イソブチル－２－メチル－１Ｈ－イミダゾール",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "121915-68-2",
+        "name": "フタル酸水素アクリロイルオキシプロピル",
+        "candidates": [],
+        "law_candidates": []
+      },
+      {
+        "cas_number": "154212-60-9",
+        "name": "（２－イソプロピル－１，３－チアゾール－４－イル）－Ｎ－（メチル）メチルアミン",
+        "candidates": [
+          "アゾ化合物"
+        ],
+        "law_candidates": []
+      }
+    ]
+  }
+}

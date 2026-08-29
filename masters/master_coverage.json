@@ -42,17 +42,31 @@
     ],
     "source_count": 4,
     "legal_entries": 323,
-    "mapped_legal_entries": 127,
-    "unresolved_legal_entries": 196,
+    "mapped_legal_entries": 221,
+    "unresolved_legal_entries": 102,
     "positive_cas_rows": 3005,
     "unique_positive_cas": 3003,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 3005
+      },
+      "category_counts": {
+        "class_i_specified": 965,
+        "class_ii_specified": 72,
+        "monitoring": 135,
+        "priority_evaluation": 1833
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
     "entries": 64,
-    "mapped_entries": 26,
-    "master_rows": 3032,
-    "unresolved_entries": 38,
+    "mapped_entries": 31,
+    "master_rows": 3037,
+    "unresolved_entries": 33,
     "mapping_complete": false
   },
   "prtr": {
@@ -89,17 +103,33 @@
     ],
     "source_count": 1,
     "legal_entries": 649,
-    "mapped_legal_entries": 139,
-    "unresolved_legal_entries": 510,
+    "mapped_legal_entries": 528,
+    "unresolved_legal_entries": 121,
     "positive_cas_rows": 10854,
     "unique_positive_cas": 10854,
+    "class_coverage": {
+      "class_bearing_cas": 10854,
+      "classed": 10779,
+      "unresolved": 75,
+      "class_source_counts": {
+        "draft_group_rule": 10230,
+        "legal_row_join": 549,
+        "unresolved": 75
+      },
+      "category_counts": {
+        "first_class": 8256,
+        "prtr_current": 75,
+        "second_class": 156,
+        "specific_first_class": 2367
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
     "entries": 651,
-    "mapped_entries": 359,
+    "mapped_entries": 463,
     "master_rows": 0,
-    "unresolved_entries": 292,
+    "unresolved_entries": 188,
     "mapping_complete": false
   },
   "poison_control": {
@@ -135,18 +165,33 @@
       "salt_or_isomer"
     ],
     "source_count": 1,
-    "legal_entries": 588,
-    "mapped_legal_entries": 55,
-    "unresolved_legal_entries": 524,
-    "positive_cas_rows": 2693,
+    "legal_entries": 628,
+    "mapped_legal_entries": 433,
+    "unresolved_legal_entries": 195,
+    "positive_cas_rows": 2790,
     "unique_positive_cas": 2690,
+    "class_coverage": {
+      "class_bearing_cas": 2690,
+      "classed": 2690,
+      "unresolved": 0,
+      "class_source_counts": {
+        "draft_group_rule": 2,
+        "legal_row_join": 446,
+        "reviewed_group_rule": 2342
+      },
+      "category_counts": {
+        "deleterious": 2151,
+        "poison": 616,
+        "specific_poison": 23
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
     "entries": 456,
-    "mapped_entries": 200,
-    "master_rows": 2890,
-    "unresolved_entries": 256,
+    "mapped_entries": 278,
+    "master_rows": 3067,
+    "unresolved_entries": 178,
     "mapping_complete": false
   },
   "ish": {
@@ -224,11 +269,40 @@
       "workplace"
     ],
     "source_count": 13,
-    "legal_entries": 5993,
-    "mapped_legal_entries": 2018,
-    "unresolved_legal_entries": 3964,
-    "positive_cas_rows": 15861,
+    "legal_entries": 5996,
+    "mapped_legal_entries": 4768,
+    "unresolved_legal_entries": 1228,
+    "positive_cas_rows": 15876,
     "unique_positive_cas": 7950,
+    "class_coverage": {
+      "class_bearing_cas": 1656,
+      "classed": 1656,
+      "unresolved": 0,
+      "class_source_counts": {
+        "legal_row_join": 136,
+        "reviewed_group_rule": 1522,
+        "source_list": 14218
+      },
+      "category_counts": {
+        "carcinogen_record": 292,
+        "carcinogenic_guideline": 42,
+        "control_concentration": 1720,
+        "dangerous_substance": 755,
+        "label_sds": 7066,
+        "lead": 71,
+        "manufacture_permission": 328,
+        "occupational_exposure_limit": 285,
+        "organic_type_1": 2,
+        "organic_type_2": 43,
+        "organic_type_3": 10,
+        "prohibited": 14,
+        "skin_protection": 2758,
+        "strong_mutagen": 887,
+        "tokka_class_1": 328,
+        "tokka_class_2": 1266,
+        "tokka_class_3": 9
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -287,17 +361,31 @@
     ],
     "source_count": 1,
     "legal_entries": 65,
-    "mapped_legal_entries": 22,
-    "unresolved_legal_entries": 43,
+    "mapped_legal_entries": 43,
+    "unresolved_legal_entries": 22,
     "positive_cas_rows": 833,
     "unique_positive_cas": 833,
+    "class_coverage": {
+      "class_bearing_cas": 833,
+      "classed": 833,
+      "unresolved": 0,
+      "class_source_counts": {
+        "draft_group_rule": 694,
+        "legal_row_join": 139
+      },
+      "category_counts": {
+        "schedule_1": 444,
+        "schedule_2": 371,
+        "schedule_3": 18
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability",
     "entries": 67,
-    "mapped_entries": 21,
-    "master_rows": 849,
-    "unresolved_entries": 46,
+    "mapped_entries": 25,
+    "master_rows": 853,
+    "unresolved_entries": 42,
     "mapping_complete": false
   },
   "air_pollution": {
@@ -333,10 +421,21 @@
     ],
     "source_count": 1,
     "legal_entries": 330,
-    "mapped_legal_entries": 125,
-    "unresolved_legal_entries": 173,
-    "positive_cas_rows": 8983,
+    "mapped_legal_entries": 285,
+    "unresolved_legal_entries": 45,
+    "positive_cas_rows": 8997,
     "unique_positive_cas": 8964,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 8997
+      },
+      "category_counts": {
+        "air_pollutant": 8997
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -375,10 +474,21 @@
     ],
     "source_count": 1,
     "legal_entries": 136,
-    "mapped_legal_entries": 28,
-    "unresolved_legal_entries": 102,
+    "mapped_legal_entries": 44,
+    "unresolved_legal_entries": 92,
     "positive_cas_rows": 1574,
     "unique_positive_cas": 1574,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 1574
+      },
+      "category_counts": {
+        "cosmetics_standard": 1574
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -421,6 +531,17 @@
     "unresolved_legal_entries": 17,
     "positive_cas_rows": 61,
     "unique_positive_cas": 61,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 61
+      },
+      "category_counts": {
+        "explosive_material": 61
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -467,10 +588,34 @@
     ],
     "source_count": 3,
     "legal_entries": 213,
-    "mapped_legal_entries": 26,
-    "unresolved_legal_entries": 187,
-    "positive_cas_rows": 2155,
+    "mapped_legal_entries": 113,
+    "unresolved_legal_entries": 100,
+    "positive_cas_rows": 2168,
     "unique_positive_cas": 2142,
+    "class_coverage": {
+      "class_bearing_cas": 1948,
+      "classed": 1253,
+      "unresolved": 695,
+      "class_source_counts": {
+        "ghs_category_bracket": 89,
+        "legal_row_join": 19,
+        "property_rule": 925,
+        "reviewed_group_rule": 220,
+        "source_list": 220,
+        "unresolved": 695
+      },
+      "category_counts": {
+        "designated_combustible": 70,
+        "firefighting_obstruction": 150,
+        "hazardous_material": 695,
+        "hazmat_class_1": 95,
+        "hazmat_class_2": 10,
+        "hazmat_class_3": 28,
+        "hazmat_class_4": 1034,
+        "hazmat_class_5": 81,
+        "hazmat_class_6": 5
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -513,10 +658,22 @@
     ],
     "source_count": 2,
     "legal_entries": 2549,
-    "mapped_legal_entries": 289,
-    "unresolved_legal_entries": 1495,
+    "mapped_legal_entries": 797,
+    "unresolved_legal_entries": 1752,
     "positive_cas_rows": 2520,
     "unique_positive_cas": 2354,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 2520
+      },
+      "category_counts": {
+        "food_contact_additive": 1572,
+        "food_contact_base_material": 948
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -563,10 +720,23 @@
     ],
     "source_count": 3,
     "legal_entries": 177,
-    "mapped_legal_entries": 60,
-    "unresolved_legal_entries": 75,
-    "positive_cas_rows": 233,
+    "mapped_legal_entries": 113,
+    "unresolved_legal_entries": 64,
+    "positive_cas_rows": 243,
     "unique_positive_cas": 113,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 243
+      },
+      "category_counts": {
+        "general_high_pressure_gas": 115,
+        "high_pressure_gas": 56,
+        "refrigeration": 72
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -603,10 +773,21 @@
     ],
     "source_count": 1,
     "legal_entries": 21,
-    "mapped_legal_entries": 7,
-    "unresolved_legal_entries": 14,
+    "mapped_legal_entries": 12,
+    "unresolved_legal_entries": 9,
     "positive_cas_rows": 169,
     "unique_positive_cas": 169,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 169
+      },
+      "category_counts": {
+        "household_product_hazard": 169
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -645,10 +826,21 @@
     ],
     "source_count": 1,
     "legal_entries": 379,
-    "mapped_legal_entries": 250,
-    "unresolved_legal_entries": 129,
+    "mapped_legal_entries": 258,
+    "unresolved_legal_entries": 121,
     "positive_cas_rows": 794,
     "unique_positive_cas": 794,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 794
+      },
+      "category_counts": {
+        "controlled_narcotic": 794
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -687,10 +879,21 @@
     ],
     "source_count": 1,
     "legal_entries": 114,
-    "mapped_legal_entries": 61,
-    "unresolved_legal_entries": 53,
+    "mapped_legal_entries": 100,
+    "unresolved_legal_entries": 14,
     "positive_cas_rows": 543,
     "unique_positive_cas": 543,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 543
+      },
+      "category_counts": {
+        "ozone_controlled": 543
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -728,10 +931,21 @@
     ],
     "source_count": 1,
     "legal_entries": 26,
-    "mapped_legal_entries": 5,
-    "unresolved_legal_entries": 21,
+    "mapped_legal_entries": 22,
+    "unresolved_legal_entries": 4,
     "positive_cas_rows": 4390,
     "unique_positive_cas": 4390,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 4390
+      },
+      "category_counts": {
+        "soil_contaminant": 4390
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
@@ -770,10 +984,58 @@
     ],
     "source_count": 1,
     "legal_entries": 107,
-    "mapped_legal_entries": 33,
-    "unresolved_legal_entries": 74,
+    "mapped_legal_entries": 78,
+    "unresolved_legal_entries": 29,
     "positive_cas_rows": 6937,
     "unique_positive_cas": 6937,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "source_list": 6937
+      },
+      "category_counts": {
+        "water_pollutant": 6937
+      }
+    },
+    "is_complete": false,
+    "negative_conclusion_supported": false,
+    "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"
+  },
+  "women_rules": {
+    "dataset_name": "NITE-CHRIP official law lists",
+    "dataset_version": "",
+    "dataset_loaded": false,
+    "all_sources_loaded": false,
+    "loaded_source_ids": [],
+    "missing_source_ids": [],
+    "source_ids": [],
+    "source_urls": [],
+    "source_update_date": "",
+    "law_ids": [],
+    "law_names_ja": [],
+    "law_names_en": [],
+    "required_context": [],
+    "source_count": 0,
+    "legal_entries": 0,
+    "mapped_legal_entries": 0,
+    "unresolved_legal_entries": 0,
+    "positive_cas_rows": 1175,
+    "unique_positive_cas": 1163,
+    "class_coverage": {
+      "class_bearing_cas": 0,
+      "classed": 0,
+      "unresolved": 0,
+      "class_source_counts": {
+        "legal_row_join": 1175
+      },
+      "category_counts": {
+        "women_18_ha": 15,
+        "women_18_i": 1089,
+        "women_18_ro": 71
+      }
+    },
     "is_complete": false,
     "negative_conclusion_supported": false,
     "screening_scope": "authoritative positive-list screening; absence is not proof of legal non-applicability"

@@ -1,6 +1,6 @@
 [project]
 name = "ra-law-db"
-version = "0.4.0"
+version = "0.5.0"
 description = "Japanese chemical law screening package and published dataset"
 authors = [{ name = "Ameyanagi", email = "contact@ameyanagi.com" }]
 readme = "README.md"
@@ -29,6 +29,7 @@ build-backend = "hatchling.build"
 [tool.hatch.build]
 include = [
     "src/ra_law_db/data/regulatory.sqlite3",
+    "src/ra_law_db/data/obligations.csv",
 ]
 
 [tool.hatch.build.targets.wheel]

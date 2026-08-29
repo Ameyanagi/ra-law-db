@@ -22,6 +22,32 @@ from .models import (
     RegulatoryRow,
     SnapshotMetadata,
 )
+from .obligations import (
+    HARD_DUTY_CLASSES,
+    LEGACY_CLASS_SOURCE,
+    LEGAL_NUMBER_CLASS_SOURCE,
+    NARCOTIC_PRECURSOR_CODE,
+    NARCOTIC_SCHEDULED_CODE,
+    OBLIGATIONS_FILE,
+    PERMITTED_LIST_LAWS,
+    SPECIAL_MANAGEMENT_CODE,
+    SPECIAL_ORGANIC_CODE,
+    UNRESOLVED_CLASS_CODES,
+    ObligationRow,
+    apply_legacy_cas_override,
+    build_action_items,
+    build_management,
+    drop_superseded_unresolved,
+    empty_management,
+    index_obligations,
+    load_builtin_obligations,
+    load_obligations_csv,
+    narcotic_class_code,
+    normalize_action_item,
+    obligation_row_from_mapping,
+    required_context_items,
+    select_obligations,
+)
 
 CORE_LAW_CODES = ("cscl", "prtr", "poison_control", "ish", "waste", "cwc")
 CONTEXTUAL_LAW_CODES = ("dust_rule", "occupational_health")
@@ -107,7 +133,70 @@ STATUS_REASON_CODES = {
     "matched_context_required": "MATCHED_CONTEXT_REQUIRED",
     "process_context_required": "PROCESS_CONTEXT_REQUIRED",
     "process_scope_match": "PROCESS_SCOPE_MATCH",
+    "not_listed": "NOT_ON_POSITIVE_LIST",
+    "below_threshold": "BELOW_THRESHOLD",
 }
+
+NOT_LISTED_NOTES = {
+    "ja": "CAS単位で公式リストに不在。塩・異性体・混合物・群指定（〜及びその化合物）は別途確認",
+    "en": "Not on the official list at CAS level. Salts, isomers, mixtures and group designations need separate checks.",
+}
+NOT_LISTED_ACTIONS = {
+    "ja": ["組成・用途変更時に再照合する"],
+    "en": ["Re-screen when composition or use changes"],
+}
+
+# ISH index category codes → flag names (contract §4).
+ISH_INDEX_FLAG_CODES = {
+    "tokka_class_1": "tokka_class_1",
+    "tokka_class_2": "tokka_class_2",
+    "tokka_class_3": "tokka_class_3",
+    "tokka": "tokka_class_unresolved",
+    "organic_type_1": "organic_type_1",
+    "organic_type_2": "organic_type_2",
+    "organic_type_3": "organic_type_3",
+    "lead": "lead_applicable",
+    "prohibited": "prohibited_substance",
+    "manufacture_permission": "manufacture_permission",
+    "label_sds": "label_sds",
+    "skin_protection": "skin_protection",
+    "carcinogen_record": "carcinogen_record",
+    "occupational_exposure_limit": "oel_set",
+}
+ISH_FLAG_NAMES = (
+    "tokka_applicable",
+    "tokka_class_1",
+    "tokka_class_2",
+    "tokka_class_3",
+    "tokka_class_unresolved",
+    "special_management",
+    "organic_applicable",
+    "organic_type_1",
+    "organic_type_2",
+    "organic_type_3",
+    "lead_applicable",
+    "prohibited_substance",
+    "manufacture_permission",
+    "label_sds",
+    "skin_protection",
+    "carcinogen_record",
+    "oel_set",
+)
+# ``class_source`` reported for virtual category codes derived at runtime.
+VIRTUAL_CODE_SOURCES = {
+    SPECIAL_MANAGEMENT_CODE: "index",
+    SPECIAL_ORGANIC_CODE: "index",
+    NARCOTIC_SCHEDULED_CODE: LEGAL_NUMBER_CLASS_SOURCE,
+    NARCOTIC_PRECURSOR_CODE: LEGAL_NUMBER_CLASS_SOURCE,
+}
+IDENTITY_AMBIGUITY_NOTES = {
+    "ja": "公式リストにCASヒットはありませんが、同一CASに同定注記（※）付きの行が他法令にあるため非該当を確定できません。",
+    "en": "No CAS hit in the official list, but the same CAS carries an identity note in another law list; "
+    "non-applicability cannot be concluded.",
+}
+TOKKA_INDEX_CODES = {"tokka", "tokka_class_1", "tokka_class_2", "tokka_class_3"}
+ORGANIC_INDEX_CODES = {"organic_solvent", "organic_type_1", "organic_type_2", "organic_type_3"}
+SUMMARY_STATUSES = ("applies", "requires_context", "not_listed", "unknown", "not_applies")
 
 PROCESS_DATASET_REVIEW_DATE = "2026-08-28"
 PROCESS_DATASET_COVERAGE = {
@@ -400,6 +489,31 @@ def _safe_bool(value: Any, default: bool = False) -> bool:
     return default
 
 
+def _optional_text(value: Any) -> str | None:
+    text = "" if value is None else str(value).strip()
+    return text or None
+
+
+def _optional_bool(value: Any) -> bool | None:
+    """Tri-state column: None when the bundle lacks the column or the cell is empty."""
+    if value is None or (isinstance(value, str) and not value.strip()):
+        return None
+    return _safe_bool(value)
+
+
+def _optional_float(value: Any) -> float | None:
+    if value is None or (isinstance(value, str) and not value.strip()):
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _is_valid_cas(value: str) -> bool:
+    return bool(CAS_PATTERN.fullmatch((value or "").strip()))
+
+
 class LawScreeningDatabase:
     """In-memory screening database loaded from ra-law-db artifacts."""
 
@@ -431,6 +545,7 @@ class LawScreeningDatabase:
         self._master_available: dict[str, bool] = dict.fromkeys(MASTER_DATASET_FILES, False)
         self._master_coverage: dict[str, dict[str, Any]] = {}
         self._indexed_by_law: dict[str, dict[str, list[IndexedLawRow]]] = {}
+        self._identity_noted_cas: set[str] = set()
         self._index_available = False
         self._alias_master_loaded = False
         self._aliases_by_cas: dict[str, set[str]] = {}
@@ -438,6 +553,9 @@ class LawScreeningDatabase:
         self._unresolved_entries: list[dict[str, Any]] = []
         self._uses_sqlite_bundle = False
         self._regulatory_dataset_loaded = False
+        self._obligations: dict[str, dict[str, list[ObligationRow]]] = {}
+        self._obligation_rows = 0
+        self._obligations_source: str | None = None
 
     @classmethod
     def get_instance(cls, law_db_path: str | Path | None = None) -> LawScreeningDatabase:
@@ -529,15 +647,20 @@ class LawScreeningDatabase:
         self._mapping_quality.clear()
         self._master_coverage.clear()
         self._indexed_by_law.clear()
+        self._identity_noted_cas.clear()
         self._index_available = False
         self._aliases_by_cas.clear()
         self._resolved_entries = []
         self._unresolved_entries = []
         self._uses_sqlite_bundle = False
         self._regulatory_dataset_loaded = False
+        self._obligations = {}
+        self._obligation_rows = 0
+        self._obligations_source = None
 
+        obligation_rows: list[ObligationRow] = []
         if self.sqlite_path.exists():
-            self._load_sqlite_bundle()
+            obligation_rows = self._load_sqlite_bundle()
         else:
             self._load_snapshots()
             self._load_resolved_entries()
@@ -548,8 +671,25 @@ class LawScreeningDatabase:
             self._load_master_datasets()
             self._load_master_coverage()
             self._load_regulatory_index()
+        self._load_obligations(obligation_rows)
 
         self._loaded = True
+
+    def _load_obligations(self, sqlite_rows: list[ObligationRow]) -> None:
+        """Obligations precedence: SQLite table → masters/obligations.csv → packaged copy."""
+        rows = sqlite_rows
+        source = "sqlite" if rows else None
+        if not rows:
+            csv_path = self.masters_dir / OBLIGATIONS_FILE
+            if csv_path.exists():
+                rows = load_obligations_csv(csv_path)
+                source = "csv" if rows else None
+        if not rows:
+            rows = load_builtin_obligations()
+            source = "builtin" if rows else None
+        self._obligations = index_obligations(rows)
+        self._obligation_rows = len(rows)
+        self._obligations_source = source
 
     def _law_names_for_code(self, law_code: str) -> tuple[str, str]:
         names = LAW_STANDARD_NAMES.get(law_code, {})
@@ -605,8 +745,9 @@ class LawScreeningDatabase:
             return f"{regulation_type}:{reason}"
         return regulation_type or reason
 
-    def _load_sqlite_bundle(self) -> None:
+    def _load_sqlite_bundle(self) -> list[ObligationRow]:
         self._uses_sqlite_bundle = True
+        obligation_rows: list[ObligationRow] = []
         connection = sqlite3.connect(self.sqlite_path)
         connection.row_factory = sqlite3.Row
         try:
@@ -684,7 +825,9 @@ class LawScreeningDatabase:
 
             for row in connection.execute("SELECT * FROM regulatory_substances"):
                 record_row = {key: row[key] for key in row.keys()}
-                cas_number = (record_row.get("cas_number") or "").strip()
+                cas_number = apply_legacy_cas_override(
+                    record_row.get("cas_number") or "", record_row.get("name_ja") or ""
+                )
                 if not cas_number:
                     continue
                 self._regulatory_dataset_loaded = True
@@ -808,8 +951,18 @@ class LawScreeningDatabase:
                 self._index_available = True
             for row in indexed_rows:
                 self._add_indexed_row({key: row[key] for key in row.keys()})
+
+            try:
+                obligation_cursor = connection.execute("SELECT * FROM obligations")
+            except sqlite3.OperationalError:
+                obligation_cursor = []
+            for row in obligation_cursor:
+                parsed = obligation_row_from_mapping({key: row[key] for key in row.keys()})
+                if parsed is not None:
+                    obligation_rows.append(parsed)
         finally:
             connection.close()
+        return obligation_rows
 
     def _load_snapshots(self) -> None:
         if not self.snapshots_jsonl_path.exists():
@@ -934,7 +1087,7 @@ class LawScreeningDatabase:
         with open(self.export_csv_path, encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                cas_number = (row.get("cas_number") or "").strip()
+                cas_number = apply_legacy_cas_override(row.get("cas_number") or "", row.get("name_ja") or "")
                 if not cas_number:
                     continue
 
@@ -1073,8 +1226,23 @@ class LawScreeningDatabase:
             mapping_method=(row.get("mapping_method") or "").strip(),
             confidence=_safe_float(row.get("confidence"), 0.0),
             required_context=tuple(str(value) for value in context_value),
+            class_source=_optional_text(row.get("class_source")),
+            special_management=_optional_bool(row.get("special_management")),
+            special_organic=_optional_bool(row.get("special_organic")),
+            threshold_pct=_optional_float(row.get("threshold_pct")),
+            threshold_note=_optional_text(row.get("threshold_note")),
+            legal_number=_optional_text(row.get("legal_number")),
+            legal_name=_optional_text(row.get("legal_name")),
+            control_concentration=_optional_float(row.get("control_concentration")),
+            control_concentration_unit=_optional_text(row.get("control_concentration_unit")),
+            control_concentration_basis=_optional_text(row.get("control_concentration_basis")),
+            oel_8h=_optional_text(row.get("oel_8h")),
+            oel_stel=_optional_text(row.get("oel_stel")),
+            oel_effective=_optional_text(row.get("oel_effective")),
         )
         self._indexed_by_law.setdefault(law_code, {}).setdefault(cas_number, []).append(indexed)
+        if indexed.identity_note:
+            self._identity_noted_cas.add(cas_number)
         if indexed.substance_name:
             normalized = normalize_name(indexed.substance_name)
             if normalized:
@@ -1172,6 +1340,11 @@ class LawScreeningDatabase:
                 "action_code": f"{law_code}_{action_group}_{index + 1}",
                 "label": label,
                 "required": True,
+                # Generic procedural guidance, not a statutory duty from ``obligations``.
+                "kind": "info",
+                "basis": None,
+                "condition": None,
+                "owner_hint": None,
             }
             for index, label in enumerate(labels)
         ]
@@ -1203,6 +1376,13 @@ class LawScreeningDatabase:
                 NOT_APPLIES_ACTIONS["ja"],
                 NOT_APPLIES_ACTIONS["en"],
             )
+        if status == "not_listed":
+            items = self._build_action_items(
+                language, law_code, "not_listed", NOT_LISTED_ACTIONS["ja"], NOT_LISTED_ACTIONS["en"]
+            )
+            for item in items:
+                item.update({"required": False, "kind": "info"})
+            return items
         return self._build_action_items(
             language,
             law_code,
@@ -1265,10 +1445,14 @@ class LawScreeningDatabase:
             "law_name_en": law_name_en,
             "status": status,
             "status_reason_code": reason_code,
+            "polarity": "permitted_list" if law_code in PERMITTED_LIST_LAWS else "regulated_list",
             "categories": [],
             "flags": {},
             "notes": self._localize(language, ja_notes, en_notes),
             "required_actions": self._default_actions_for_status(law_code, status, language),
+            "required_context": [],
+            "management": empty_management(),
+            "threshold": None,
             "dataset_name": coverage.get("dataset_name") or None,
             "dataset_version": coverage.get("dataset_version") or None,
             "dataset_loaded": dataset_loaded,
@@ -1300,6 +1484,236 @@ class LawScreeningDatabase:
             "Confirm concentration, annual quantity, use, process, business, and facility conditions",
             "Obtain a formal determination from legal/EHS specialists or the competent authority",
         ]
+
+    # ------------------------------------------------------------------ obligations / management
+
+    FIRE_PROPERTY_KEYS = (
+        "flash_point_c",
+        "boiling_point_c",
+        "autoignition_c",
+        "water_soluble",
+        "alcohol_c1_c3_pct",
+        "liquid_at_20c",
+        "animal_vegetable_oil",
+        "ghs_flammable_liquid_category",
+    )
+
+    def _apply_fire_service_properties(self, result: dict[str, Any], context: dict[str, Any], language: str) -> None:
+        """消防法 第4類 品名 from SDS §9 properties (別表第1 備考) — identity lists cannot provide it."""
+        if not any(key in context and context[key] is not None for key in self.FIRE_PROPERTY_KEYS):
+            return
+        from .fire_service import classify_class4_from_ghs_category, classify_class4_from_properties
+
+        def number(key: str) -> float | None:
+            value = context.get(key)
+            try:
+                return float(value) if value is not None and value != "" else None
+            except (TypeError, ValueError):
+                return None
+
+        def flag(key: str) -> bool | None:
+            value = context.get(key)
+            if value is None or value == "":
+                return None
+            return _safe_bool(value)
+
+        flash_point = number("flash_point_c")
+        ghs_category = context.get("ghs_flammable_liquid_category")
+        if flash_point is None and ghs_category not in (None, ""):
+            classification = classify_class4_from_ghs_category(_safe_int(ghs_category, 0) or None)
+        else:
+            classification = classify_class4_from_properties(
+                flash_point,
+                boiling_point_c=number("boiling_point_c"),
+                autoignition_c=number("autoignition_c"),
+                water_soluble=flag("water_soluble"),
+                alcohol_c1_c3_pct=number("alcohol_c1_c3_pct"),
+                liquid_at_20c=flag("liquid_at_20c") if "liquid_at_20c" in context else True,
+                animal_vegetable_oil=bool(flag("animal_vegetable_oil")),
+            )
+        payload = classification.to_dict()
+        result["property_screening"] = payload
+        result["evidence"]["property_screening"] = payload
+        if classification.category_code != "hazmat_class_4":
+            result["notes"] = f"{result.get('notes', '')} {'; '.join(classification.notes_ja)}".strip()
+            return
+
+        label = "消防法 危険物 第4類" + (f" {classification.item_label_ja}" if classification.item_label_ja else "")
+        if language != "ja":
+            label = "Fire Service Act Class 4 flammable liquid" + (
+                f" ({classification.item_code})" if classification.item_code else ""
+            )
+        existing_codes = [item.get("code") for item in result.get("categories", []) if item.get("code")]
+        result.setdefault("categories", []).append(
+            {
+                "code": "hazmat_class_4",
+                "label": label,
+                "item_code": classification.item_code or None,
+                "class_source": classification.class_source,
+                "designated_quantity_l": classification.designated_quantity_l,
+                "water_soluble": classification.water_soluble,
+                "confidence": classification.confidence,
+                "law_reference": classification.basis_ja,
+                "notes": classification.notes_ja,
+            }
+        )
+        if result.get("status") in {"not_listed", "unknown", "not_applies"}:
+            result["status"] = "requires_context"
+            result["status_reason_code"] = "PROPERTY_SCOPE_MATCH"
+            result["notes"] = (
+                "SDS第9項の物性から消防法 第4類（引火性液体）に該当します。指定数量の倍数は事業所単位で集計してください。"
+                if language == "ja"
+                else "Physical properties place the product in Fire Service Act Class 4; aggregate the designated-quantity multiple per site."
+            )
+        codes = [code for code in existing_codes if code != "hazardous_material"] + ["hazmat_class_4"]
+        result["matched_category_codes"] = codes
+        self._attach_obligations(result, "fire_service", codes, language)
+
+    def _obligation_rows_for(self, law_code: str, category_codes: list[str]) -> list[ObligationRow]:
+        return select_obligations(self._obligations.get(law_code), category_codes)
+
+    def _attach_obligations(
+        self,
+        result: dict[str, Any],
+        law_code: str,
+        category_codes: list[str],
+        language: str,
+    ) -> None:
+        """Replace generic actions with per-category obligations and fill ``management``."""
+        rows = self._obligation_rows_for(law_code, category_codes)
+        if not rows:
+            return
+        # A duty shared verbatim by several matched categories (女性則 イ/ハ for スチレン) is one duty.
+        seen_duties: set[tuple[str, str, str]] = set()
+        unique_rows = []
+        for row in rows:
+            key = (row.kind, row.label_ja, row.basis_ja)
+            if key in seen_duties:
+                continue
+            seen_duties.add(key)
+            unique_rows.append(row)
+        rows = unique_rows
+        generic_codes = {f"{law_code}_applies_", f"{law_code}_requires_context_"}
+        kept = [
+            item
+            for item in result.get("required_actions", [])
+            if not any(str(item.get("action_code", "")).startswith(prefix) for prefix in generic_codes)
+        ]
+        result["required_actions"] = kept
+        self._append_required_actions(result, build_action_items(rows, language))
+        result["management"] = build_management(rows)
+
+    @staticmethod
+    def _virtual_category_codes(hits: list[IndexedLawRow]) -> list[str]:
+        codes: list[str] = []
+        if any(row.special_management for row in hits):
+            codes.append(SPECIAL_MANAGEMENT_CODE)
+        if any(row.special_organic for row in hits):
+            codes.append(SPECIAL_ORGANIC_CODE)
+        for row in hits:
+            if row.law_code != "narcotics":
+                continue
+            code = narcotic_class_code(row.legal_number) or narcotic_class_code(row.law_reference)
+            if code and code not in codes:
+                codes.append(code)
+        return codes
+
+    def _matched_category_codes(self, hits: list[IndexedLawRow]) -> list[str]:
+        """Index category codes plus virtual codes; an unresolved family code yields to a resolved class."""
+        codes: list[str] = []
+        for row in hits:
+            if row.category_code and row.category_code not in codes:
+                codes.append(row.category_code)
+        return drop_superseded_unresolved(codes + self._virtual_category_codes(hits))
+
+    @staticmethod
+    def _class_sources_for(hits: list[IndexedLawRow], category_codes: list[str]) -> dict[str, str | None]:
+        sources: dict[str, str | None] = {}
+        for row in hits:
+            if row.category_code and row.category_code not in sources:
+                sources[row.category_code] = row.class_source
+        return {code: sources.get(code, VIRTUAL_CODE_SOURCES.get(code)) for code in category_codes}
+
+    def _legacy_ish_hits(self, cas_candidates: set[str]) -> list[tuple[str, RegulatoryRow]]:
+        return [
+            (cas, row)
+            for cas in sorted(cas_candidates)
+            for row in self._rows_by_cas.get(cas, [])
+            if row.regulation_type in ISH_TYPES
+        ]
+
+    def _legacy_category_entry(self, cas: str, row: RegulatoryRow, language: str) -> dict[str, Any]:
+        """Category item for a class known only from the legacy 琉球大 layer (same keys as index items)."""
+        return {
+            "code": self._ish_category_code(row),
+            "label": row.regulation_label,
+            "cas_number": cas,
+            "substance_name": row.name_ja if language == "ja" or not row.name_en else row.name_en,
+            "chrip_id": None,
+            "identity_note": None,
+            "mapping_method": LEGACY_CLASS_SOURCE,
+            "confidence": None,
+            "law_reference": row.health_check_ref or None,
+            "law_name_ja": row.law_name_ja,
+            "law_name_en": row.law_name_en,
+            "class_source": LEGACY_CLASS_SOURCE,
+            "special_management": row.special_management,
+            "special_organic": row.special_organic,
+            "threshold_pct": None,
+            "threshold_note": row.threshold_pct or None,
+            "legal_number": None,
+            "legal_name": None,
+            "threshold": None,
+        }
+
+    def _is_hard_duty(self, law_code: str, category_codes: list[str]) -> bool:
+        hard_codes = [code for code in category_codes if code in HARD_DUTY_CLASSES]
+        if not hard_codes:
+            return False
+        rows = self._obligation_rows_for(law_code, hard_codes)
+        return any(row.kind == "mandatory" and row.category_code in HARD_DUTY_CLASSES for row in rows)
+
+    @staticmethod
+    def _ish_flags_from_index(hits: list[IndexedLawRow]) -> dict[str, bool]:
+        codes = {row.category_code for row in hits}
+        flags = dict.fromkeys(ISH_FLAG_NAMES, False)
+        for code, flag in ISH_INDEX_FLAG_CODES.items():
+            if code in codes:
+                flags[flag] = True
+        flags["tokka_applicable"] = bool(codes & TOKKA_INDEX_CODES)
+        flags["organic_applicable"] = bool(codes & ORGANIC_INDEX_CODES)
+        flags["special_management"] = any(row.special_management for row in hits)
+        return flags
+
+    @staticmethod
+    def _merge_flags(base: dict[str, bool], extra: dict[str, bool]) -> dict[str, bool]:
+        merged = dict(base)
+        for key, value in extra.items():
+            merged[key] = bool(merged.get(key)) or bool(value)
+        return merged
+
+    def _ish_index_hits(self, cas_candidates: set[str]) -> list[IndexedLawRow]:
+        return [row for cas in sorted(cas_candidates) for row in self._indexed_by_law.get("ish", {}).get(cas, [])]
+
+    @staticmethod
+    def _threshold_payload(row: IndexedLawRow, percent: float | None) -> dict[str, Any] | None:
+        if percent is None:
+            return None
+        below = None if row.threshold_pct is None else percent <= row.threshold_pct
+        return {"pct": row.threshold_pct, "note": row.threshold_note, "below_threshold": below}
+
+    def _class_coverage(self) -> dict[str, dict[str, int]]:
+        coverage: dict[str, dict[str, int]] = {}
+        for law_code, rows_by_cas in self._indexed_by_law.items():
+            classed = unresolved = 0
+            for rows in rows_by_cas.values():
+                for row in rows:
+                    if row.category_code in UNRESOLVED_CLASS_CODES or row.class_source == "unresolved":
+                        unresolved += 1
+                    else:
+                        classed += 1
+            coverage[law_code] = {"classed": classed, "unresolved": unresolved}
+        return coverage
 
     def _result_from_master(self, law_code: str, cas_candidates: set[str], language: str) -> dict[str, Any]:
         if not cas_candidates:
@@ -1404,9 +1818,62 @@ class LawScreeningDatabase:
         snapshot = self._snapshot_payload(primary.law_id)
         if snapshot:
             result["evidence"]["snapshot"] = snapshot
+        self._attach_obligations(result, law_code, [hit.category for hit in hits], language)
         return result
 
-    def _result_indexed(self, law_code: str, cas_candidates: set[str], language: str) -> dict[str, Any]:
+    def _no_hit_indexed_result(self, law_code: str, cas_candidates: set[str], language: str) -> dict[str, Any]:
+        coverage = self._master_coverage.get(law_code, {})
+        negative_supported = bool(coverage.get("negative_conclusion_supported", False))
+        valid_cas = [cas for cas in cas_candidates if _is_valid_cas(cas)]
+        # Identity ambiguity (a name resolving to several CAS, or a CAS whose index rows carry a NITE
+        # identity note in any law) keeps the conservative "unknown".
+        identity_noted = any(cas in self._identity_noted_cas for cas in cas_candidates)
+        unambiguous = len(valid_cas) == len(cas_candidates) == 1 and bool(self._indexed_by_law.get(law_code))
+        if negative_supported:
+            return self._base_result(
+                law_code,
+                language,
+                "not_applies",
+                STATUS_REASON_CODES["no_dataset_hit"],
+                "完全性が確認されたデータセットで該当なしです。",
+                "No hit in a dataset whose screening scope supports a negative conclusion.",
+            )
+        if identity_noted:
+            result = self._base_result(
+                law_code,
+                language,
+                "unknown",
+                STATUS_REASON_CODES["incomplete_master_dataset"],
+                IDENTITY_AMBIGUITY_NOTES["ja"],
+                IDENTITY_AMBIGUITY_NOTES["en"],
+            )
+            result["required_context"] = ["substance_identity"]
+            return result
+        if unambiguous:
+            return self._base_result(
+                law_code,
+                language,
+                "not_listed",
+                STATUS_REASON_CODES["not_listed"],
+                NOT_LISTED_NOTES["ja"],
+                NOT_LISTED_NOTES["en"],
+            )
+        return self._base_result(
+            law_code,
+            language,
+            "unknown",
+            STATUS_REASON_CODES["incomplete_master_dataset"],
+            "公式ポジティブリストにCASヒットはありませんが、法的な非該当は確定できません。",
+            "There is no CAS hit in the official positive list, but legal non-applicability cannot be concluded.",
+        )
+
+    def _result_indexed(
+        self,
+        law_code: str,
+        cas_candidates: set[str],
+        language: str,
+        percent: float | None = None,
+    ) -> dict[str, Any]:
         """Return conservative screening from authoritative positive-list rows."""
         if not cas_candidates:
             return self._base_result(
@@ -1419,53 +1886,50 @@ class LawScreeningDatabase:
             )
 
         hits = [row for cas in sorted(cas_candidates) for row in self._indexed_by_law.get(law_code, {}).get(cas, [])]
-        coverage = self._master_coverage.get(law_code, {})
         if not hits:
-            negative_supported = bool(coverage.get("negative_conclusion_supported", False))
-            status = "not_applies" if negative_supported else "unknown"
-            reason = (
-                STATUS_REASON_CODES["no_dataset_hit"]
-                if negative_supported
-                else STATUS_REASON_CODES["incomplete_master_dataset"]
-            )
-            result = self._base_result(
-                law_code,
-                language,
-                status,
-                reason,
-                (
-                    "完全性が確認されたデータセットで該当なしです。"
-                    if negative_supported
-                    else "公式ポジティブリストにCASヒットはありませんが、法的な非該当は確定できません。"
-                ),
-                (
-                    "No hit in a dataset whose screening scope supports a negative conclusion."
-                    if negative_supported
-                    else "There is no CAS hit in the official positive list, but legal non-applicability cannot be concluded."
-                ),
-            )
-            result["required_context"] = sorted(
-                {
-                    value
-                    for rows in self._indexed_by_law.get(law_code, {}).values()
-                    for row in rows[:1]
-                    for value in row.required_context
-                }
-            )
+            if law_code == "ish" and self._legacy_ish_hits(cas_candidates):
+                # Listed only in the legacy 琉球大 layer: still listed, never downgraded to not_listed.
+                return self._result_ish(cas_candidates, language, index_checked=True)
+            result = self._no_hit_indexed_result(law_code, cas_candidates, language)
+            law_context = {
+                value
+                for rows in self._indexed_by_law.get(law_code, {}).values()
+                for row in rows[:1]
+                for value in row.required_context
+            }
+            result["required_context"] = sorted(law_context | set(result.get("required_context") or []))
             return result
 
         required_context = sorted({value for row in hits for value in row.required_context})
         if any(row.identity_note for row in hits):
             required_context.append("substance_identity")
             required_context = sorted(set(required_context))
-        result = self._base_result(
-            law_code,
-            language,
-            "requires_context",
-            STATUS_REASON_CODES["matched_context_required"],
-            "公式法令リストに一致しました。具体的義務は濃度、数量、用途、工程等の条件確認が必要です。",
-            "Matched an official law list. Specific obligations require concentration, quantity, use, and process context.",
+
+        below_threshold = percent is not None and all(
+            row.threshold_pct is not None and percent <= row.threshold_pct for row in hits
         )
+        if below_threshold:
+            result = self._base_result(
+                law_code,
+                language,
+                "not_applies",
+                STATUS_REASON_CODES["below_threshold"],
+                "公式法令リストに一致しますが、指定濃度（含有率）以下のため当該区分の適用除外です。",
+                "Listed, but the given percentage is at or below the exemption threshold for every matched category.",
+            )
+            # Result-level threshold reports the highest exemption threshold among the matched categories.
+            strictest = max(hits, key=lambda row: row.threshold_pct or 0.0)
+            result["threshold"] = {**(self._threshold_payload(strictest, percent) or {}), "percent": percent}
+            result["threshold"]["below_threshold"] = True
+        else:
+            result = self._base_result(
+                law_code,
+                language,
+                "requires_context",
+                STATUS_REASON_CODES["matched_context_required"],
+                "公式法令リストに一致しました。具体的義務は濃度、数量、用途、工程等の条件確認が必要です。",
+                "Matched an official law list. Specific obligations require concentration, quantity, use, and process context.",
+            )
         result["law_name_ja"] = hits[0].law_name_ja or result["law_name_ja"]
         result["law_name_en"] = hits[0].law_name_en or result["law_name_en"]
         result["required_context"] = required_context
@@ -1480,6 +1944,20 @@ class LawScreeningDatabase:
                 "mapping_method": row.mapping_method,
                 "confidence": row.confidence,
                 "law_reference": row.law_reference,
+                "class_source": row.class_source,
+                "special_management": row.special_management,
+                "special_organic": row.special_organic,
+                "threshold_pct": row.threshold_pct,
+                "threshold_note": row.threshold_note,
+                "legal_number": row.legal_number,
+                "legal_name": row.legal_name,
+                "control_concentration": row.control_concentration,
+                "control_concentration_unit": row.control_concentration_unit,
+                "control_concentration_basis": row.control_concentration_basis,
+                "oel_8h": row.oel_8h,
+                "oel_stel": row.oel_stel,
+                "oel_effective": row.oel_effective,
+                "threshold": self._threshold_payload(row, percent),
             }
             for row in hits
         ]
@@ -1514,15 +1992,36 @@ class LawScreeningDatabase:
                 ],
             }
         )
+        if result["status"] == "not_applies":
+            return result
+        category_codes = self._matched_category_codes(hits)
+        class_sources = self._class_sources_for(hits, category_codes)
         if law_code == "ish":
-            legacy_hits = [
-                (cas, row)
-                for cas in sorted(cas_candidates)
-                for row in self._rows_by_cas.get(cas, [])
-                if row.regulation_type in ISH_TYPES
-            ]
+            index_flags = self._ish_flags_from_index(hits)
+            result["flags"] = index_flags
+            result["flags_source"] = {name: "index" for name, value in index_flags.items() if value}
+            legacy_hits = self._legacy_ish_hits(cas_candidates)
             if legacy_hits:
                 self._apply_ish_obligations(result, legacy_hits, language)
+                legacy_special = any(row.special_management for _, row in legacy_hits)
+                if legacy_special:
+                    result["flags"]["special_management"] = True
+                for name, value in result["flags"].items():
+                    if value and not index_flags.get(name):
+                        result["flags_source"][name] = LEGACY_CLASS_SOURCE
+                for cas, row in legacy_hits:
+                    code = self._ish_category_code(row)
+                    if code not in category_codes:
+                        category_codes.append(code)
+                        class_sources[code] = LEGACY_CLASS_SOURCE
+                        result["categories"].append(self._legacy_category_entry(cas, row, language))
+                if legacy_special and SPECIAL_MANAGEMENT_CODE not in category_codes:
+                    category_codes.append(SPECIAL_MANAGEMENT_CODE)
+                    class_sources[SPECIAL_MANAGEMENT_CODE] = LEGACY_CLASS_SOURCE
+                category_codes = drop_superseded_unresolved(category_codes)
+        result["class_sources"] = {code: class_sources.get(code) for code in category_codes}
+        self._attach_obligations(result, law_code, category_codes, language)
+        result["matched_category_codes"] = category_codes
         return result
 
     @staticmethod
@@ -1609,6 +2108,8 @@ class LawScreeningDatabase:
                 "evaluated_context": context,
             }
         )
+        if result["status"] == "requires_context":
+            self._attach_obligations(result, "dust_rule", ["potential_dust_work"], language)
         return result
 
     def _result_occupational_health(
@@ -1617,15 +2118,31 @@ class LawScreeningDatabase:
         context: dict[str, Any],
         language: str,
     ) -> dict[str, Any]:
-        legacy_hits = [
-            (cas, row)
-            for cas in sorted(cas_candidates)
-            for row in self._rows_by_cas.get(cas, [])
-            if row.regulation_type in ISH_TYPES
-        ]
+        legacy_hits = self._legacy_ish_hits(cas_candidates)
         health_checks = self._build_ish_health_checks(legacy_hits)
         dust_match = self._dust_context_match(context)
-        if not health_checks and not dust_match:
+        # v0.5: statutory 健診・測定・記録 from the obligations matrix, keyed by the matched ISH classes.
+        ish_index_hits = self._ish_index_hits(cas_candidates)
+        ish_codes = self._matched_category_codes(ish_index_hits)
+        class_sources = self._class_sources_for(ish_index_hits, ish_codes)
+        for _, row in legacy_hits:
+            code = self._ish_category_code(row)
+            if code not in ish_codes:
+                ish_codes.append(code)
+                class_sources[code] = LEGACY_CLASS_SOURCE
+            if row.special_management and SPECIAL_MANAGEMENT_CODE not in ish_codes:
+                ish_codes.append(SPECIAL_MANAGEMENT_CODE)
+                class_sources[SPECIAL_MANAGEMENT_CODE] = LEGACY_CLASS_SOURCE
+        ish_codes = drop_superseded_unresolved(ish_codes)
+        management_rows = (
+            [row for row in self._obligation_rows_for("ish", ish_codes) if row.category_code != "*"]
+            if ish_codes
+            else []
+        )
+        if dust_match:
+            management_rows.extend(self._obligation_rows_for("dust_rule", ["potential_dust_work"]))
+        management = build_management(management_rows)
+        if not health_checks and not dust_match and not management["health_checks"]:
             result = self._base_result(
                 "occupational_health",
                 language,
@@ -1664,6 +2181,12 @@ class LawScreeningDatabase:
         ]
         result["evidence"]["health_checks"] = checks
         result["evidence"]["evaluated_context"] = context
+        result["management"] = management
+        result["matched_category_codes"] = ish_codes
+        result["class_sources"] = {code: class_sources.get(code) for code in ish_codes}
+        if result["status"] == "requires_context":
+            self._attach_obligations(result, "occupational_health", [], language)
+            result["management"] = management
         result.update(
             {
                 "dataset_name": "MHLW official occupational medical examination guidance",
@@ -1762,6 +2285,7 @@ class LawScreeningDatabase:
         snapshot = self._snapshot_payload(law_id)
         if snapshot:
             result["evidence"]["snapshot"] = snapshot
+        self._attach_obligations(result, "prtr", [item["code"] for item in categories], language)
         return result
 
     def _ish_category_code(self, row: RegulatoryRow) -> str:
@@ -1774,8 +2298,9 @@ class LawScreeningDatabase:
     def _build_ish_categories_and_references(
         self,
         hits: list[tuple[str, RegulatoryRow]],
-    ) -> tuple[list[dict[str, str]], list[str]]:
-        categories: list[dict[str, str]] = []
+        language: str = "ja",
+    ) -> tuple[list[dict[str, Any]], list[str]]:
+        categories: list[dict[str, Any]] = []
         references: list[str] = []
         seen_codes: set[tuple[str, int]] = set()
 
@@ -1785,15 +2310,7 @@ class LawScreeningDatabase:
                 continue
             seen_codes.add(code_key)
 
-            categories.append(
-                {
-                    "code": self._ish_category_code(row),
-                    "label": row.regulation_label,
-                    "cas_number": cas,
-                    "law_name_ja": row.law_name_ja,
-                    "law_name_en": row.law_name_en,
-                }
-            )
+            categories.append(self._legacy_category_entry(cas, row, language))
             if row.health_check_ref:
                 references.append(row.health_check_ref)
 
@@ -1922,9 +2439,10 @@ class LawScreeningDatabase:
         language: str,
     ) -> None:
         ish_flags = self._build_ish_flags(hits)
-        result["flags"] = ish_flags
+        result["flags"] = self._merge_flags(result.get("flags", {}), ish_flags)
+        has_obligations = bool(self._obligations.get("ish"))
 
-        if ish_flags["tokka_applicable"]:
+        if ish_flags["tokka_applicable"] and not has_obligations:
             if language == "ja":
                 self._append_required_actions(
                     result,
@@ -1953,9 +2471,14 @@ class LawScreeningDatabase:
             return
 
         result["evidence"]["health_checks"] = health_checks
-        self._append_required_actions(result, self._build_health_check_actions(health_checks, language))
+        if not has_obligations:
+            actions = self._build_health_check_actions(health_checks, language)
+            for action in actions:
+                action["kind"] = "mandatory"
+            self._append_required_actions(result, actions)
 
-    def _result_ish(self, cas_candidates: set[str], language: str) -> dict[str, Any]:
+    def _result_ish(self, cas_candidates: set[str], language: str, index_checked: bool = False) -> dict[str, Any]:
+        """ISH result from the legacy 琉球大 layer (index unavailable, or ``index_checked`` with no index row)."""
         if not cas_candidates:
             return self._base_result(
                 "ish",
@@ -1966,12 +2489,7 @@ class LawScreeningDatabase:
                 "No CAS candidate was resolved from the query.",
             )
 
-        hits = [
-            (cas, row)
-            for cas in sorted(cas_candidates)
-            for row in self._rows_by_cas.get(cas, [])
-            if row.regulation_type in ISH_TYPES
-        ]
+        hits = self._legacy_ish_hits(cas_candidates)
 
         if not hits:
             result = self._base_result(
@@ -1985,26 +2503,49 @@ class LawScreeningDatabase:
             result["required_context"] = ISH_CONTEXT_FIELDS
             return result
 
-        categories, references = self._build_ish_categories_and_references(hits)
+        categories, references = self._build_ish_categories_and_references(hits, language)
 
+        if index_checked:
+            ja_notes = (
+                "NITE-CHRIP索引に当該CASの行はありませんが、補助レイヤ（琉球大 法規制物質一覧）に該当します。"
+                "区分は補助レイヤ由来のため、法令本文で確認してください。"
+            )
+            en_notes = (
+                "No NITE-CHRIP index row for this CAS, but the legacy supplementary list (Univ. of the Ryukyus) "
+                "lists it; the class is legacy-derived and must be confirmed against the law text."
+            )
+        else:
+            ja_notes = "物質は法令リストに該当します。具体義務の判定には作業条件の追加情報が必要です。"
+            en_notes = "Substance is listed. Specific duties depend on work conditions and handling context."
         result = self._base_result(
             "ish",
             language,
             "requires_context",
             STATUS_REASON_CODES["matched_context_required"],
-            "物質は法令リストに該当します。具体義務の判定には作業条件の追加情報が必要です。",
-            "Substance is listed. Specific duties depend on work conditions and handling context.",
+            ja_notes,
+            en_notes,
         )
         result["categories"] = categories
         result["required_context"] = ISH_CONTEXT_FIELDS
+        result["flags"] = dict.fromkeys(ISH_FLAG_NAMES, False)
         result["evidence"].update(
             {
                 "source_file": self._regulatory_source_path(),
                 "references": sorted(set(references))[:10],
                 "matched_laws": self._unique_matched_laws([row for _, row in hits]),
+                "class_source": LEGACY_CLASS_SOURCE,
+                "index_checked": index_checked,
             }
         )
         self._apply_ish_obligations(result, hits, language)
+        category_codes = [item["code"] for item in categories]
+        if any(row.special_management for _, row in hits):
+            result["flags"]["special_management"] = True
+            category_codes.append(SPECIAL_MANAGEMENT_CODE)
+        result["flags_source"] = {name: LEGACY_CLASS_SOURCE for name, value in result["flags"].items() if value}
+        result["class_sources"] = dict.fromkeys(category_codes, LEGACY_CLASS_SOURCE)
+        self._attach_obligations(result, "ish", category_codes, language)
+        result["matched_category_codes"] = category_codes
         return result
 
     def _display_names(self, cas_number: str) -> tuple[str, str]:
@@ -2522,6 +3063,7 @@ class LawScreeningDatabase:
                 "records": [self._serialize_regulatory_row(row, language) for _, row in hits],
             }
         )
+        self._attach_obligations(result, "waste", [item["code"] for item in result["categories"]], language)
         return result
 
     def lookup(
@@ -2530,43 +3072,62 @@ class LawScreeningDatabase:
         substance_name: str | None = None,
         language: str = "ja",
         context: dict[str, Any] | None = None,
+        percent: float | None = None,
+        substances: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
-        """Look up multi-law screening results by CAS and/or substance name."""
+        """Look up multi-law screening results by CAS and/or substance name.
+
+        ``percent`` (0-100, content of the substance in the mixture) enables threshold screening.
+        ``substances`` (``[{cas_number, percent}]``) screens several components and returns
+        ``{"results_by_cas": {cas: <single lookup payload>}}``.
+        """
         if not self._loaded:
             self._load_data()
 
         language = "ja" if language == "ja" else "en"
+        if substances is not None:
+            results_by_cas: dict[str, dict[str, Any]] = {}
+            for item in substances:
+                item_cas = str(item.get("cas_number") or "").strip()
+                if not item_cas:
+                    continue
+                results_by_cas[item_cas] = self.lookup(
+                    cas_number=item_cas,
+                    substance_name=item.get("substance_name"),
+                    language=language,
+                    context=context,
+                    percent=_optional_float(item.get("percent")),
+                )
+            return {"results_by_cas": results_by_cas}
+
+        percent = _optional_float(percent)
         query = {
             "cas_number": cas_number,
             "substance_name": substance_name,
             "context": context or {},
+            "percent": percent,
         }
 
         if not (cas_number or substance_name):
-            return {
-                "query": query,
-                "matched": False,
-                "matched_substances": [],
-                "results": [
-                    self._base_result(
-                        law_code,
-                        language,
-                        "unknown",
-                        STATUS_REASON_CODES["missing_input"],
-                        "cas_number か substance_name の少なくとも一方が必要です。",
-                        "Either cas_number or substance_name is required.",
-                    )
-                    for law_code in SUPPORTED_LAW_CODES
-                ],
-                "available_law_domains": self._available_law_domains(),
-            }
+            results = [
+                self._base_result(
+                    law_code,
+                    language,
+                    "unknown",
+                    STATUS_REASON_CODES["missing_input"],
+                    "cas_number か substance_name の少なくとも一方が必要です。",
+                    "Either cas_number or substance_name is required.",
+                )
+                for law_code in SUPPORTED_LAW_CODES
+            ]
+            return self._finalize_lookup(query, False, [], results, language)
 
         cas_candidates, matched_substances = self._resolve_candidates(cas_number, substance_name)
 
         def result_for_core(law_code: str) -> dict[str, Any]:
             coverage = self._master_coverage.get(law_code, {})
-            if self._index_available and coverage.get("dataset_loaded"):
-                return self._result_indexed(law_code, cas_candidates, language)
+            if self._index_available and coverage.get("dataset_loaded") and law_code in self._indexed_by_law:
+                return self._result_indexed(law_code, cas_candidates, language, percent)
             if law_code in MASTER_DATASET_FILES:
                 return self._result_from_master(law_code, cas_candidates, language)
             if law_code == "prtr":
@@ -2579,18 +3140,48 @@ class LawScreeningDatabase:
         related_codes = sorted(
             (set(self._indexed_by_law) | set(self._master_coverage)) - set(CORE_LAW_CODES) - set(CONTEXTUAL_LAW_CODES)
         )
-        results.extend(self._result_indexed(law_code, cas_candidates, language) for law_code in related_codes)
+        results.extend(self._result_indexed(law_code, cas_candidates, language, percent) for law_code in related_codes)
         screening_context = context or {}
+        for result in results:
+            if result.get("law_code") == "fire_service":
+                self._apply_fire_service_properties(result, screening_context, language)
         results.append(self._result_dust_rule(screening_context, language))
         results.append(self._result_occupational_health(cas_candidates, screening_context, language))
 
         matched = any(result["status"] in {"applies", "requires_context"} for result in results)
+        return self._finalize_lookup(query, matched, matched_substances, results, language)
 
+    def _finalize_lookup(
+        self,
+        query: dict[str, Any],
+        matched: bool,
+        matched_substances: list[dict[str, Any]],
+        results: list[dict[str, Any]],
+        language: str,
+    ) -> dict[str, Any]:
+        summary = dict.fromkeys(SUMMARY_STATUSES, 0)
+        hard_duty_laws: list[str] = []
+        for result in results:
+            result["required_actions"] = [normalize_action_item(item) for item in result.get("required_actions", [])]
+            result["required_context_items"] = required_context_items(
+                list(result.get("required_context") or []), language
+            )
+            status = result["status"]
+            if status in summary:
+                summary[status] += 1
+            codes = result.pop("matched_category_codes", None) or [item.get("code") for item in result["categories"]]
+            result["hard_duty"] = status in {"applies", "requires_context"} and self._is_hard_duty(
+                result["law_code"], [code for code in codes if code]
+            )
+            if result["hard_duty"]:
+                hard_duty_laws.append(result["law_code"])
         return {
             "query": query,
             "matched": matched,
             "matched_substances": matched_substances,
             "results": results,
+            "summary": summary,
+            "hard_duty_laws": hard_duty_laws,
             "available_law_domains": self._available_law_domains(),
         }
 
@@ -2625,4 +3216,8 @@ class LawScreeningDatabase:
             "indexed_law_domains": sorted(self._indexed_by_law),
             "available_law_domains": self._available_law_domains(),
             "coverage": self._master_coverage,
+            "obligations_loaded": self._obligation_rows > 0,
+            "obligation_rows": self._obligation_rows,
+            "obligations_source": self._obligations_source,
+            "class_coverage": self._class_coverage(),
         }

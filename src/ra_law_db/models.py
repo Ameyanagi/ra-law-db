@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
-LawStatus = Literal["applies", "not_applies", "requires_context", "unknown"]
+LawStatus = Literal["applies", "not_applies", "requires_context", "not_listed", "unknown"]
 
 
 LAW_LABELS = {
@@ -17,6 +17,7 @@ LAW_LABELS = {
         "waste": "廃棄物処理法",
         "cwc": "化学兵器禁止法",
         "dust_rule": "粉じん障害防止規則・じん肺法",
+        "women_rules": "女性労働基準規則（就業制限）",
         "occupational_health": "特殊健康診断・じん肺健康診断",
         "ozone_layer": "オゾン層保護法",
         "air_pollution": "大気汚染防止法",
@@ -38,6 +39,7 @@ LAW_LABELS = {
         "waste": "Waste Management Act",
         "cwc": "Chemical Weapons Convention Law",
         "dust_rule": "Dust Ordinance and Pneumoconiosis Act",
+        "women_rules": "Women's Labour Standards Ordinance (work restrictions)",
         "occupational_health": "Occupational and pneumoconiosis health examinations",
         "ozone_layer": "Ozone Layer Protection Act",
         "air_pollution": "Air Pollution Control Act",
@@ -77,6 +79,10 @@ LAW_STANDARD_NAMES = {
     "cwc": {
         "ja": "化学兵器の禁止及び特定物質の規制等に関する法律",
         "en": "Act on the Prohibition of Chemical Weapons and the Regulation of Specific Chemicals",
+    },
+    "women_rules": {
+        "ja": "女性労働基準規則（労働基準法第64条の3）",
+        "en": "Women's Labour Standards Ordinance (Labour Standards Act Art. 64-3)",
     },
     "dust_rule": {
         "ja": "粉じん障害防止規則及びじん肺法",
@@ -191,3 +197,19 @@ class IndexedLawRow:
     mapping_method: str
     confidence: float
     required_context: tuple[str, ...]
+    # v0.5 class columns; None when the bundle predates them.
+    class_source: str | None = None
+    special_management: bool | None = None
+    special_organic: bool | None = None
+    threshold_pct: float | None = None
+    threshold_note: str | None = None
+    legal_number: str | None = None
+    legal_name: str | None = None
+    # 管理濃度 (作業環境評価基準 別表) — present on 特化則/有機則/鉛 rows since v0.5.1
+    control_concentration: float | None = None
+    control_concentration_unit: str | None = None
+    control_concentration_basis: str | None = None
+    # 濃度基準値 (安衛則577条の2; MHLW 一覧) on RJ_04_023 rows, normalised text such as "2 ppm"
+    oel_8h: str | None = None
+    oel_stel: str | None = None
+    oel_effective: str | None = None
