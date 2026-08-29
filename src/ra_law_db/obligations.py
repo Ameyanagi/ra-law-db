@@ -123,6 +123,14 @@ REQUIRED_CONTEXT_LABELS: dict[str, tuple[str, str]] = {
     "work_frequency": ("作業頻度", "Work frequency"),
     "facility": ("施設・設備", "Facility"),
     "covered_work": ("対象業務への従事", "Covered work"),
+    "respirator_required_work": (
+        "呼吸用保護具の使用が義務付けられた作業か（特化則・鉛則・有機則）",
+        "Is respirator use mandated for the work (特化則/鉛則/有機則)?",
+    ),
+    "workplace_control_class": (
+        "直近の作業環境測定の管理区分（第一・第二・第三）",
+        "Latest workplace-measurement control class (1/2/3)",
+    ),
     "assignment_history": ("配置歴", "Assignment history"),
     "medical_exam_history": ("健診受診歴", "Medical examination history"),
     "worker_category": ("労働者区分", "Worker category"),

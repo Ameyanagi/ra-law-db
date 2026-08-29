@@ -96,9 +96,13 @@ At runtime, the bundled database is resolved safely via `importlib.resources` an
     on 特化則 第一・二類 / 有機則 第一・二種 / 鉛則 rows), `oel_8h` / `oel_stel` / `oel_effective`
     (濃度基準値, MHLW 一覧, on `occupational_exposure_limit` rows) and the 皮膚等障害化学物質 裾切値 in
     `threshold_pct` / `threshold_note` of `skin_protection` rows; older bundles without them still load)
-    - `women_rules` rows (女性労働基準規則 第2条第1項第18号) are derived from the 特化則/鉛則/有機則 group
-      names of the ish rows (`mapping_method: legal_group_name_join`, law id 361M50002000003);
-      categories `women_18_i` (特定化学物質等), `women_18_ro` (鉛), `women_18_ha` (有機溶剤)
+    - `women_rules` rows (女性労働基準規則 第2条第1項第18号, every female worker per 第3条) are derived from
+      the 特化則/鉛則/有機則 group names of the ish rows (`mapping_method: legal_group_name_join`, law id
+      361M50002000003); categories `women_18_i` (特定化学物質等), `women_18_ro` (鉛), `women_18_ha` (有機溶剤).
+      They inherit the source ordinance's `threshold_pct`; `legal_number` ending in `（２）のみ` marks
+      substances covered only through the 第三管理区分 branch. v0.5.1: `lookup(context=...)` with
+      `respirator_required_work` (bool) and `workplace_control_class` (1/2/3) resolves the result to
+      `applies` (`WOMEN_RULE_WORK_COVERED`) or `not_applies` (`WOMEN_RULE_WORK_NOT_COVERED`)
   - `obligations.csv`: per-(law_code, category_code) duties in Japanese — 法定管理措置マトリクス
     (健診種類・周期・記録年数、測定周期・記録年数、作業記録年数、作業主任者、掲示) and per-law
     checklists; `category_code='*'` is the per-law fallback, `special_management` /
@@ -138,6 +142,12 @@ Category payloads (`categories[]`) expose the index columns above verbatim: `con
 (float) with its unit and 換算基準, `oel_8h` / `oel_stel` as normalised text (`"2 ppm"`, `"5 mg/m³"`) with
 `oel_effective` as an ISO date, and `threshold_pct` / `threshold_note`. `None` means the statute sets no
 value for that row (e.g. 第三類物質 have no 管理濃度), not "unknown".
+
+Category rows that differ only by 政令番号 (e.g. 硫酸 listed twice as 劇物) are merged into one item
+carrying `legal_numbers`; `narcotics` items are labelled 麻薬向精神薬原料 vs 麻薬・向精神薬本体 from the
+指定政令 citation; `waste` items use the category code `waste_listed`. For process-decided laws
+(`dust_rule`, `occupational_health`, `waste`) an `unknown` result's `required_actions` ask for the
+work or waste conditions rather than for the CAS (v0.5.1).
 
 Each result also carries `polarity` (`regulated_list`, or `permitted_list` for the
 food-contact positive list), `required_actions[]` built from `masters/obligations.csv`

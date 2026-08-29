@@ -386,8 +386,8 @@ def _by_law(payload: dict) -> dict[str, dict]:
     return {item["law_code"]: item for item in payload["results"]}
 
 
-def test_version_is_0_5_0():
-    assert __version__ == "0.5.0"
+def test_version_is_0_5_1():
+    assert __version__ == "0.5.1"
 
 
 def test_obligations_csv_covers_every_law_domain_and_matches_packaged_copy():
@@ -889,14 +889,79 @@ def test_women_rules_domain_is_derived_from_ish_groups_with_verbatim_duties():
     toluene = women("108-88-3")
     assert toluene["status"] == "requires_context"
     assert [c["code"] for c in toluene["categories"]] == ["women_18_ha"]
-    assert [a["kind"] for a in toluene["required_actions"]] == ["mandatory", "conditional", "info"]
+    assert toluene["categories"][0]["threshold_pct"] == 5.0  # inherited from 有機則
+    assert [a["kind"] for a in toluene["required_actions"]] == ["mandatory", "conditional", "info", "info"]
     assert "全ての女性労働者" in toluene["required_actions"][0]["label"]
-    assert {i["key"] for i in toluene["required_context_items"]} == {"work_process", "workplace", "worker_category"}
+    assert {i["key"] for i in toluene["required_context_items"]} == {
+        "respirator_required_work",
+        "workplace_control_class",
+    }
 
     styrene = women("100-42-5")  # listed under both イ and ハ
     assert {c["code"] for c in styrene["categories"]} == {"women_18_i", "women_18_ha"}
-    assert [a["kind"] for a in styrene["required_actions"]] == ["mandatory", "conditional", "info", "info"]
+    assert [a["kind"] for a in styrene["required_actions"]] == ["mandatory", "conditional", "info", "info", "info"]
 
     lead = women("7439-92-1")
     assert [c["code"] for c in lead["categories"]] == ["women_18_ro"]
     assert women("64-17-5")["status"] == "not_listed"  # エタノール: no 女性則 group
+
+
+def test_women_rules_context_resolves_to_applies_or_not_applies():
+    db = LawScreeningDatabase.get_instance()
+
+    def women(cas: str, **context) -> dict:
+        payload = db.lookup(cas_number=cas, language="ja", context=context or None)
+        return next(item for item in payload["results"] if item["law_code"] == "women_rules")
+
+    # 第三管理区分 → applies for every listed substance
+    hit = women("108-88-3", workplace_control_class="第三管理区分")
+    assert hit["status"] == "applies" and hit["status_reason_code"] == "WOMEN_RULE_WORK_COVERED"
+    # 呼吸用保護具 work → applies (toluene: 有機則 branch)
+    assert women("108-88-3", respirator_required_work=True, workplace_control_class=1)["status"] == "applies"
+    # class 1 and no respirator mandate → not_applies with an explicit reason
+    miss = women("108-88-3", respirator_required_work=False, workplace_control_class=2)
+    assert miss["status"] == "not_applies" and miss["status_reason_code"] == "WOMEN_RULE_WORK_NOT_COVERED"
+    assert miss["required_actions"] and all(a["kind"] == "info" for a in miss["required_actions"])
+    # スチレン (（２）のみ): the respirator branch alone does not cover it
+    styrene_i = db.lookup(cas_number="100-42-5", language="ja", context={"respirator_required_work": True})
+    women_styrene = next(item for item in styrene_i["results"] if item["law_code"] == "women_rules")
+    assert women_styrene["status"] == "applies"  # ハ (有機溶剤 branch) is not （２）のみ, so it still applies
+    # only a control class given, and it is 1: undecided without the respirator answer → stays requires_context
+    assert women("108-88-3", workplace_control_class=1)["status"] == "requires_context"
+    # below the inherited 有機則 threshold → not_applies via percent screening
+    below = db.lookup(cas_number="108-88-3", language="ja", percent=3)
+    assert next(item for item in below["results"] if item["law_code"] == "women_rules")["status"] == "not_applies"
+
+
+def test_review_fixes_duplicates_labels_and_context_actions():
+    db = LawScreeningDatabase.get_instance()
+
+    def law(payload: dict, code: str) -> dict:
+        return next(item for item in payload["results"] if item["law_code"] == code)
+
+    # 硫酸: two 劇物 rows (硫酸 / 硫酸を含有する製剤) become one chip carrying both 政令番号
+    poison = law(db.lookup(cas_number="7664-93-9", language="ja"), "poison_control")
+    assert [c["code"] for c in poison["categories"]] == ["deleterious"]
+    assert len(poison["categories"][0]["legal_numbers"]) == 2
+
+    # トルエン is a 麻薬向精神薬原料, never "麻薬・向精神薬等"
+    narcotics = law(db.lookup(cas_number="108-88-3", language="ja"), "narcotics")
+    assert narcotics["categories"][0]["label"].startswith("麻薬向精神薬原料")
+
+    # メタノール: the statutory アルコール類 wins over the flash-point rule; one 第4類 chip only
+    fire = law(
+        db.lookup(cas_number="67-56-1", language="ja", context={"flash_point_c": 11, "boiling_point_c": 65}),
+        "fire_service",
+    )
+    class4 = [c for c in fire["categories"] if c["code"] == "hazmat_class_4"]
+    assert len(class4) == 1 and "アルコール類" in class4[0]["label"]
+
+    # process-context laws ask for the process, not for the CAS
+    payload = db.lookup(cas_number="7732-18-5", language="ja")
+    assert "粉じん作業" in law(payload, "dust_rule")["required_actions"][0]["label"]
+    assert "特別管理産業廃棄物" in law(payload, "waste")["required_actions"][0]["label"]
+
+    # waste hits use a stable category code that the obligations matrix knows
+    waste = law(db.lookup(cas_number="75-09-2", language="ja"), "waste")
+    assert waste["categories"][0]["code"] == "waste_listed"
+    assert any(a["kind"] == "mandatory" for a in waste["required_actions"])

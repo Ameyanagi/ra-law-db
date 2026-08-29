@@ -3,7 +3,7 @@
 from .models import LAW_LABELS, LAW_STANDARD_NAMES, LawStatus
 from .screening_db import LawScreeningDatabase
 
-__version__ = "0.5.0"
+__version__ = "0.5.1"
 
 
 def get_law_screening_database(law_db_path: str | None = None):

@@ -135,6 +135,8 @@ STATUS_REASON_CODES = {
     "process_scope_match": "PROCESS_SCOPE_MATCH",
     "not_listed": "NOT_ON_POSITIVE_LIST",
     "below_threshold": "BELOW_THRESHOLD",
+    "women_work_covered": "WOMEN_RULE_WORK_COVERED",
+    "women_work_not_covered": "WOMEN_RULE_WORK_NOT_COVERED",
 }
 
 NOT_LISTED_NOTES = {
@@ -309,6 +311,27 @@ MISSING_MASTER_SOURCE_HINTS = {
 NO_CANDIDATE_ACTIONS = {
     "ja": ["CAS番号または物質名を確認し再照合する"],
     "en": ["Confirm the CAS number or substance name and retry lookup"],
+}
+# Laws that are decided by work/waste conditions, not by the CAS: their "unknown" must ask for those.
+CONTEXT_UNKNOWN_ACTIONS = {
+    "dust_rule": {
+        "ja": ["粉じん作業（粉じん則別表第1：研磨・粉砕・混合・投入等）に当たる作業の有無と頻度を確認する"],
+        "en": [
+            "Check whether any work falls under 粉じん則 別表第1 (grinding, crushing, mixing, charging …) and how often"
+        ],
+    },
+    "occupational_health": {
+        "ja": ["特殊健康診断の対象業務（特化則・有機則・鉛則等）への従事の有無と配置歴を確認する"],
+        "en": ["Check assignment to work covered by special medical examinations (特化則/有機則/鉛則 …)"],
+    },
+    "waste": {
+        "ja": [
+            "廃棄時に特別管理産業廃棄物（廃酸 pH≤2・廃アルカリ pH≥12.5・引火点70 ℃未満の廃油・有害物質含有）への該当を性状で判定する"
+        ],
+        "en": [
+            "At disposal, decide specially-controlled industrial waste status from the waste's properties (acid, alkali, flash point, hazardous content)"
+        ],
+    },
 }
 
 NOT_APPLIES_ACTIONS = {
@@ -499,6 +522,46 @@ def _optional_bool(value: Any) -> bool | None:
     if value is None or (isinstance(value, str) and not value.strip()):
         return None
     return _safe_bool(value)
+
+
+def _merge_duplicate_categories(categories: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Collapse rows that differ only by 政令番号 (e.g. 硫酸 as 劇物 twice) into one chip with `legal_numbers`."""
+    merged: list[dict[str, Any]] = []
+    by_key: dict[tuple[str, str], dict[str, Any]] = {}
+    for item in categories:
+        key = (str(item.get("code")), str(item.get("label")))
+        kept = by_key.get(key)
+        if kept is None:
+            item["legal_numbers"] = [item["legal_number"]] if item.get("legal_number") else []
+            by_key[key] = item
+            merged.append(item)
+            continue
+        if item.get("legal_number") and item["legal_number"] not in kept["legal_numbers"]:
+            kept["legal_numbers"].append(item["legal_number"])
+        if item.get("law_reference") and item["law_reference"] != kept.get("law_reference"):
+            kept["law_reference"] = f"{kept.get('law_reference') or ''}; {item['law_reference']}".strip("; ")
+        # keep the stricter (lower) exemption threshold of the duplicates
+        if item.get("threshold_pct") is not None and (
+            kept.get("threshold_pct") is None or item["threshold_pct"] < kept["threshold_pct"]
+        ):
+            kept["threshold_pct"], kept["threshold_note"] = item["threshold_pct"], item.get("threshold_note")
+            kept["threshold"] = item.get("threshold")
+    return merged
+
+
+def _control_class(value: Any) -> int | None:
+    """Parse a 管理区分 given as 1/2/3, '3', '第三管理区分', 'III' …; None when absent or unparseable."""
+    if value is None or value == "":
+        return None
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return int(value) if int(value) in (1, 2, 3) else None
+    text = str(value).strip()
+    for number, markers in ((3, ("3", "三", "III")), (2, ("2", "二", "II")), (1, ("1", "一", "I"))):
+        if any(marker in text for marker in markers):
+            return number
+    return None
 
 
 def _optional_float(value: Any) -> float | None:
@@ -1383,13 +1446,12 @@ class LawScreeningDatabase:
             for item in items:
                 item.update({"required": False, "kind": "info"})
             return items
-        return self._build_action_items(
-            language,
-            law_code,
-            "unknown",
-            NO_CANDIDATE_ACTIONS["ja"],
-            NO_CANDIDATE_ACTIONS["en"],
-        )
+        unknown_actions = CONTEXT_UNKNOWN_ACTIONS.get(law_code, NO_CANDIDATE_ACTIONS)
+        items = self._build_action_items(language, law_code, "unknown", unknown_actions["ja"], unknown_actions["en"])
+        if law_code in CONTEXT_UNKNOWN_ACTIONS:
+            for item in items:
+                item.update({"required": False, "kind": "info"})
+        return items
 
     def _missing_master_actions(
         self,
@@ -1544,6 +1606,26 @@ class LawScreeningDatabase:
                 f" ({classification.item_code})" if classification.item_code else ""
             )
         existing_codes = [item.get("code") for item in result.get("categories", []) if item.get("code")]
+        legal_class4 = next(
+            (item for item in result.get("categories", []) if item.get("code") == "hazmat_class_4"), None
+        )
+        if legal_class4 is not None:
+            # The index already names the statutory 品名 (e.g. メタノール = アルコール類); the property rule is only
+            # corroboration.  Never show two 第4類 chips.
+            agrees = bool(classification.item_label_ja) and classification.item_label_ja in str(
+                legal_class4.get("label")
+            )
+            legal_class4.setdefault("item_code", classification.item_code if agrees else None)
+            if agrees:
+                legal_class4.setdefault("designated_quantity_l", classification.designated_quantity_l)
+                legal_class4.setdefault("confidence", classification.confidence)
+            else:
+                legal_class4["notes"] = [
+                    f"SDS物性からの推定（{classification.item_label_ja}）は法定の品名と異なるため、法定の品名を優先",
+                ]
+            result["matched_category_codes"] = [code for code in existing_codes if code != "hazardous_material"]
+            self._attach_obligations(result, "fire_service", result["matched_category_codes"], language)
+            return
         result.setdefault("categories", []).append(
             {
                 "code": "hazmat_class_4",
@@ -1568,6 +1650,84 @@ class LawScreeningDatabase:
         codes = [code for code in existing_codes if code != "hazardous_material"] + ["hazmat_class_4"]
         result["matched_category_codes"] = codes
         self._attach_obligations(result, "fire_service", codes, language)
+
+    WOMEN_CLASS3_ONLY_MARKER = "（２）のみ"
+
+    def _apply_women_rules_context(self, result: dict[str, Any], context: dict[str, Any], language: str) -> None:
+        """女性則 第2条第1項第18号 is decided by two facts: respirator-mandated work, or a 第三管理区分 workplace.
+
+        With those in ``context`` the result resolves to ``applies`` / ``not_applies`` instead of staying
+        ``requires_context``.  Substances marked ``（２）のみ`` (スチレン, テトラクロロエチレン, トリクロロエチレン)
+        are covered only through the control-class branch.
+        """
+        if result.get("status") not in {"requires_context", "applies"} or not result.get("categories"):
+            return
+        if result["status"] == "requires_context":
+            result["notes"] = self._localize(
+                language,
+                "女性則第2条第1項第18号の対象物質です。①呼吸用保護具の使用が義務付けられた作業か、②作業環境測定で"
+                "第三管理区分の場所での業務か、のどちらかに当たる場合に限り、全ての女性労働者の就業が禁止されます"
+                "（context の respirator_required_work / workplace_control_class で確定できます）。",
+                "Listed under Women's Ordinance Art. 2(1)(xviii): the restriction applies to every female worker only for "
+                "respirator-mandated work or work in a control-class-3 workplace (pass respirator_required_work / "
+                "workplace_control_class in context to resolve).",
+            )
+        respirator_raw = context.get("respirator_required_work")
+        respirator = None if respirator_raw in (None, "") else _safe_bool(respirator_raw)
+        control_class = _control_class(context.get("workplace_control_class"))
+        if respirator is None and control_class is None:
+            return
+        class3_only = all(
+            self.WOMEN_CLASS3_ONLY_MARKER in str(item.get("legal_number") or "") for item in result["categories"]
+        )
+        covered = control_class == 3 or (respirator is True and not class3_only)
+        excluded = control_class in (1, 2) and (respirator is False or (respirator is None and class3_only))
+        result["evidence"]["women_rules_context"] = {
+            "respirator_required_work": respirator,
+            "workplace_control_class": control_class,
+            "class3_only": class3_only,
+        }
+        if covered:
+            result["status"] = "applies"
+            result["status_reason_code"] = STATUS_REASON_CODES["women_work_covered"]
+            result["notes"] = self._localize(
+                language,
+                "呼吸用保護具の使用が義務付けられた作業、又は作業環境測定で第三管理区分となった場所の業務に該当するため、"
+                "妊娠中・産後1年以内に限らず全ての女性労働者を就かせることができません（女性則第2条第1項第18号・第3条）。",
+                "Respirator-mandated work or a control-class-3 workplace: no female worker (not only pregnant or "
+                "post-partum) may be assigned (Women's Ordinance Art. 2(1)(xviii), Art. 3).",
+            )
+        elif excluded:
+            result["status"] = "not_applies"
+            result["status_reason_code"] = STATUS_REASON_CODES["women_work_not_covered"]
+            result["notes"] = self._localize(
+                language,
+                "第一・第二管理区分の場所で、呼吸用保護具の使用が義務付けられていない作業のため、女性則第2条第1項第18号の"
+                "就業制限は適用されません。管理区分が第三になった場合や作業内容が変わった場合は再判定してください。",
+                "Control class 1/2 and no respirator mandate: the item-18 restriction does not apply; re-screen if the "
+                "control class or the work changes.",
+            )
+            result["required_actions"] = self._default_actions_for_status("women_rules", "not_applies", language)
+            result["management"] = empty_management()
+
+    @staticmethod
+    def _category_label(law_code: str, row: IndexedLawRow, language: str) -> str:
+        label = row.category_label_ja if language == "ja" else row.category_label_en
+        if law_code == "narcotics":
+            code = narcotic_class_code(row.legal_number) or narcotic_class_code(row.law_reference)
+            if code == NARCOTIC_PRECURSOR_CODE:
+                return (
+                    "麻薬向精神薬原料（麻向法：本体ではない）"
+                    if language == "ja"
+                    else "Narcotics precursor (not a controlled drug)"
+                )
+            if code == NARCOTIC_SCHEDULED_CODE:
+                return (
+                    "麻薬・向精神薬（本体：免許・施錠保管）"
+                    if language == "ja"
+                    else "Controlled narcotic / psychotropic"
+                )
+        return label
 
     def _obligation_rows_for(self, law_code: str, category_codes: list[str]) -> list[ObligationRow]:
         return select_obligations(self._obligations.get(law_code), category_codes)
@@ -1936,7 +2096,7 @@ class LawScreeningDatabase:
         result["categories"] = [
             {
                 "code": row.category_code,
-                "label": row.category_label_ja if language == "ja" else row.category_label_en,
+                "label": self._category_label(law_code, row, language),
                 "cas_number": row.cas_number,
                 "substance_name": row.substance_name,
                 "chrip_id": row.chrip_id or None,
@@ -1961,6 +2121,7 @@ class LawScreeningDatabase:
             }
             for row in hits
         ]
+        result["categories"] = _merge_duplicate_categories(result["categories"])
         first = hits[0]
         result.update(
             {
@@ -3048,8 +3209,13 @@ class LawScreeningDatabase:
         )
         result["categories"] = [
             {
-                "code": row.regulation_label or "waste",
-                "label": row.regulation_label,
+                "code": "waste_listed",
+                "label": (
+                    "廃棄物処理法 関連物質（特別管理産業廃棄物・特定有害産業廃棄物の該当性を確認）"
+                    if language == "ja"
+                    else "Waste Management Act listed substance (check specially-controlled industrial waste status)"
+                ),
+                "legal_name": row.regulation_label,
                 "cas_number": cas,
                 "law_name_ja": row.law_name_ja,
                 "law_name_en": row.law_name_en,
@@ -3145,6 +3311,8 @@ class LawScreeningDatabase:
         for result in results:
             if result.get("law_code") == "fire_service":
                 self._apply_fire_service_properties(result, screening_context, language)
+            elif result.get("law_code") == "women_rules":
+                self._apply_women_rules_context(result, screening_context, language)
         results.append(self._result_dust_rule(screening_context, language))
         results.append(self._result_occupational_health(cas_candidates, screening_context, language))
 

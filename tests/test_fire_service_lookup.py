@@ -27,7 +27,9 @@ def test_flash_point_context_classifies_acetone_as_petroleum_1(bundled_db: LawSc
     class4 = next(item for item in fire["categories"] if item["code"] == "hazmat_class_4" and "item_code" in item)
     assert class4["item_code"] == "petroleum_1"
     assert class4["designated_quantity_l"] == 400
-    assert class4["class_source"] == "property_rule"
+    # the statutory 品名 from the index is kept as the chip; the property rule corroborates it
+    assert class4["class_source"] in {"reviewed_group_rule", "legal_row_join", "property_rule"}
+    assert fire["property_screening"]["class_source"] == "property_rule"
     assert fire["status"] == "requires_context"
     assert fire["property_screening"]["confidence"] == "exact"
     assert any(item.get("kind") for item in fire["required_actions"])
