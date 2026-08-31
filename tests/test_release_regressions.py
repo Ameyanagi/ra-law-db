@@ -305,3 +305,29 @@ def test_powder_work_surfaces_dust_and_health_examination_screening(
     for law_code in ("dust_rule", "occupational_health"):
         assert by_law[law_code]["dataset_coverage"]
         assert by_law[law_code]["update_date"] == "2026-08-28"
+
+
+def test_explicit_no_dust_work_overrides_material_form(
+    bundled_db: LawScreeningDatabase,
+) -> None:
+    """L3 is the direct legal fact: an explicit no must beat a powder-form inference."""
+    payload = bundled_db.lookup(
+        cas_number="67-56-1",
+        language="ja",
+        context={
+            "material_form": "powder",
+            "work_process": "混合・投入",
+            "dust_generation": False,
+            "work_frequency": "5 days/week",
+        },
+    )
+    by_law = {result["law_code"]: result for result in payload["results"]}
+    dust = by_law["dust_rule"]
+    assert dust["status"] == "not_applies"
+    assert dust["status_reason_code"] == "DUST_RULE_WORK_NOT_COVERED"
+    assert dust["categories"] == []
+    assert dust["required_context"] == []
+    assert all(not rows for rows in dust["management"].values())
+
+    checks = by_law["occupational_health"]["evidence"]["health_checks"]
+    assert all(check["type"] != "じん肺健康診断" for check in checks)

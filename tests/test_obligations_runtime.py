@@ -386,8 +386,8 @@ def _by_law(payload: dict) -> dict[str, dict]:
     return {item["law_code"]: item for item in payload["results"]}
 
 
-def test_version_is_0_5_1():
-    assert __version__ == "0.5.1"
+def test_version_is_0_5_2():
+    assert __version__ == "0.5.2"
 
 
 def test_obligations_csv_covers_every_law_domain_and_matches_packaged_copy():

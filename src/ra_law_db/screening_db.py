@@ -133,6 +133,7 @@ STATUS_REASON_CODES = {
     "matched_context_required": "MATCHED_CONTEXT_REQUIRED",
     "process_context_required": "PROCESS_CONTEXT_REQUIRED",
     "process_scope_match": "PROCESS_SCOPE_MATCH",
+    "dust_work_not_covered": "DUST_RULE_WORK_NOT_COVERED",
     "not_listed": "NOT_ON_POSITIVE_LIST",
     "below_threshold": "BELOW_THRESHOLD",
     "women_work_covered": "WOMEN_RULE_WORK_COVERED",
@@ -2186,7 +2187,25 @@ class LawScreeningDatabase:
         return result
 
     @staticmethod
+    def _dust_generation_answer(context: dict[str, Any]) -> bool | None:
+        """Return an explicit L3-style answer; inferred form/process must never override it."""
+        if "dust_generation" not in context:
+            return None
+        value = context["dust_generation"]
+        if isinstance(value, bool):
+            return value
+        normalized = str(value).strip().casefold()
+        if normalized in {"true", "1", "yes", "はい"}:
+            return True
+        if normalized in {"false", "0", "no", "いいえ"}:
+            return False
+        return None
+
+    @staticmethod
     def _dust_context_match(context: dict[str, Any]) -> bool:
+        explicit = LawScreeningDatabase._dust_generation_answer(context)
+        if explicit is not None:
+            return explicit
         material_form = str(context.get("material_form") or context.get("property_type") or "").casefold()
         dust_generation = context.get("dust_generation", context.get("dustiness"))
         process = str(context.get("work_process") or "").casefold()
@@ -2219,7 +2238,17 @@ class LawScreeningDatabase:
 
     def _result_dust_rule(self, context: dict[str, Any], language: str) -> dict[str, Any]:
         required_context = ["material_form", "work_process", "dust_generation", "work_frequency", "facility"]
-        if not self._dust_context_match(context):
+        if self._dust_generation_answer(context) is False:
+            result = self._base_result(
+                "dust_rule",
+                language,
+                "not_applies",
+                STATUS_REASON_CODES["dust_work_not_covered"],
+                "粉じん則別表第1の粉じん作業に該当しないため、粉じん則・じん肺法の作業要件は適用されません。作業内容が変わった場合は再判定してください。",
+                "The work is not dust work under Appended Table 1, so the work-based Dust Ordinance and Pneumoconiosis Act requirements do not apply. Re-screen if the work changes.",
+            )
+            required_context = []
+        elif not self._dust_context_match(context):
             result = self._base_result(
                 "dust_rule",
                 language,

@@ -103,6 +103,8 @@ At runtime, the bundled database is resolved safely via `importlib.resources` an
       substances covered only through the 第三管理区分 branch. v0.5.1: `lookup(context=...)` with
       `respirator_required_work` (bool) and `workplace_control_class` (1/2/3) resolves the result to
       `applies` (`WOMEN_RULE_WORK_COVERED`) or `not_applies` (`WOMEN_RULE_WORK_NOT_COVERED`)
+    - v0.5.2: an explicit `dust_generation=false` (the L3 answer) takes precedence over inferred
+      powder/process hints and resolves `dust_rule` to `not_applies` (`DUST_RULE_WORK_NOT_COVERED`)
   - `obligations.csv`: per-(law_code, category_code) duties in Japanese — 法定管理措置マトリクス
     (健診種類・周期・記録年数、測定周期・記録年数、作業記録年数、作業主任者、掲示) and per-law
     checklists; `category_code='*'` is the per-law fallback, `special_management` /
